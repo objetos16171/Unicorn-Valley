@@ -8,14 +8,28 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Menu extends World
 {
+    private Jugar jug;
+    private Ayuda ayud;    
 
     /**
      * Constructor for objects of class Menu.
      * 
      */
     public Menu()
-    {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+    {     
         super(800, 600, 1); 
+        setBackground("Menu.png");          
+        prepare();       
+    }
+    /**
+     * Prepara al mundo para comenzar el programa
+     * That is: create the initial objects and add them to the world.
+     */
+    private void prepare()
+    {
+        ayud= new Ayuda();
+        jug = new Jugar();
+        addObject(jug,400,350);        
+        addObject(ayud,400,400);
     }
 }
