@@ -1,15 +1,15 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Jugar here.
+ * Write a description of class Botonayuda here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Jugar extends Actor
+public class Botonayuda extends Actor
 {
     /**
-     * Act - do whatever the Jugar wants to do. This method is called whenever
+     * Act - do whatever the Botonayuda wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 
@@ -17,7 +17,7 @@ public class Jugar extends Actor
         MouseInfo m= Greenfoot.getMouseInfo();              
         if(m != null){
             if(Greenfoot.mouseClicked(this)){
-                Greenfoot.setWorld(new Nivel1());
+                Greenfoot.setWorld(new Ayuda());
                 
             }
         }

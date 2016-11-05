@@ -6,14 +6,16 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Ayuda extends Actor
+public class Ayuda extends World
 {
+
     /**
-     * Act - do whatever the Ayuda wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Constructor for objects of class Ayuda.
+     * 
      */
-    public void act() 
-    {
-        // Add your action code here.
-    }    
+    public Ayuda()
+    {    
+        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+        super(800, 600, 1); 
+    }
 }

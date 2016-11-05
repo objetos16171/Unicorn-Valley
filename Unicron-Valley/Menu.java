@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Menu extends World
 {
     private Jugar jug;
-    private Ayuda ayud;    
+    private Botonayuda ayud;    
 
     /**
      * Constructor for objects of class Menu.
@@ -27,7 +27,7 @@ public class Menu extends World
      */
     private void prepare()
     {
-        ayud= new Ayuda();
+        ayud= new Botonayuda();
         jug = new Jugar();
         addObject(jug,400,350);        
         addObject(ayud,400,400);
