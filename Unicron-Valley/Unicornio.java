@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Unicornio extends Actor
 {
+    private int vel = 5;
     /**
      * Act - do whatever the Unicornio wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -15,7 +16,34 @@ public class Unicornio extends Actor
     public void act() 
     {
         tocaLlave();
-    }    
+    }
+    
+    /**
+     * Mueve la posicion del jugador y verifica que no salga del mundo
+     * Este metodo pertenece al Nivel1
+     * @author Carlos Almendarez
+     * @version 5-11-16
+     * @return No hay valor
+     * @param no hay parametros de entrada
+     */
+     public void mueve()
+     {
+         World w = getWorld();
+         
+         if(Greenfoot.isKeyDown("right") && getX()+50<((Nivel1)w).getAnc()){
+             setLocation(getX()+vel,getY());
+         }
+         if(Greenfoot.isKeyDown("left") && getX()-50>0){
+             setLocation(getX()-vel,getY());
+            }
+         if(Greenfoot.isKeyDown("up") && getY()-50>0){
+             setLocation(getX(),getY()-vel);
+         }
+         if(Greenfoot.isKeyDown("down") && getY()+50<=((Nivel1)w).getAltura()){
+             setLocation(getX(),getY()+vel);
+         }
+     } 
+    
     /**
      * Verifica si el unicornio tomo una llave y manda un mensaje a mundo
      * para poder aumentar el contador y cambiar la imagen
@@ -31,6 +59,7 @@ public class Unicornio extends Actor
             removeTouching(Llave.class);
         } 
     }
+    
     /**
      *Salto del unicornio (este metodo se ejecuta desde el mundo: Nivel2)
      * @author Diana Huelga

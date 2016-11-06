@@ -14,6 +14,22 @@ public class Portal extends Actor
      */
     public void act() 
     {
-        // Add your action code here.
-    }    
+        teleport();
+    }
+    
+    /**
+     * Llama al mundo para decirle que acaba de tocar al usuario y anda su coordenada en x (este metodo pertenece al Nivel1)
+     * @author Carlos Almendarez
+     * @version 4-11-16
+     * @return No hay valor 
+     * @param no hay parametros de entrada
+     */
+    public void teleport()
+    {
+        World w = getWorld();
+        if(isTouching(Unicornio.class))
+        {
+            ((Nivel1)w).teleport(getX());
+        }
+    }
 }

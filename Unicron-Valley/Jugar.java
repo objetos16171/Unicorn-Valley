@@ -18,7 +18,6 @@ public class Jugar extends Actor
         if(m != null){
             if(Greenfoot.mouseClicked(this)){
                 Greenfoot.setWorld(new Nivel1());
-                
             }
         }
     }    
