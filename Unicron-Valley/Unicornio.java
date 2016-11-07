@@ -12,15 +12,11 @@ public class Unicornio extends Actor
      * Act - do whatever the Unicornio wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    // private Unicornio(){
-        // setImage("Unicorn.png");
-    // }
     public void act() 
     {
         tocaLlave();
     }
     
-    }  
     /**
      * Mueve la posicion del jugador y verifica que no salga del mundo
      * Este metodo pertenece al Nivel1
@@ -37,9 +33,7 @@ public class Unicornio extends Actor
          
         if(Greenfoot.isKeyDown("right") && getX()+50<((Nivel1)w).getAnc() && getOneObjectAtOffset(30,0,Piedra.class)==null
            && getOneObjectAtOffset(30,30,Piedra.class)==null && getOneObjectAtOffset(30,-30,Piedra.class)==null && getOneObjectAtOffset(30,0,Counter.class)==null){             
-             setLocation(getX()+vel,getY());                         
-         World w = getWorld();      
-        
+             setLocation(getX()+vel,getY());   
         if(Greenfoot.isKeyDown("right") && getX()+50<((Nivel1)w).getAnc()){
              setLocation(getX()+vel,getY());
              setImage("unicorn.png");    
@@ -56,6 +50,7 @@ public class Unicornio extends Actor
         if(Greenfoot.isKeyDown("down") && getY()+50<=((Nivel1)w).getAltura() && getOneObjectAtOffset(0,30,Piedra.class)==null
            && getOneObjectAtOffset(30,30,Piedra.class)==null && getOneObjectAtOffset(-30,30,Piedra.class)==null && getOneObjectAtOffset(0,30,Counter.class)==null){            
                 setLocation(getX(),getY()+vel);            
+        }
         }
     }
     /**
@@ -80,11 +75,41 @@ public class Unicornio extends Actor
      * @return -
      * @param no hay parametros de entrada
      */
-     public void tocaLlave(){
+     public void tocaLlave()
+     {
         if(isTouching(Llave.class)){
             World m=getWorld();
             ((Nivel1)m).modificaContadorLlaves();            
             removeTouching(Llave.class);
         } 
+    }
+    /**
+     *  Cambia la posicion en 'y' del unicornio para simular la caida
+     *  @author Diana Huelga
+     *  @return -
+     *  @param no hay parametros de entrada 
+     *  @version 7-11-16
+     */
+    public void cae(){
+        if(!isTouching(Plataforma.class)){
+            setLocation(getX(),getY()+5);
+        }
+    }
+    /**
+     *  Mueve la posicion en x dependiendo de la tecla presionada
+     *  @author Diana Huelga
+     *  @return -
+     *  @param no hay parametros de entrada 
+     *  @version 7-11-16
+     */
+    public void mueveLados(){
+        if(Greenfoot.isKeyDown("right")){
+            setImage("unicorn.png");
+            move(3);          
+        }else if(Greenfoot.isKeyDown("left")){
+            setImage("unicorn2.png");
+            move(-3);
+            
+        }
     }
 }
