@@ -6,8 +6,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Nivel2 extends World
+public class Nivel2 extends Nivel
 {
+     private Botonmenu botMen;
      private Unicornio unicornio;
      private Counter contLlaves;
     
@@ -15,8 +16,8 @@ public class Nivel2 extends World
     * Constructor for objects of class Nivel2. 
     */
     public Nivel2()
-    {    
-        super(800, 600, 1);         
+    {            
+        super();
         prepare();
     }
      public void act(){
@@ -32,11 +33,13 @@ public class Nivel2 extends World
          int x=50;
          int y=585;
         unicornio=new Unicornio();
-        addObject(unicornio,50,540);
+        addObject(unicornio,50,540);     
+        botMen= new Botonmenu();
+        addObject(botMen,720,20);
         contLlaves=new Counter();
-        addObject(contLlaves,110,30);
-        contLlaves.setValue(0);
+        addObject(contLlaves,115,20);
         contLlaves.setImage("Llave00.png");
+        
         for(int i = 0 ; i < 7 ; i++){
             addObject(new Plataforma(),x,y);
             x+=150;
