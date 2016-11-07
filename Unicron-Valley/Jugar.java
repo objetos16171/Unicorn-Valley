@@ -17,6 +17,8 @@ public class Jugar extends Actor
         MouseInfo m= Greenfoot.getMouseInfo();              
         if(m != null){
             if(Greenfoot.mouseClicked(this)){
+                setImage("Jugar1.png");
+                Greenfoot.delay(100);
                 Greenfoot.setWorld(new Nivel1());
             }
         }

@@ -14,6 +14,9 @@ public class UnicornioSecundario extends Actor
      */
     public void act() 
     {
-        // Add your action code here.
-    }    
+        
+    }  
+    public void cambiaNivel(){
+        Greenfoot.setWorld(new Nivel2());
+    }
 }

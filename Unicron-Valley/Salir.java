@@ -1,15 +1,15 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Botonayuda here.
+ * Write a description of class Salir here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Botonayuda extends Actor
+public class Salir extends Actor
 {
     /**
-     * Act - do whatever the Botonayuda wants to do. This method is called whenever
+     * Act - do whatever the Salir wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 
@@ -17,9 +17,10 @@ public class Botonayuda extends Actor
         MouseInfo m= Greenfoot.getMouseInfo();              
         if(m != null){
             if(Greenfoot.mouseClicked(this)){
-                setImage("Ayuda1.png");
+                setImage("Salir1.png");
                 Greenfoot.delay(100);
-                Greenfoot.setWorld(new Ayuda());                
+                setImage("Salir.png");
+                Greenfoot.stop();
             }
         }
     }    

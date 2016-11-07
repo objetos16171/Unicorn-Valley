@@ -8,32 +8,119 @@ import java.util.List;
  */
 public class Nivel1 extends World
 {
-    Unicornio unicornio;
-    Portal portal1;
-    Portal portal2;
-    Portal portal;
+    private Unicornio unicornio;
+    private Counter contLlaves;
+    private UnicornioSecundario uni2;
+    private Portal portal1;
+    private Portal portal2;
+    private Portal portal;    
     
     /**
      * Constructor for objects of class Nivel1.
      */
     public Nivel1()
     {    
-        super(800, 600, 1);
-        unicornio = new Unicornio();
-        portal1 = new Portal();
-        portal2 = new Portal();
-        portal = new Portal();
-        addObject(unicornio,60,500);
-        addObject(portal1,60,100);
-        addObject(portal2,600,100);
-        addObject(portal,610,400);
+        super(800, 600, 1);                
+        acomodaPiedras();
+        agregaLlavesAleatoriamente();
+        agregaEnemigosAleatoriamente();
+        agregaPortales();
+        prepare();
+        contLlaves.setImage("Llave00.png");
     }
-    
     public void act()
     {
         unicornio.mueve();
+        liberaAmigoUnicornio();
     }
-    
+    /**
+     * valida si se puede avanzar al mundo Nivel2
+     * @author Diana Huelga
+     * @version 6-11-16
+     * @return - 
+     * @param no hay parametros de entrada
+     */
+    public void liberaAmigoUnicornio(){
+        if(unicornio.libera() && contLlaves.getValue() == 100){
+                uni2.cambiaNivel();
+        }
+    }
+    /**
+     * Agrega portales al mundo Nivel 1
+     * @author Diana Huelga
+     * @param no hay parametros de entrada
+     * @return - 
+     * @version 6-11-16
+     */
+    public void agregaPortales(){
+        int y=0;
+        int x=0;
+        for(int i=0 ; i < 5 ;)
+        {
+            x=Greenfoot.getRandomNumber(750);
+            y=Greenfoot.getRandomNumber(600);
+            if( x > 10 && y > 50){
+                addObject(new Portal(),x,y);
+                i++;
+            }
+        }
+    }
+    /**
+     * Agrega las piedras que irán en el escenario
+     * @author Diana Huelga
+     * @version 6-11-16
+     * @return -
+     * @param no hay parametros de entrada
+     */
+    public void acomodaPiedras(){
+        int x=15;
+        int y=150;
+        int i=0;
+        
+        for(i=0; i < 11 ; i++){     
+            if(i == 3){
+                x+=120;}
+            addObject(new Piedra(),x,y);             
+            x+=30;
+        }          
+        x=15;
+        y=270;
+        for(i=0 ; i < 18 ; i++){
+            if(i == 8){
+                x+=y;}
+            addObject(new Piedra(),x,y);             
+            x+=30;
+        }
+        y=390;
+        x=15;
+        for(i=0 ; i< 19; i++){
+            if(i == 0 || i == 17){
+                x+=120;
+            }
+            addObject(new Piedra(),x,y);             
+            x+=30;            
+        }  
+    }
+    /**
+     * Agerga al mundo los enemigos secundarios del nivel
+     * @author Diana Huelga
+     * @version 6-11-16
+     * @retunrn -
+     * @param no hay parametros de entrada
+     */
+    public void agregaEnemigosAleatoriamente(){
+        int y=0;
+        int x=0;
+        for(int i=0 ; i < 5 ;)
+        {
+            x=Greenfoot.getRandomNumber(750);
+            y=Greenfoot.getRandomNumber(600);
+            if( x > 10 && y > 80){
+                addObject(new EneSecundNiv1(),x,y);
+                i++;
+            }
+        }
+    }
     /**
      * Cambia la ubicacíon del unicornio
      * @author Carlos Almendarez
@@ -55,7 +142,21 @@ public class Nivel1 extends World
            unicornio.setLocation(p.getX()+110,p.getY());
         }
     }
-    
+    /**
+     * Agrega puntos al contador de llaves y 
+     * modifica su imagen.
+     * @author Diana Huelga
+     * @version 5-11-16
+     * @param no hay parametros de entrada
+     * @return -
+     */
+    public void modificaContadorLlaves(){     
+        String nombArch="";
+        contLlaves.setValue(contLlaves.getValue()+10);
+        contLlaves.act();        
+        nombArch="Llave" + contLlaves.getValue() + ".png"; 
+        contLlaves.setImage(nombArch);
+    }
     /**
      * Obtiene el valor de la anchura del mundo
      * @author Carlos Almendarez
@@ -66,8 +167,7 @@ public class Nivel1 extends World
     public int getAnc()
     {
         return getWidth();
-    }
-    
+    }    
     /**
      * Obtiene el valor de la altura del mundo
      * @author Carlos Almendarez
@@ -78,5 +178,44 @@ public class Nivel1 extends World
     public int getAltura()
     {
         return getHeight();
+    }
+    /**
+     * Agrega aleatoriamente 10 llaves al mundo Nivel1
+     * @author Diana Huelga
+     * @version 6-11-16
+     * @return -
+     * @pararm no hay parametros de entrada
+     */
+    public void agregaLlavesAleatoriamente(){
+        int i;
+        int xLlav=0;
+        int yLlav=0;
+        
+        for(i = 0 ; i < 10 ;){            
+            xLlav=Greenfoot.getRandomNumber(750);
+            yLlav=Greenfoot.getRandomNumber(550);
+            
+            if(xLlav >= 20 && yLlav >= 80 && (xLlav > 60 && yLlav > 100)){ //Condicion para evitar que las llaves aparezcan en las orillas 
+                                            //del mundo en x tanto como en y
+                addObject(new Llave(),xLlav,yLlav);
+                i++;
+            }
+        }
+    }
+    /** 
+     * Prepara a los objetos que estarán en el mundo
+     * @author Diana Huelga
+     * @version 06-11-16
+     * @return -
+     * @param no hay parametros de entrada
+     */
+    private void prepare()
+    {        
+        contLlaves = new Counter();
+        unicornio = new Unicornio();
+        uni2= new UnicornioSecundario();
+        addObject(uni2,730,550);
+        addObject(contLlaves,115,30);         
+        addObject(unicornio,60,100); 
     }
 }

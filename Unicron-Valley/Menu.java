@@ -10,6 +10,7 @@ public class Menu extends World
 {
     private Jugar jug;
     private Botonayuda ayud;    
+    private Salir salir;
 
     /**
      * Constructor for objects of class Menu.
@@ -20,7 +21,7 @@ public class Menu extends World
         super(800, 600, 1); 
         setBackground("Menu.png");          
         prepare();       
-    }
+    }    
     /**
      * Prepara al mundo para comenzar el programa
      * That is: create the initial objects and add them to the world.
@@ -29,7 +30,9 @@ public class Menu extends World
     {
         ayud= new Botonayuda();
         jug = new Jugar();
+        salir= new Salir();
         addObject(jug,400,350);        
         addObject(ayud,400,400);
+        addObject(salir,400,450);        
     }
 }
