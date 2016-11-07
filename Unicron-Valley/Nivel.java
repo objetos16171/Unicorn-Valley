@@ -1,23 +1,22 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Ayuda here.
+ * Write a description of class Nivel here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Ayuda extends World
+public class Nivel extends World
 {
-
+    private Botonmenu botMen;
     /**
-     * Constructor for objects of class Ayuda.
+     * Constructor for objects of class Nivel.
      * 
      */
-    private Botonmenu botMen;
-    public Ayuda()
-    {   
+    public Nivel()
+    {  
         super(800, 600, 1); 
         botMen=new Botonmenu();
-        addObject(botMen,720,20);
-    }
+        addObject(botMen,720,20);        
+    }      
 }

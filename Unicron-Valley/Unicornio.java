@@ -20,6 +20,7 @@ public class Unicornio extends Actor
         tocaLlave();
     }
     
+    }  
     /**
      * Mueve la posicion del jugador y verifica que no salga del mundo
      * Este metodo pertenece al Nivel1
@@ -37,6 +38,10 @@ public class Unicornio extends Actor
         if(Greenfoot.isKeyDown("right") && getX()+50<((Nivel1)w).getAnc() && getOneObjectAtOffset(30,0,Piedra.class)==null
            && getOneObjectAtOffset(30,30,Piedra.class)==null && getOneObjectAtOffset(30,-30,Piedra.class)==null && getOneObjectAtOffset(30,0,Counter.class)==null){             
              setLocation(getX()+vel,getY());                         
+         World w = getWorld();      
+        
+        if(Greenfoot.isKeyDown("right") && getX()+50<((Nivel1)w).getAnc()){
+             setLocation(getX()+vel,getY());
              setImage("unicorn.png");    
         }    
         if(Greenfoot.isKeyDown("left") && getX()-50>0 && getOneObjectAtOffset(-30,0,Piedra.class)==null

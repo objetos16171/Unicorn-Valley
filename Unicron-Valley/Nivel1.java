@@ -6,27 +6,22 @@ import java.util.List;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Nivel1 extends World
+public class Nivel1 extends Nivel
 {
     private Unicornio unicornio;
     private Counter contLlaves;
     private UnicornioSecundario uni2;
-    private Portal portal1;
-    private Portal portal2;
-    private Portal portal;    
-    
     /**
      * Constructor for objects of class Nivel1.
      */
-    public Nivel1()
-    {    
-        super(800, 600, 1); 
+    public Nivel1()    
+    {     
+        super();
         agregaPortales();
         acomodaPiedras();
         agregaLlavesAleatoriamente();
         agregaEnemigosAleatoriamente();        
         prepare();
-        contLlaves.setImage("Llave00.png");
     }
     public void act()
     {
@@ -40,10 +35,10 @@ public class Nivel1 extends World
      * @return - 
      * @param no hay parametros de entrada
      */
-    public void liberaAmigoUnicornio(){
-        if(unicornio.libera() && contLlaves.getValue() == 100){
-                uni2.cambiaNivel();
-        }
+     public void liberaAmigoUnicornio(){
+     if(unicornio.libera() && contLlaves.getValue() == 100){
+                 uni2.cambiaNivel();
+            }
     }
     /**
      * Agrega portales al mundo Nivel 1
@@ -133,8 +128,7 @@ public class Nivel1 extends World
         Portal p;
         int a;
         List L;
-        L=getObjects(Portal.class);
-        
+        L=getObjects(Portal.class);        
         a=Greenfoot.getRandomNumber(L.size());
         p=(Portal)L.get(a);
         if(p.getX()!=x) //validacion para que no salga por el mismo portal
@@ -142,21 +136,7 @@ public class Nivel1 extends World
            unicornio.setLocation(p.getX()+110,p.getY());
         }
     }
-    /**
-     * Agrega puntos al contador de llaves y 
-     * modifica su imagen.
-     * @author Diana Huelga
-     * @version 5-11-16
-     * @param no hay parametros de entrada
-     * @return -
-     */
-    public void modificaContadorLlaves(){     
-        String nombArch="";
-        contLlaves.setValue(contLlaves.getValue()+10);
-        contLlaves.act();        
-        nombArch="Llave" + contLlaves.getValue() + ".png"; 
-        contLlaves.setImage(nombArch);
-    }
+    
     /**
      * Obtiene el valor de la anchura del mundo
      * @author Carlos Almendarez
@@ -202,6 +182,39 @@ public class Nivel1 extends World
             }
         }
     }
+    /**
+     * @author Diana Huelga
+     * @version 7-11-16
+     * @return posicion del unicornio en x
+     * @param no hay parametros de entrada
+     */
+    public int getPosUniX(){
+        return unicornio.getX();
+    }
+    /**
+     * @author Diana Huelga
+     * @version 7-11-16
+     * @return posicion del unicornio en y
+     * @param no hay parametros de entrada
+     */
+    public int getPosUniy(){
+        return unicornio.getY();
+    }
+    /**
+     * Agrega puntos al contador de llaves y 
+     * modifica su imagen.
+     * @author Diana Huelga
+     * @version 5-11-16
+     * @param no hay parametros de entrada
+     * @return -
+     */
+    public void modificaContadorLlaves(){     
+        String nombArch="";
+        contLlaves.setValue(contLlaves.getValue()+10);
+        contLlaves.act();        
+        nombArch="Llave" + contLlaves.getValue() + ".png"; 
+        contLlaves.setImage(nombArch);
+    }
     /** 
      * Prepara a los objetos que estarán en el mundo
      * @author Diana Huelga
@@ -210,14 +223,13 @@ public class Nivel1 extends World
      * @param no hay parametros de entrada
      */
     private void prepare()
-    {        
-        contLlaves = new Counter();
+    {                
         unicornio = new Unicornio();
+        contLlaves=new Counter();
+        addObject(contLlaves,115,20);
+        contLlaves.setImage("Llave00.png");
         uni2= new UnicornioSecundario();
-        addObject(uni2,730,550);
-        addObject(contLlaves,115,30);         
+        addObject(uni2,730,550);   
         addObject(unicornio,60,100); 
     }
-    // private void limitaUnicornio(){)
-    // }
 }

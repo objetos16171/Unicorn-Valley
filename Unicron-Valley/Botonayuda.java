@@ -18,7 +18,7 @@ public class Botonayuda extends Actor
         if(m != null){
             if(Greenfoot.mouseClicked(this)){
                 setImage("Ayuda1.png");
-                Greenfoot.delay(100);
+                Greenfoot.delay(50);
                 Greenfoot.setWorld(new Ayuda());                
             }
         }

@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Nivel3 extends World
+public class Nivel3 extends Nivel
 {
 
     /**
@@ -14,8 +14,6 @@ public class Nivel3 extends World
      * 
      */
     public Nivel3()
-    {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(800, 600, 1); 
+    {
     }
 }
