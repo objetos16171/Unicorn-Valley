@@ -18,7 +18,8 @@ public class Unicornio extends Actor
     public void act() 
     {
         tocaLlave();
-    }    
+    }
+    
     /**
      * Mueve la posicion del jugador y verifica que no salga del mundo
      * Este metodo pertenece al Nivel1
@@ -33,18 +34,22 @@ public class Unicornio extends Actor
          World w = getWorld(); 
          Actor a = new Piedra();
          
-        if(Greenfoot.isKeyDown("right") && getX()+50<((Nivel1)w).getAnc()){             
+        if(Greenfoot.isKeyDown("right") && getX()+50<((Nivel1)w).getAnc() && getOneObjectAtOffset(30,0,Piedra.class)==null
+           && getOneObjectAtOffset(30,30,Piedra.class)==null && getOneObjectAtOffset(30,-30,Piedra.class)==null && getOneObjectAtOffset(30,0,Counter.class)==null){             
              setLocation(getX()+vel,getY());                         
              setImage("unicorn.png");    
         }    
-        if(Greenfoot.isKeyDown("left") && getX()-50>0){
+        if(Greenfoot.isKeyDown("left") && getX()-50>0 && getOneObjectAtOffset(-30,0,Piedra.class)==null
+           && getOneObjectAtOffset(-30,30,Piedra.class)==null && getOneObjectAtOffset(-30,-30,Piedra.class)==null && getOneObjectAtOffset(-30,0,Counter.class)==null){
                  setLocation(getX()-vel,getY());
                  setImage("unicorn2.png");   
         }
-         if(Greenfoot.isKeyDown("up") && getY()-50>0){     
+         if(Greenfoot.isKeyDown("up") && getY()-50>0 && getOneObjectAtOffset(0,-30,Piedra.class)==null
+            && getOneObjectAtOffset(30,-30,Piedra.class)==null && getOneObjectAtOffset(-30,-30,Piedra.class)==null && getOneObjectAtOffset(0,-30,Counter.class)==null){     
              setLocation(getX(),getY()-vel);           
         }         
-        if(Greenfoot.isKeyDown("down") && getY()+50<=((Nivel1)w).getAltura()){            
+        if(Greenfoot.isKeyDown("down") && getY()+50<=((Nivel1)w).getAltura() && getOneObjectAtOffset(0,30,Piedra.class)==null
+           && getOneObjectAtOffset(30,30,Piedra.class)==null && getOneObjectAtOffset(-30,30,Piedra.class)==null && getOneObjectAtOffset(0,30,Counter.class)==null){            
                 setLocation(getX(),getY()+vel);            
         }
     }
