@@ -20,11 +20,11 @@ public class Nivel1 extends World
      */
     public Nivel1()
     {    
-        super(800, 600, 1);                
+        super(800, 600, 1); 
+        agregaPortales();
         acomodaPiedras();
         agregaLlavesAleatoriamente();
-        agregaEnemigosAleatoriamente();
-        agregaPortales();
+        agregaEnemigosAleatoriamente();        
         prepare();
         contLlaves.setImage("Llave00.png");
     }
@@ -218,4 +218,6 @@ public class Nivel1 extends World
         addObject(contLlaves,115,30);         
         addObject(unicornio,60,100); 
     }
+    // private void limitaUnicornio(){)
+    // }
 }

@@ -30,9 +30,11 @@ public class Unicornio extends Actor
      */
      public void mueve()
      {
-         World w = getWorld();          
+         World w = getWorld(); 
+         Actor a = new Piedra();
+         
         if(Greenfoot.isKeyDown("right") && getX()+50<((Nivel1)w).getAnc()){             
-             setLocation(getX()+vel,getY());
+             setLocation(getX()+vel,getY());                         
              setImage("unicorn.png");    
         }    
         if(Greenfoot.isKeyDown("left") && getX()-50>0){
@@ -42,8 +44,8 @@ public class Unicornio extends Actor
          if(Greenfoot.isKeyDown("up") && getY()-50>0){     
              setLocation(getX(),getY()-vel);           
         }         
-        if(Greenfoot.isKeyDown("down") && getY()+50<=((Nivel1)w).getAltura()){
-             setLocation(getX(),getY()+vel);
+        if(Greenfoot.isKeyDown("down") && getY()+50<=((Nivel1)w).getAltura()){            
+                setLocation(getX(),getY()+vel);            
         }
     }
     /**
@@ -74,24 +76,5 @@ public class Unicornio extends Actor
             ((Nivel1)m).modificaContadorLlaves();            
             removeTouching(Llave.class);
         } 
-    }
-    /**
-     *Salto del unicornio (este metodo se ejecuta desde el mundo: Nivel2)
-     * @author Diana Huelga
-     * @version 4-11-16
-     * @return -
-     * @param no hay parametros de entrada
-     */
-    public void salta(){
-        if(Greenfoot.isKeyDown("up") && isTouching(Plataforma.class)){
-            for(int i=0 ; i<5 ; i++){
-                setLocation(getX(),getY()-8);
-            }
-        }else
-        if(Greenfoot.isKeyDown("up")){
-            for(int i=0 ; i<5 ; i++){
-                setLocation(getX(),getY()-3);
-            }
-        }
     }
 }
