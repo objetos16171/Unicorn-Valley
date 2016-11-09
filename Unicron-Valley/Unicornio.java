@@ -15,8 +15,7 @@ public class Unicornio extends Actor
     public void act() 
     {
         tocaLlave();
-    }
-    
+    }    
     /**
      * Mueve la posicion del jugador y verifica que no salga del mundo
      * Este metodo pertenece al Nivel1
@@ -31,7 +30,7 @@ public class Unicornio extends Actor
          World w = getWorld(); 
          Actor a = new Piedra();
          
-        if(Greenfoot.isKeyDown("right") && getX()+50<((Nivel1)w).getAnc() && getOneObjectAtOffset(30,0,Piedra.class)==null
+        /*if(Greenfoot.isKeyDown("right") && getX()+50<((Nivel1)w).getAnc() && getOneObjectAtOffset(30,0,Piedra.class)==null
            && getOneObjectAtOffset(30,30,Piedra.class)==null && getOneObjectAtOffset(30,-30,Piedra.class)==null && getOneObjectAtOffset(30,0,Counter.class)==null){             
              setLocation(getX()+vel,getY());   
         if(Greenfoot.isKeyDown("right") && getX()+50<((Nivel1)w).getAnc()){
@@ -51,7 +50,7 @@ public class Unicornio extends Actor
            && getOneObjectAtOffset(30,30,Piedra.class)==null && getOneObjectAtOffset(-30,30,Piedra.class)==null && getOneObjectAtOffset(0,30,Counter.class)==null){            
                 setLocation(getX(),getY()+vel);            
         }
-        }
+        }*/
     }
     /**
      * Verifica si el unicornio principal esta tocando al unicornio secundario
@@ -92,7 +91,7 @@ public class Unicornio extends Actor
      */
     public void cae(){
         if(!isTouching(Plataforma.class)){
-            setLocation(getX(),getY()+5);
+            setLocation(getX(),getY()+2);
         }
     }
     /**
@@ -103,10 +102,10 @@ public class Unicornio extends Actor
      *  @version 7-11-16
      */
     public void mueveLados(){
-        if(Greenfoot.isKeyDown("right")){
+        if(Greenfoot.isKeyDown("right") && (getX()+40) <= 800){
             setImage("unicorn.png");
             move(3);          
-        }else if(Greenfoot.isKeyDown("left")){
+        }else if(Greenfoot.isKeyDown("left") && (getX()-40) >= 0){
             setImage("unicorn2.png");
             move(-3);
             
