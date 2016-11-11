@@ -72,29 +72,7 @@ public class Unicornio extends Actor
                {
                        setLocation(getX(),getY()-1);
                }
-         Actor a = new Piedra();
-         
-        /*if(Greenfoot.isKeyDown("right") && getX()+50<((Nivel1)w).getAnc() && getOneObjectAtOffset(30,0,Piedra.class)==null
-           && getOneObjectAtOffset(30,30,Piedra.class)==null && getOneObjectAtOffset(30,-30,Piedra.class)==null && getOneObjectAtOffset(30,0,Counter.class)==null){             
-             setLocation(getX()+vel,getY());   
-        if(Greenfoot.isKeyDown("right") && getX()+50<((Nivel1)w).getAnc()){
-             setLocation(getX()+vel,getY());
-             setImage("unicorn.png");    
-        }    
-        if(Greenfoot.isKeyDown("left") && getX()-50>0 && getOneObjectAtOffset(-30,0,Piedra.class)==null
-           && getOneObjectAtOffset(-30,30,Piedra.class)==null && getOneObjectAtOffset(-30,-30,Piedra.class)==null && getOneObjectAtOffset(-30,0,Counter.class)==null){
-                 setLocation(getX()-vel,getY());
-                 setImage("unicorn2.png");   
         }
-         if(Greenfoot.isKeyDown("up") && getY()-50>0 && getOneObjectAtOffset(0,-30,Piedra.class)==null
-            && getOneObjectAtOffset(30,-30,Piedra.class)==null && getOneObjectAtOffset(-30,-30,Piedra.class)==null && getOneObjectAtOffset(0,-30,Counter.class)==null){     
-             setLocation(getX(),getY()-vel);           
-        }         
-        if(Greenfoot.isKeyDown("down") && getY()+50<=((Nivel1)w).getAltura() && getOneObjectAtOffset(0,30,Piedra.class)==null
-           && getOneObjectAtOffset(30,30,Piedra.class)==null && getOneObjectAtOffset(-30,30,Piedra.class)==null && getOneObjectAtOffset(0,30,Counter.class)==null){            
-                setLocation(getX(),getY()+vel);            
-        }
-        }*/
     }
 
     /**
@@ -127,6 +105,14 @@ public class Unicornio extends Actor
             removeTouching(Llave.class);
         } 
     }
+    /**
+     * Verifica si el unicornio tomo una llave y manda un mensaje a mundo
+     * para poder aumentar el contador y cambiar la imagen
+     * @author Diana Huelga
+     * @version 4-11-16
+     * @return -
+     * @param no hay parametros de entrada
+     */
     public void tocar()
     {
         World w = getWorld();
@@ -134,6 +120,8 @@ public class Unicornio extends Actor
         {
             setLocation(60,100);
             ((Nivel1)w).decrementaVidas();
+        }
+    }
     /**
      *  Cambia la posicion en 'y' del unicornio para simular la caida
      *  @author Diana Huelga
