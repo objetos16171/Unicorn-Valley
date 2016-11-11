@@ -12,7 +12,6 @@ public class Nivel extends World
     private Counter contVidas;
     /**
      * Constructor for objects of class Nivel.
-     * 
      */
     public Nivel()
     {  
@@ -20,26 +19,54 @@ public class Nivel extends World
         
         botMen=new Botonmenu();
         contVidas=new Counter();
-        
+        contVidas.setValue(3);
         addObject(contVidas,330,20);       
         addObject(botMen,720,20);
         contVidas.setImage("Vidas3.png");
     }      
+    /**
+     *  Decrementa el contador de vidas en 1
+     *  @author Diana Huelga
+     *  @return -
+     *  @param no hay parametros de entrada 
+     *  @version 7-11-16
+     */
     public void decrementaVidas()
     {
         if(contVidas.getValue() >= 1){
             contVidas.add(-1);
-        }else 
-        pierdes();
-    }
-    public void agregaVida(){
-        if(contVidas.getValue() <= 2){
-            contVidas.add(1);
+            contVidas.act();
+            contVidas.setImage("Vidas"+contVidas.getValue()+".png");
+        }
+        if(contVidas.getValue() == 0){
+            pierdes();
         }
     }
+    /**
+     *  Aumenta en uno al contador de vidas
+     *  @author Diana Huelga
+     *  @return -
+     *  @param no hay parametros de entrada 
+     *  @version 7-11-16
+     */
+    public void agregaVida(){       
+        if(contVidas.getValue() <= 2){
+            contVidas.add(1);
+            contVidas.act();
+            contVidas.setImage("Vidas"+contVidas.getValue()+".png");
+        }
+    }
+    /**
+     *  cuando es llamdo cambia el mundo a Menu
+     *  @author Diana Huelga
+     *  @return -
+     *  @param no hay parametros de entrada 
+     *  @version 7-11-16
+     */
     public void pierdes()
     {
         System.out.println("Perdiste");
+        Greenfoot.setWorld(new Menu());        
         //Agregar etiqueta
     }
 }

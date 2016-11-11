@@ -15,8 +15,8 @@ public class Portal extends Actor
     public void act() 
     {
         teleport();
-    }
-    
+        turn(-2);
+    }    
     /**
      * Llama al mundo para decirle que acaba de tocar al usuario y anda su coordenada en x (este metodo pertenece al Nivel1)
      * @author Carlos Almendarez
