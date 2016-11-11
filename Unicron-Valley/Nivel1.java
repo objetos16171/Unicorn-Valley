@@ -27,6 +27,7 @@ public class Nivel1 extends Nivel
     {
         unicornio.mueve();
         liberaAmigoUnicornio();
+        unicornio.tocar();
     }
     /**
      * valida si se puede avanzar al mundo Nivel2

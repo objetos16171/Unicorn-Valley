@@ -14,7 +14,6 @@ public class EneSecundNiv1 extends Actor
      */
     public void act() 
     {
-               
-    }       
+    }
 }
 

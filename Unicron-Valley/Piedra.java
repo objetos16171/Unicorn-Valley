@@ -14,6 +14,5 @@ public class Piedra extends Actor
      */
     public void act()
     {
-      
     }    
 }

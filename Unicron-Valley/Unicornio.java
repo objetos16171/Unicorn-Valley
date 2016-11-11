@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.List;
 /**
  * Write a description of class Unicornio here.
  * 
@@ -7,14 +8,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Unicornio extends Actor
 {
-    private int vel = 5;
+    private int vel = 2;
+    private int disty = 34;
+    private int distx = 36;
     /**
      * Act - do whatever the Unicornio wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    // private Unicornio(){
-        // setImage("Unicorn.png");
-    // }
     public void act() 
     {
         tocaLlave();
@@ -27,50 +27,56 @@ public class Unicornio extends Actor
      * @author Carlos Almendarez y Diana Carolina
      * @version 5-11-16 Carlos 
      * @version 6-11-16 Diana
+     * @version 11-11-16 Carlos
      * @return No hay valor
      * @param no hay parametros de entrada
      */
      public void mueve()
      {
          World w = getWorld(); 
-         Actor a = new Piedra();
-         
-        if(Greenfoot.isKeyDown("right") && getX()+50<((Nivel1)w).getAnc()  && getOneObjectAtOffset(30,0,Counter.class)==null){             
-             if(getOneObjectAtOffset(30,0,Piedra.class)==null && getOneObjectAtOffset(30,30,Piedra.class)==null 
-                && getOneObjectAtOffset(30,-30,Piedra.class)==null){
+         Actor a;
+        if(Greenfoot.isKeyDown("right") && getX()+50<((Nivel1)w).getAnc()){             
+             if(getOneObjectAtOffset(distx+vel,0,Piedra.class)==null && getOneObjectAtOffset(distx,disty,Piedra.class)==null 
+                && getOneObjectAtOffset(distx,-disty,Piedra.class)==null && getOneObjectAtOffset(distx,disty/2,Piedra.class)==null 
+                && getOneObjectAtOffset(distx,-disty/2,Piedra.class)==null && getOneObjectAtOffset(distx,0,Counter.class)==null){
                  setLocation(getX()+vel,getY());                               
                  setImage("unicorn.png");
              }else{
-                 setLocation(getX()-10,getY());
+                   setLocation(getX()-1,getY());
              }
         }   
-        if(Greenfoot.isKeyDown("left") && getX()-50>0  && getOneObjectAtOffset(-30,0,Counter.class)==null){
-               if(getOneObjectAtOffset(-30,0,Piedra.class)==null && getOneObjectAtOffset(-30,30,Piedra.class)==null
-                  && getOneObjectAtOffset(-30,-30,Piedra.class)==null){  
+        if(Greenfoot.isKeyDown("left") && getX()-50>0){
+               if(getOneObjectAtOffset(-distx-vel,0,Piedra.class)==null && getOneObjectAtOffset(-distx,disty,Piedra.class)==null
+                  && getOneObjectAtOffset(-distx,-disty,Piedra.class)==null && getOneObjectAtOffset(-distx,0,Counter.class)==null
+                  && getOneObjectAtOffset(-distx,disty/2,Piedra.class)==null && getOneObjectAtOffset(-distx,-disty/2,Piedra.class)==null){  
                    setLocation(getX()-vel,getY());
                    setImage("unicorn2.png");   
                }else{
-                   setLocation(getX()+10,getY());
+                      
+                       setLocation(getX()+1,getY());
                }
         }
-         if(Greenfoot.isKeyDown("up") && getY()-50>0 && getOneObjectAtOffset(0,-30,Counter.class)==null){     
-             if(getOneObjectAtOffset(0,-30,Piedra.class)==null && getOneObjectAtOffset(30,-30,Piedra.class)==null 
-                && getOneObjectAtOffset(-30,-30,Piedra.class)==null){
+         if(Greenfoot.isKeyDown("up") && getY()-50>0){     
+             if(getOneObjectAtOffset(0,-disty-vel,Piedra.class)==null && getOneObjectAtOffset(distx,-disty,Piedra.class)==null 
+                && getOneObjectAtOffset(-distx,-disty,Piedra.class)==null && getOneObjectAtOffset(0,-disty,Counter.class)==null
+                && getOneObjectAtOffset(distx/2,-disty,Piedra.class)==null && getOneObjectAtOffset(-distx/2,-disty,Piedra.class)==null){
                   setLocation(getX(),getY()-vel);
              }else{
-                 setLocation(getX(),getY()+10);
+                     setLocation(getX(),getY()+1);
              }
         }         
-        if(Greenfoot.isKeyDown("down") && getY()+50<=((Nivel1)w).getAltura() && getOneObjectAtOffset(0,30,Counter.class)==null){            
-               if( getOneObjectAtOffset(0,30,Piedra.class)==null && getOneObjectAtOffset(30,30,Piedra.class)==null 
-               && getOneObjectAtOffset(-30,30,Piedra.class)==null){ 
+        if(Greenfoot.isKeyDown("down") && getY()+50<=((Nivel1)w).getAltura()){            
+               if( getOneObjectAtOffset(0,disty+vel,Piedra.class)==null && getOneObjectAtOffset(distx,disty,Piedra.class)==null 
+                   && getOneObjectAtOffset(-distx,disty,Piedra.class)==null && getOneObjectAtOffset(0,disty,Counter.class)==null
+                   && getOneObjectAtOffset(distx/2,disty,Piedra.class)==null && getOneObjectAtOffset(-distx/2,disty,Piedra.class)==null){ 
                     setLocation(getX(),getY()+vel);            
                }else
                {
-                   setLocation(getX(),getY()-10);
+                       setLocation(getX(),getY()-1);
                }
         }
     }
+
     /**
      * Verifica si el unicornio principal esta tocando al unicornio secundario
      * @author Diana Huelga
@@ -99,5 +105,14 @@ public class Unicornio extends Actor
             ((Nivel1)m).modificaContadorLlaves();            
             removeTouching(Llave.class);
         } 
+    }
+    public void tocar()
+    {
+        World w = getWorld();
+        if(isTouching(EneSecundNiv1.class))
+        {
+            setLocation(60,100);
+            ((Nivel1)w).decrementaVidas();
+        }
     }
 }
