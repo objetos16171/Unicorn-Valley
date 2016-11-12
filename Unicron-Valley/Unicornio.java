@@ -30,7 +30,7 @@ public class Unicornio extends Actor
          World w = getWorld(); 
          Actor a = new Piedra();
          
-        /*if(Greenfoot.isKeyDown("right") && getX()+50<((Nivel1)w).getAnc() && getOneObjectAtOffset(30,0,Piedra.class)==null
+        if(Greenfoot.isKeyDown("right") && getX()+50<((Nivel1)w).getAnc() && getOneObjectAtOffset(30,0,Piedra.class)==null
            && getOneObjectAtOffset(30,30,Piedra.class)==null && getOneObjectAtOffset(30,-30,Piedra.class)==null && getOneObjectAtOffset(30,0,Counter.class)==null){             
              setLocation(getX()+vel,getY());   
         if(Greenfoot.isKeyDown("right") && getX()+50<((Nivel1)w).getAnc()){
@@ -50,7 +50,7 @@ public class Unicornio extends Actor
            && getOneObjectAtOffset(30,30,Piedra.class)==null && getOneObjectAtOffset(-30,30,Piedra.class)==null && getOneObjectAtOffset(0,30,Counter.class)==null){            
                 setLocation(getX(),getY()+vel);            
         }
-        }*/
+        }
     }
     /**
      * Verifica si el unicornio principal esta tocando al unicornio secundario
@@ -82,6 +82,12 @@ public class Unicornio extends Actor
             removeTouching(Llave.class);
         } 
     }
+    public boolean tocaGalleta(){
+        if(this.isTouching(Vida.class)){
+            removeTouching(Vida.class);
+            return true;
+        }else{return false;}
+    }
     /**
      *  Cambia la posicion en 'y' del unicornio para simular la caida
      *  @author Diana Huelga
@@ -89,10 +95,8 @@ public class Unicornio extends Actor
      *  @param no hay parametros de entrada 
      *  @version 7-11-16
      */
-    public void cae(){
-        if(!isTouching(Plataforma.class)){
+    public void cae(){        
             setLocation(getX(),getY()+2);
-        }
     }
     /**
      *  Mueve la posicion en x dependiendo de la tecla presionada

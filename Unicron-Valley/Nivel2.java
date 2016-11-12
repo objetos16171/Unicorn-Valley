@@ -9,6 +9,11 @@ import java.util.ArrayList;
  */
 public class Nivel2 extends Nivel
 {
+    /** ancho del mundo Nivel2 */
+    public static final int ANCHO=800;
+    /** largo del mundo Nivel2 */
+    public static final int LARGO=600;
+    
      private Botonmenu botMen;
      private Unicornio unicornio;
      private Counter contLlaves;
@@ -21,6 +26,7 @@ public class Nivel2 extends Nivel
         super();  
         listPlat= new ArrayList<Plataforma>();        
         prepare();                
+        addObject(new Vida(),500,340);
         posicionesIniciales();
     }
     public void act(){
@@ -28,6 +34,12 @@ public class Nivel2 extends Nivel
          unicornio.mueveLados();
          posicionUnicornio();    
          saltaUnicornio();
+         unicornioComeGalleta();
+    }
+    public void unicornioComeGalleta(){
+        if(unicornio.tocaGalleta() == true){
+            super.agregaVida();
+        }
     }
     /**
      * Asigna las posiciones iniciales de los elementos principales del escenario
@@ -38,8 +50,8 @@ public class Nivel2 extends Nivel
      * @param no hay parametros de entrada
      */
     public void posicionesIniciales(){
-        addObject(new Plataforma(),400,380);
-        unicornio.setLocation(400,340);
+        addObject(new Plataforma(),ANCHO/2,380);
+        unicornio.setLocation(ANCHO/2,340);
         generaPlataformas();
         listPlat=getObjects(Plataforma.class);
     }
@@ -134,12 +146,12 @@ public class Nivel2 extends Nivel
      {
          int x=50;
          int y=585;                  
-        botMen= new Botonmenu();
+        botMen= new Botonmenu();        
         addObject(botMen,720,20);
         contLlaves=new Counter();
         addObject(contLlaves,115,20);        
         contLlaves.setImage("Llave00.png");     
         unicornio=new Unicornio();
-        addObject(unicornio, 400,340);        
+        addObject(unicornio, ANCHO/2,340);        
      }
 }

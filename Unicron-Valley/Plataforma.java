@@ -14,18 +14,11 @@ public class Plataforma extends Actor
      */
     public void act() 
     {
-         World m=getWorld();
-        if(dejaCaerUnicornio(m) == false){
-            ((Nivel2)m).unicornioCae();
+        World m=getWorld();
+        if(getY() == ((Nivel2)m).getPosYUnicornio()){
+            ((Nivel2)m).unicornioCae();            
         }
     }    
-    public boolean dejaCaerUnicornio(World m){       
-        if(((Nivel2)m).getPosYUnicornio() + 40 == getY()-86
-            && (((Nivel2)m).getPosXUnicornio()- 35 >= getX() - 76)
-            && (((Nivel2)m).getPosXUnicornio()+ 35 <= getX() + 76)) {              
-                return true;             
-        }else {return false;}
-    }
     /** 
      * @author Diana Huelga
      * @version 9-11-16
