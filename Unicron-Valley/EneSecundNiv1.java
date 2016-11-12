@@ -26,7 +26,7 @@ public class EneSecundNiv1 extends Actor
      */
     public void movimientoHorizontal(){
         cont++;        
-        if(cont == 200){
+        if(cont == 300){
             if(getX() >= 700){
                 turn(180);
                 cont=0;
