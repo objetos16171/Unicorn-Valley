@@ -17,6 +17,9 @@ public class UnicornioSecundario extends Actor
         
     }  
     public void cambiaNivel(){
+        if(isTouching(Unicornio.class)){
+            setImage("unicornioLibre.png");
+        }
         Greenfoot.setWorld(new Nivel2());
     }
 }

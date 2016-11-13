@@ -14,10 +14,16 @@ public class Nivel2 extends Nivel
     /** largo del mundo Nivel2 */
     public static final int LARGO=600;
     
-     private Botonmenu botMen;
-     private Unicornio unicornio;
-     private Counter contLlaves;
-     private List<Plataforma> listPlat;    
+    /**contador para la distancia entre plataformas 
+       Se utiliza en el metodo: generaPlataformas() */
+    private int contPlat=0;  
+    
+    private Botonmenu botMen;     
+    private Unicornio unicornio;
+    private Counter contLlaves;
+    
+    /**Lista de plataformas*/
+    private List<Plataforma> listPlat;    
     /**
     * Constructor for objects of class Nivel2. 
     */
@@ -30,12 +36,52 @@ public class Nivel2 extends Nivel
         posicionesIniciales();
     }
     public void act(){
-         // unicornio.salta();
          unicornio.mueveLados();
-         posicionUnicornio();    
-         saltaUnicornio();
+         verificaPosUnicornio();  
          unicornioComeGalleta();
+         generaPlataformas();
     }
+    /**
+     * Elimina un objeto de la clase Plataforma de la lista de 
+     * plataformas
+     * @author Diana Huelga
+     * @return -
+     * @param objeto de la clase Plataforma
+     * @version 12-11-16
+     */
+    public void eliminaPlataforma(Plataforma p){
+        listPlat.remove(p);        
+    }
+    /**
+     * genera plataformas en tiempo de ejecucion
+     * @author Diana Huelga
+     * @return -
+     * @param no hay parametros de entrada
+     * @version 12-11-16
+     */
+    public void generaPlataformas(){
+        if(contPlat == 100){
+            int maxPlat=Greenfoot.getRandomNumber(5);
+            if(maxPlat <= 1){
+                maxPlat=2;
+            }
+            for(int i=0 ; i < maxPlat; i++){
+                Plataforma plat=new Plataforma();
+                addObject(plat,Greenfoot.getRandomNumber(800),80);
+                listPlat.add(plat);
+            }
+            contPlat=0;
+        }else 
+        contPlat++;
+    }    
+    /**
+     * Verifica si el unicornio ha tocado una galleta
+     * y llama a super para agregaruna vida
+     * @author Diana Huelga
+     * @return -
+     * @version 9-11-16
+     * @param no hay parametros de entrada
+     */
     public void unicornioComeGalleta(){
         if(unicornio.tocaGalleta() == true){
             super.agregaVida();
@@ -52,18 +98,8 @@ public class Nivel2 extends Nivel
     public void posicionesIniciales(){
         addObject(new Plataforma(),ANCHO/2,380);
         unicornio.setLocation(ANCHO/2,340);
-        generaPlataformas();
+        generaPlataformasIniciales();
         listPlat=getObjects(Plataforma.class);
-    }
-    /**
-     * Manda un mensaje a Unicornio para que aumente su posicion en y
-     * @author Diana Huelga
-     * @version 9-11-16
-     * @para no hay parametros de entrada
-     * @return -
-     */
-    public void unicornioCae(){
-        unicornio.cae();
     }
     /**
      * Regresa la posicion que tiene el unicornio
@@ -84,23 +120,7 @@ public class Nivel2 extends Nivel
      */  
     public int getPosYUnicornio(){
         return unicornio.getY(); 
-    }
-    /**
-     * @author Diana Huelga 
-     * @return -
-     * @version 9-11-16
-     * @param no hay parametros de entrada
-     */
-    public void aumentaCoordenadasUnicornio(){
-        unicornio.setLocation(unicornio.getX(),unicornio.getY()+2);
-    }
-    public void saltaUnicornio(){
-        if(Greenfoot.isKeyDown("up")){
-            for(int i=0 ; i < 10 ; i++){
-                unicornio.setLocation(unicornio.getX(),unicornio.getY()-5);
-            }    
-        }   
-    }
+    }    
     /**
      * Vefiaca la posicion del unicornio para saber si esta en la 
      * parte baja del escenario 
@@ -109,9 +129,10 @@ public class Nivel2 extends Nivel
      * @version 9-11-16
      * @param no hay parametros de entrada
      */
-    public void posicionUnicornio(){
+    public void verificaPosUnicornio(){
         if(unicornio.getY() >= 570){
             removeObjects(listPlat);
+            listPlat.clear();                   
             posicionesIniciales();
             super.decrementaVidas();
          }
@@ -123,13 +144,16 @@ public class Nivel2 extends Nivel
      * @return -
      * @param no hay parametros de entrada
      */
-    public void generaPlataformas(){
+    public void generaPlataformasIniciales(){
         int y = 80;
         int numMaxReng=0;
         int uni=0;
         int x=0;
         for(int i=0 ; i < 6 ; i++){
             numMaxReng=Greenfoot.getRandomNumber(5);
+            if(numMaxReng == 0){
+                numMaxReng=1;
+            }
             for(int j=0 ; j < numMaxReng ; j++){
                 addObject(new Plataforma(),Greenfoot.getRandomNumber(800),y);                
                 }
@@ -137,10 +161,10 @@ public class Nivel2 extends Nivel
         }
     }    
     /**
+     *  Prepara el mundo con los objetos que iran en el
      *  @author Diana Huelga
      *  @version 04-11-16
      *  @param no hay parametros de entrada
-     *  @return -
      */   
      private void prepare()
      {
