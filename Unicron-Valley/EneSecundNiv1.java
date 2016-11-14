@@ -17,6 +17,7 @@ public class EneSecundNiv1 extends Actor
     public void act(){
         move(vel);
         movimientoHorizontal();
+        decrementaVida();
     }       
     /**
      * Gira la imagen cada 200 celdas 
@@ -36,5 +37,12 @@ public class EneSecundNiv1 extends Actor
             }
         }
     }   
+    public void decrementaVida(){
+        World w = getWorld();
+        if(isTouching(Unicornio.class))
+        {
+            ((Nivel1)w).posInicial();
+        } 
+    }
 }
 
