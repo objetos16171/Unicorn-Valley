@@ -7,7 +7,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Unicornio extends Actor
 {
-    private int vel = 5;
+    private int vel = 2;
+    private int dx = 34;
+    private int dy = 34;
     /**
      * Act - do whatever the Unicornio wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -27,29 +29,24 @@ public class Unicornio extends Actor
      */
      public void mueve()
      {
-         World w = getWorld(); 
-         Actor a = new Piedra();
-         
-        if(Greenfoot.isKeyDown("right") && getX()+50<((Nivel1)w).getAnc() && getOneObjectAtOffset(30,0,Piedra.class)==null
-           && getOneObjectAtOffset(30,30,Piedra.class)==null && getOneObjectAtOffset(30,-30,Piedra.class)==null && getOneObjectAtOffset(30,0,Counter.class)==null){             
+         World w = getWorld();
+        if(Greenfoot.isKeyDown("right") && getX()+50<((Nivel1)w).getAnc() && getOneObjectAtOffset(dx+vel,0,Piedra.class)==null
+           && getOneObjectAtOffset(dx,dy,Piedra.class)==null && getOneObjectAtOffset(dx,-dy,Piedra.class)==null && getOneObjectAtOffset(dx,0,Counter.class)==null){             
              setLocation(getX()+vel,getY());   
-        if(Greenfoot.isKeyDown("right") && getX()+50<((Nivel1)w).getAnc()){
-             setLocation(getX()+vel,getY());
              setImage("unicorn.png");    
         }    
-        if(Greenfoot.isKeyDown("left") && getX()-50>0 && getOneObjectAtOffset(-30,0,Piedra.class)==null
-           && getOneObjectAtOffset(-30,30,Piedra.class)==null && getOneObjectAtOffset(-30,-30,Piedra.class)==null && getOneObjectAtOffset(-30,0,Counter.class)==null){
+        if(Greenfoot.isKeyDown("left") && getX()-50>0 && getOneObjectAtOffset(-dx-vel,0,Piedra.class)==null
+           && getOneObjectAtOffset(-dx,dy,Piedra.class)==null && getOneObjectAtOffset(-dx,-dy,Piedra.class)==null && getOneObjectAtOffset(-dx,0,Counter.class)==null){
                  setLocation(getX()-vel,getY());
                  setImage("unicorn2.png");   
         }
-         if(Greenfoot.isKeyDown("up") && getY()-50>0 && getOneObjectAtOffset(0,-30,Piedra.class)==null
-            && getOneObjectAtOffset(30,-30,Piedra.class)==null && getOneObjectAtOffset(-30,-30,Piedra.class)==null && getOneObjectAtOffset(0,-30,Counter.class)==null){     
+         if(Greenfoot.isKeyDown("up") && getY()-50>0 && getOneObjectAtOffset(0,-dy-vel,Piedra.class)==null
+            && getOneObjectAtOffset(dx,-dy,Piedra.class)==null && getOneObjectAtOffset(-dx,-dy,Piedra.class)==null && getOneObjectAtOffset(0,-dy,Counter.class)==null){     
              setLocation(getX(),getY()-vel);           
         }         
-        if(Greenfoot.isKeyDown("down") && getY()+50<=((Nivel1)w).getAltura() && getOneObjectAtOffset(0,30,Piedra.class)==null
-           && getOneObjectAtOffset(30,30,Piedra.class)==null && getOneObjectAtOffset(-30,30,Piedra.class)==null && getOneObjectAtOffset(0,30,Counter.class)==null){            
+        if(Greenfoot.isKeyDown("down") && getY()+50<=((Nivel1)w).getAltura() && getOneObjectAtOffset(0,dy+vel,Piedra.class)==null
+           && getOneObjectAtOffset(dx,dy,Piedra.class)==null && getOneObjectAtOffset(-dx,dy,Piedra.class)==null && getOneObjectAtOffset(0,dy,Counter.class)==null){            
                 setLocation(getX(),getY()+vel);            
-        }
         }
     }
     /**

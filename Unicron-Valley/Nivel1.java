@@ -232,4 +232,15 @@ public class Nivel1 extends Nivel
         addObject(uni2,730,550);   
         addObject(unicornio,60,100); 
     }
+    /**
+     * Regresa el unicornio a su posicion inicial
+     * @author Carlos Almendarez
+     * @version 12-11-16
+     * @return -
+     * @param no hay parametros de entrada
+     */
+    public void posInicial(){
+        unicornio.setLocation(60,100);
+        super.decrementaVidas();
+    }
 }
