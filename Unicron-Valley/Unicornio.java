@@ -72,12 +72,16 @@ public class Unicornio extends Actor
      * @param no hay parametros de entrada
      */
      public void tocaLlave()
-     {
-        if(isTouching(Llave.class)){
+     {  
+        if(isTouching(Llave.class)){      
             World m=getWorld();
             ((Nivel1)m).modificaContadorLlaves();            
             removeTouching(Llave.class);
-        } 
+        }else if(isTouching(Llave2.class)){
+            World m=getWorld();
+            ((Nivel2)m).modificaContadorLlaves();
+            removeTouching(Llave2.class);
+        }
     }
     public boolean tocaGalleta(){
         if(this.isTouching(Vida.class)){

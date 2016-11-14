@@ -37,8 +37,10 @@ public class Nivel1 extends Nivel
      */
      public void liberaAmigoUnicornio(){
      if(unicornio.libera() && contLlaves.getValue() == 100){
-                 uni2.cambiaNivel();
-            }
+         uni2.setImage("unicornioLibre.png");
+         Greenfoot.delay(50);
+         uni2.cambiaNivel(new Nivel1());         
+      }
     }
     /**
      * Agrega portales al mundo Nivel 1

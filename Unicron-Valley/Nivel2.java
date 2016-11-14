@@ -19,6 +19,7 @@ public class Nivel2 extends Nivel
     private int contPlat=0;  
         
     private Unicornio unicornio;
+    private UnicornioSecundario uni3;
     private Counter contLlaves;
     
     /**Lista de plataformas*/
@@ -30,17 +31,45 @@ public class Nivel2 extends Nivel
     {            
         super();  
         listPlat= new ArrayList<Plataforma>();        
-        prepare();                
-        addObject(new Vida(),500,340);
+        prepare();               
         posicionesIniciales();
     }
     public void act(){
          unicornio.mueveLados();
          verificaPosUnicornio();  
          unicornioComeGalleta();
-         if(unicornio.getY() <= 180){
+         avanzaMundo();
+         liberaAmigoUnicornio();         
+    }
+    /**
+     * valida si el unicornio toco al unicornio secundario
+     * @author Diana Huelga
+     * @return -
+     * @param no hay parametros de entrada
+     * @version 14-11-16
+     */
+    public void liberaAmigoUnicornio(){
+        if(unicornio.libera()){
+             uni3.setImage("unicornioLibre.png");
+             Greenfoot.delay(50);
+             uni3.cambiaNivel(new Nivel3());
+          }         
+    }
+    /**
+     * Avanza los objetos que hay en el mundo
+     * @author Diana Huelga
+     * @return -
+     * @param no hay parametros de entrada
+     * @version 14-11-16
+     */
+    public void avanzaMundo(){
+        if(unicornio.getY() <= 180){
              generaPlataformas();
-         }
+             if(contLlaves.getValue() == 100){    
+                 addObject(uni3,Greenfoot.getRandomNumber(750),20);
+                 uni3.setLocation(uni3.getX(),uni3.getY()+1);
+             }
+        }         
     }
     /**
      * Elimina un objeto de la clase Plataforma de la lista de 
@@ -56,7 +85,7 @@ public class Nivel2 extends Nivel
     /**
      * genera plataformas en tiempo de ejecucion
      * @author Diana Huelga
-     * @return -
+     * @return 1, si ya ha aparecido el unicornio a salvar
      * @param no hay parametros de entrada
      * @version 12-11-16
      */
@@ -68,14 +97,29 @@ public class Nivel2 extends Nivel
             }
             for(int i=0 ; i < maxPlat; i++){
                 Plataforma plat=new Plataforma();
-                addObject(plat,Greenfoot.getRandomNumber(800),80);
+                int x=Greenfoot.getRandomNumber(800);
+                addObject(plat,x,80);
+                agregaLlave(x,50);
                 listPlat.add(plat);
             }
             contPlat=0;
         }else {
             contPlat++;
         }
-    }    
+    }
+    /**
+     * Agrega una llave en la posicion x,y indicada
+     * @author Diana Huelga
+     * @return -
+     * @version 13-11-16
+     * @param x posicion en x donde se colocara la llave
+     * @param y posicion en y donde se colocara la llave
+     */
+    public void agregaLlave(int x, int y){
+        if(Greenfoot.getRandomNumber(5) == 1 && contLlaves.getValue() < 100){
+            addObject(new Llave2(),x,y);
+        }
+    }
     /**
      * Verifica si el unicornio ha tocado una galleta
      * y llama a super para agregaruna vida
@@ -188,7 +232,8 @@ public class Nivel2 extends Nivel
          int x=50;
          int y=585;    
         contLlaves=new Counter();
-        addObject(contLlaves,115,20);        
+        uni3= new UnicornioSecundario();
+        addObject(contLlaves,115,20);   
         contLlaves.setImage("Llave00.png");     
         unicornio=new Unicornio();
         addObject(unicornio, ANCHO/2,340);        
