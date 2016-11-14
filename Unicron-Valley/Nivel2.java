@@ -30,8 +30,8 @@ public class Nivel2 extends Nivel
     public Nivel2()
     {            
         super();  
-        listPlat= new ArrayList<Plataforma>();        
-        prepare();               
+        listPlat= new ArrayList<Plataforma>();   
+        prepare();            
         posicionesIniciales();
     }
     public void act(){
@@ -215,11 +215,13 @@ public class Nivel2 extends Nivel
      * @return -
      */
     public void modificaContadorLlaves(){     
-        String nombArch="";
-        contLlaves.setValue(contLlaves.getValue()+10);
-        contLlaves.act();        
-        nombArch="Llave" + contLlaves.getValue() + ".png"; 
-        contLlaves.setImage(nombArch);
+        if(contLlaves.getValue() < 100){
+            String nombArch="";
+            contLlaves.setValue(contLlaves.getValue()+10);
+            contLlaves.act();        
+            nombArch="Llave" + contLlaves.getValue() + ".png"; 
+            contLlaves.setImage(nombArch);
+        }
     }
     /**
      *  Prepara el mundo con los objetos que iran en el
@@ -230,12 +232,12 @@ public class Nivel2 extends Nivel
      private void prepare()
      {
          int x=50;
-         int y=585;    
+         int y=585;   
         contLlaves=new Counter();
         uni3= new UnicornioSecundario();
         addObject(contLlaves,115,20);   
         contLlaves.setImage("Llave00.png");     
         unicornio=new Unicornio();
-        addObject(unicornio, ANCHO/2,340);        
+        addObject(unicornio, ANCHO/2,340); 
      }
 }

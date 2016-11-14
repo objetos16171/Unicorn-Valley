@@ -11,22 +11,39 @@ public class Nivel1 extends Nivel
     private Unicornio unicornio;
     private Counter contLlaves;
     private UnicornioSecundario uni2;
+    private int bandVidas;
     /**
      * Constructor for objects of class Nivel1.
      */
     public Nivel1()    
     {     
         super();
+        bandVidas=Greenfoot.getRandomNumber(2);
         agregaPortales();
         acomodaPiedras();
         agregaLlavesAleatoriamente();
-        agregaEnemigosAleatoriamente();        
-        prepare();
+        agregaEnemigosAleatoriamente(); 
+        agregaVidasAlMundo();
+        prepare();        
     }
     public void act()
     {
         unicornio.mueve();
+        unicornioComeGalleta();
         liberaAmigoUnicornio();
+    }
+    /**
+     * Verifica si el unicornio ha tocado una galleta
+     * y llama a super para agregaruna vida
+     * @author Diana Huelga
+     * @return -
+     * @version 14-11-16
+     * @param no hay parametros de entrada
+     */
+    public void unicornioComeGalleta(){
+        if(unicornio.tocaGalleta() == true){
+            super.agregaVida();
+        }
     }
     /**
      * valida si se puede avanzar al mundo Nivel2
@@ -39,7 +56,7 @@ public class Nivel1 extends Nivel
      if(unicornio.libera() && contLlaves.getValue() == 100){
          uni2.setImage("unicornioLibre.png");
          Greenfoot.delay(50);
-         uni2.cambiaNivel(new Nivel1());         
+         uni2.cambiaNivel(new Nivel2());         
       }
     }
     /**
@@ -210,12 +227,44 @@ public class Nivel1 extends Nivel
      * @param no hay parametros de entrada
      * @return -
      */
-    public void modificaContadorLlaves(){     
-        String nombArch="";
-        contLlaves.setValue(contLlaves.getValue()+10);
-        contLlaves.act();        
-        nombArch="Llave" + contLlaves.getValue() + ".png"; 
-        contLlaves.setImage(nombArch);
+    public void modificaContadorLlaves(){    
+        if(contLlaves.getValue() < 100){
+            String nombArch="";
+            contLlaves.setValue(contLlaves.getValue()+10);
+            contLlaves.act();        
+            nombArch="Llave" + contLlaves.getValue() + ".png"; 
+            contLlaves.setImage(nombArch);
+       }
+    }
+    /**
+     * Regresa el unicornio a su posicion inicial
+     * @author Carlos Almendarez
+     * @version 12-11-16
+     * @return -
+     * @param no hay parametros de entrada
+     */
+    public void posInicial(){
+        unicornio.setLocation(60,100);
+        super.decrementaVidas();
+    }
+    /**
+     *  Agrega galletas de vid al mundo 
+     * @author Diana Huelga
+     * @version 14-11-16
+     * @return -
+     * @param no hay parametros de entrada
+     */
+    public void agregaVidasAlMundo(){
+        for(int i=0 ; i < bandVidas ; i++){
+            int x=Greenfoot.getRandomNumber(750);
+            int y=Greenfoot.getRandomNumber(550);
+            if(y < 50){
+                y+=30;
+            }else if(x < 20){
+                x+=20;
+            }
+            addObject(new Vida(),x,y);
+        }
     }
     /** 
      * Prepara a los objetos que estarán en el mundo
@@ -234,15 +283,5 @@ public class Nivel1 extends Nivel
         addObject(uni2,730,550);   
         addObject(unicornio,60,100); 
     }
-    /**
-     * Regresa el unicornio a su posicion inicial
-     * @author Carlos Almendarez
-     * @version 12-11-16
-     * @return -
-     * @param no hay parametros de entrada
-     */
-    public void posInicial(){
-        unicornio.setLocation(60,100);
-        super.decrementaVidas();
-    }
+    
 }
