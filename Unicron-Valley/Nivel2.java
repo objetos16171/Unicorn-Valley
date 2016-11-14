@@ -17,13 +17,12 @@ public class Nivel2 extends Nivel
     /**contador para la distancia entre plataformas 
        Se utiliza en el metodo: generaPlataformas() */
     private int contPlat=0;  
-    
-    private Botonmenu botMen;     
+        
     private Unicornio unicornio;
     private Counter contLlaves;
     
     /**Lista de plataformas*/
-    private List<Plataforma> listPlat;    
+    private List<Plataforma> listPlat;     //lista de plataformas presentes en el mundo
     /**
     * Constructor for objects of class Nivel2. 
     */
@@ -39,7 +38,9 @@ public class Nivel2 extends Nivel
          unicornio.mueveLados();
          verificaPosUnicornio();  
          unicornioComeGalleta();
-         generaPlataformas();
+         if(unicornio.getY() <= 180){
+             generaPlataformas();
+         }
     }
     /**
      * Elimina un objeto de la clase Plataforma de la lista de 
@@ -60,8 +61,8 @@ public class Nivel2 extends Nivel
      * @version 12-11-16
      */
     public void generaPlataformas(){
-        if(contPlat == 100){
-            int maxPlat=Greenfoot.getRandomNumber(5);
+         int maxPlat=Greenfoot.getRandomNumber(5);
+         if(contPlat == 100){
             if(maxPlat <= 1){
                 maxPlat=2;
             }
@@ -71,8 +72,9 @@ public class Nivel2 extends Nivel
                 listPlat.add(plat);
             }
             contPlat=0;
-        }else 
-        contPlat++;
+        }else {
+            contPlat++;
+        }
     }    
     /**
      * Verifica si el unicornio ha tocado una galleta
@@ -159,7 +161,22 @@ public class Nivel2 extends Nivel
                 }
              y+=100;
         }
-    }    
+    }   
+    /**
+     * Agrega puntos al contador de llaves y 
+     * modifica su imagen.
+     * @author Diana Huelga
+     * @version 14-11-16
+     * @param no hay parametros de entrada
+     * @return -
+     */
+    public void modificaContadorLlaves(){     
+        String nombArch="";
+        contLlaves.setValue(contLlaves.getValue()+10);
+        contLlaves.act();        
+        nombArch="Llave" + contLlaves.getValue() + ".png"; 
+        contLlaves.setImage(nombArch);
+    }
     /**
      *  Prepara el mundo con los objetos que iran en el
      *  @author Diana Huelga
@@ -169,9 +186,7 @@ public class Nivel2 extends Nivel
      private void prepare()
      {
          int x=50;
-         int y=585;                  
-        botMen= new Botonmenu();        
-        addObject(botMen,720,20);
+         int y=585;    
         contLlaves=new Counter();
         addObject(contLlaves,115,20);        
         contLlaves.setImage("Llave00.png");     

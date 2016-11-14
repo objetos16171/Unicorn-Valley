@@ -15,11 +15,12 @@ public class Plataforma extends Actor
     public void act() 
     {
         World m = getWorld();
-        setLocation(getX(),getY()+1);
+        if(((Nivel2)m).getPosYUnicornio() <= 180){
+            setLocation(getX(),getY()+1);
+        }
         if(getY()>= 550){
             m.removeObject(this);
             ((Nivel2)m).eliminaPlataforma(this);
         }
-    } 
-    
+    }     
 }

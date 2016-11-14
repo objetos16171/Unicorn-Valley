@@ -111,8 +111,11 @@ public class Unicornio extends Actor
             move(3);          
         }else if(Greenfoot.isKeyDown("left") && (getX()-40) >= 0){
             setImage("unicorn2.png");
-            move(-3);
-            
-        }
+            move(-3);            
+        }else if(Greenfoot.isKeyDown("down")){                     
+            setLocation(getX(),getY()+3);                
+        }else if(Greenfoot.isKeyDown("up") && getY() > 80){
+            setLocation(getX(),getY()-3);
+       }
     }
 }
