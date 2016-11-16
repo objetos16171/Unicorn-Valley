@@ -11,38 +11,37 @@ public class Nivel1 extends Nivel
     private Unicornio unicornio;
     private Counter contLlaves;
     private UnicornioSecundario uni2;
-    private int bandVidas;
+    private Topo topo;
+    private List<Portal> listaPortales;
+    private SimpleTimer relojPortales;
+    
     /**
      * Constructor for objects of class Nivel1.
      */
-    public Nivel1()    
-    {     
-        super();
-        bandVidas=Greenfoot.getRandomNumber(2);
-        agregaPortales();
-        acomodaPiedras();
-        agregaLlavesAleatoriamente();
-        agregaEnemigosAleatoriamente(); 
-        agregaVidasAlMundo();
-        prepare();        
+    public Nivel1(){     
+        super();   
+        prepare(); 
     }
-    public void act()
-    {
+    public void act(){ 
+        listaPortales=getObjects(Portal.class);
         unicornio.mueve();
-        unicornioComeGalleta();
         liberaAmigoUnicornio();
-    }
+        generaPortales();
+        eliminaPortales();
+    }     
     /**
-     * Verifica si el unicornio ha tocado una galleta
-     * y llama a super para agregaruna vida
      * @author Diana Huelga
-     * @return -
-     * @version 14-11-16
-     * @param no hay parametros de entrada
+     * @version 15-11-16
+     * @return - 
+     * @param una lista de tipo Portal
      */
-    public void unicornioComeGalleta(){
-        if(unicornio.tocaGalleta() == true){
-            super.agregaVida();
+    public void eliminaPortales(){
+        if(listaPortales.size() > 0 ){
+            if(relojPortales.millisElapsed() > 5000){
+                    Portal p=listaPortales.remove(0);
+                    removeObject(p);
+                    relojPortales.mark();
+            }        
         }
     }
     /**
@@ -64,20 +63,49 @@ public class Nivel1 extends Nivel
      * @author Diana Huelga
      * @param no hay parametros de entrada
      * @return - 
-     * @version 6-11-16
+     * @version 15-11-16
      */
-    public void agregaPortales(){
-        int y=0;
-        int x=0;
-        for(int i=0 ; i < 5 ;)
-        {
-            x=Greenfoot.getRandomNumber(750);
-            y=Greenfoot.getRandomNumber(600);
-            if( x > 10 && y > 50){
-                addObject(new Portal(),x,y);
-                i++;
+    public void generaPortales(){
+        int x=Greenfoot.getRandomNumber(750);
+        int y=Greenfoot.getRandomNumber(550);        
+        if(Greenfoot.getRandomNumber(800) == 1){
+            if(listaPortales.size() == 0){
+                relojPortales.mark();
             }
+            if(x <= 0 ){
+                x+=20;
+            }
+            if(x > 750 && y >550){
+                x-=30;
+                y-=30;
+            }            
+            if(y <= 80){
+                y+=20;
+            }
+                addObject(new Portal(),topo.getX(),topo.getY());
+                addObject(new Portal(),x,y);
+                topo.setLocation(x,y);
         }
+    }    
+    /**
+     * Regresa la posicion que tiene el unicornio
+     * @author Diana Huelga
+     * @version 14-11-16
+     * @para no hay parametros de entrada
+     * @return posicion del unicornio en x
+     */    
+    public int getPosXUnicornio(){
+        return unicornio.getX();        
+    }
+    /**
+     * Regresa la posicion que tiene el unicornio
+     * @author Diana Huelga
+     * @version 14-11-16
+     * @para no hay parametros de entrada
+     * @return posicion del unicornio en y
+     */  
+    public int getPosYUnicornio(){
+        return unicornio.getY(); 
     }
     /**
      * Agrega las piedras que irán en el escenario
@@ -154,8 +182,7 @@ public class Nivel1 extends Nivel
         {
            unicornio.setLocation(p.getX()+110,p.getY());
         }
-    }
-    
+    }    
     /**
      * Obtiene el valor de la anchura del mundo
      * @author Carlos Almendarez
@@ -255,7 +282,7 @@ public class Nivel1 extends Nivel
      * @param no hay parametros de entrada
      */
     public void agregaVidasAlMundo(){
-        for(int i=0 ; i < bandVidas ; i++){
+        for(int i=0 ; i < 3 ; i++){
             int x=Greenfoot.getRandomNumber(750);
             int y=Greenfoot.getRandomNumber(550);
             if(y < 50){
@@ -275,6 +302,9 @@ public class Nivel1 extends Nivel
      */
     private void prepare()
     {                
+        relojPortales=new SimpleTimer();
+        topo=new Topo();
+        addObject(topo,Greenfoot.getRandomNumber(800),Greenfoot.getRandomNumber(600));
         unicornio = new Unicornio();
         contLlaves=new Counter();
         addObject(contLlaves,115,20);
@@ -282,6 +312,9 @@ public class Nivel1 extends Nivel
         uni2= new UnicornioSecundario();
         addObject(uni2,730,550);   
         addObject(unicornio,60,100); 
-    }
-    
+        acomodaPiedras();
+        agregaLlavesAleatoriamente();
+        agregaEnemigosAleatoriamente(); 
+        agregaVidasAlMundo();
+    }    
 }

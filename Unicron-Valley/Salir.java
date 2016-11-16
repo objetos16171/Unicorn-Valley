@@ -15,13 +15,16 @@ public class Salir extends Actor
     public void act() 
     {
         MouseInfo m= Greenfoot.getMouseInfo();              
-        if(m != null){
-            if(Greenfoot.mouseClicked(this)){
-                setImage("Salir1.png");
-                Greenfoot.delay(50);
-                setImage("Salir.png");
-                Greenfoot.stop();
+        if(m != null){            
+                realizaCambio();
             }
-        }
     }    
+    public  void realizaCambio(){
+        if(Greenfoot.mouseClicked(this)){
+           setImage("Salir1.png");
+           Greenfoot.delay(50);
+           setImage("Salir.png");
+           Greenfoot.stop();       
+       }
+    }
 }

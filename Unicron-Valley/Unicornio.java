@@ -31,21 +31,21 @@ public class Unicornio extends Actor
      {
          World w = getWorld();
         if(Greenfoot.isKeyDown("right") && getX()+50<((Nivel1)w).getAnc() && getOneObjectAtOffset(dx+vel,0,Piedra.class)==null
-           && getOneObjectAtOffset(dx,dy,Piedra.class)==null && getOneObjectAtOffset(dx,-dy,Piedra.class)==null && getOneObjectAtOffset(dx,0,Counter.class)==null){             
+           && getOneObjectAtOffset(dx,dy,Piedra.class)==null && getOneObjectAtOffset(dx,-dy,Piedra.class)==null && getX() < 800-dx){             
              setLocation(getX()+vel,getY());   
              setImage("unicorn.png");    
         }    
         if(Greenfoot.isKeyDown("left") && getX()-50>0 && getOneObjectAtOffset(-dx-vel,0,Piedra.class)==null
-           && getOneObjectAtOffset(-dx,dy,Piedra.class)==null && getOneObjectAtOffset(-dx,-dy,Piedra.class)==null && getOneObjectAtOffset(-dx,0,Counter.class)==null){
+           && getOneObjectAtOffset(-dx,dy,Piedra.class)==null && getOneObjectAtOffset(-dx,-dy,Piedra.class)==null && getX() > dx){
                  setLocation(getX()-vel,getY());
                  setImage("unicorn2.png");   
         }
          if(Greenfoot.isKeyDown("up") && getY()-50>0 && getOneObjectAtOffset(0,-dy-vel,Piedra.class)==null
-            && getOneObjectAtOffset(dx,-dy,Piedra.class)==null && getOneObjectAtOffset(-dx,-dy,Piedra.class)==null && getOneObjectAtOffset(0,-dy,Counter.class)==null){     
+            && getOneObjectAtOffset(dx,-dy,Piedra.class)==null && getOneObjectAtOffset(-dx,-dy,Piedra.class)==null && getY() > 80){     
              setLocation(getX(),getY()-vel);           
         }         
         if(Greenfoot.isKeyDown("down") && getY()+50<=((Nivel1)w).getAltura() && getOneObjectAtOffset(0,dy+vel,Piedra.class)==null
-           && getOneObjectAtOffset(dx,dy,Piedra.class)==null && getOneObjectAtOffset(-dx,dy,Piedra.class)==null && getOneObjectAtOffset(0,dy,Counter.class)==null){            
+           && getOneObjectAtOffset(dx,dy,Piedra.class)==null && getOneObjectAtOffset(-dx,dy,Piedra.class)==null && getY() < 600-dy){            
                 setLocation(getX(),getY()+vel);            
         }
     }
@@ -82,12 +82,6 @@ public class Unicornio extends Actor
             ((Nivel2)m).modificaContadorLlaves();
             removeTouching(Llave2.class);
         }
-    }
-    public boolean tocaGalleta(){
-        if(this.isTouching(Vida.class)){
-            removeTouching(Vida.class);
-            return true;
-        }else{return false;}
     }
     /**
      *  Cambia la posicion en 'y' del unicornio para simular la caida

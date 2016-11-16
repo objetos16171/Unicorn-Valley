@@ -8,8 +8,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Portal extends Actor
 {
-    /**
-     * Act - do whatever the Portal wants to do. This method is called whenever
+    public static final int ANCHO = 20; 
+    public static final int LARGO = 20;
+     /* Act - do whatever the Portal wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 
@@ -21,6 +22,7 @@ public class Portal extends Actor
      * Llama al mundo para decirle que acaba de tocar al usuario y anda su coordenada en x (este metodo pertenece al Nivel1)
      * @author Carlos Almendarez
      * @version 4-11-16
+     * @version 14-11-16 Diana Carolina
      * @return No hay valor 
      * @param no hay parametros de entrada
      */
@@ -29,7 +31,10 @@ public class Portal extends Actor
         World w = getWorld();
         if(isTouching(Unicornio.class))
         {
-            ((Nivel1)w).teleport(getX());
+            if(((Nivel1)w).getPosXUnicornio() >= getX()-ANCHO && ((Nivel1)w).getPosXUnicornio() <= getX()+ANCHO
+                && ((Nivel1)w).getPosYUnicornio() >= getY()-LARGO && ((Nivel1)w).getPosYUnicornio() <= getY()+LARGO){
+                    ((Nivel1)w).teleport(getX());
+            }
         }
     }
 }

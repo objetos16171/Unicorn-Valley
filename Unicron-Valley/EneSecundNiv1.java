@@ -8,6 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class EneSecundNiv1 extends Actor
 {
+    public static final int ANCHO = 24; 
+    public static final int LARGO = 10;
     private int vel=1;
     private int cont=0;
     /**
@@ -36,12 +38,11 @@ public class EneSecundNiv1 extends Actor
                 cont=0;
             }
         }
-    }   
+    }
     public void decrementaVida(){
         World w = getWorld();
-        if(isTouching(Unicornio.class))
-        {
-            ((Nivel1)w).posInicial();
-        } 
+        if(isTouching(Unicornio.class)){
+            ((Nivel1)w).posInicial();            
+        }
     }
 }

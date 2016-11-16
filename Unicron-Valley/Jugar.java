@@ -15,12 +15,15 @@ public class Jugar extends Actor
     public void act() 
     {
         MouseInfo m= Greenfoot.getMouseInfo();              
-        if(m != null){
-            if(Greenfoot.mouseClicked(this)){
-                setImage("Jugar1.png");
-                Greenfoot.delay(50);
-                Greenfoot.setWorld(new Nivel1());
+        if(m != null){            
+                realizaCambio();
             }
-        }
     }    
+    public  void realizaCambio(){
+        if(Greenfoot.mouseClicked(this)){
+            setImage("Jugar1.png");
+            Greenfoot.delay(50);
+            Greenfoot.setWorld(new Nivel1());          
+        }
+    }
 }

@@ -15,11 +15,9 @@ public class Nivel extends World
      */
     public Nivel()
     {  
-        super(800, 600, 1); 
-        
+        super(800, 600, 1);         
         botMen=new Botonmenu();
-        contVidas=new Counter();
-        contVidas.setValue(3);
+        contVidas=new Counter();        
         addObject(contVidas,330,20);       
         addObject(botMen,720,20);
         contVidas.setImage("Vidas3.png");
@@ -66,8 +64,7 @@ public class Nivel extends World
     public void pierdes()
     {
         System.out.println("Perdiste");
-        Greenfoot.setWorld(new Menu());        
-        //Agregar etiqueta
+        Greenfoot.setWorld(new Menu());   
     }
 }
 

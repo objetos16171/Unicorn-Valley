@@ -36,8 +36,7 @@ public class Nivel2 extends Nivel
     }
     public void act(){
          unicornio.mueveLados();
-         verificaPosUnicornio();  
-         unicornioComeGalleta();
+         verificaPosUnicornio(); 
          avanzaMundo();
          liberaAmigoUnicornio();         
     }
@@ -118,19 +117,6 @@ public class Nivel2 extends Nivel
     public void agregaLlave(int x, int y){
         if(Greenfoot.getRandomNumber(5) == 1 && contLlaves.getValue() < 100){
             addObject(new Llave2(),x,y);
-        }
-    }
-    /**
-     * Verifica si el unicornio ha tocado una galleta
-     * y llama a super para agregaruna vida
-     * @author Diana Huelga
-     * @return -
-     * @version 9-11-16
-     * @param no hay parametros de entrada
-     */
-    public void unicornioComeGalleta(){
-        if(unicornio.tocaGalleta() == true){
-            super.agregaVida();
         }
     }
     /**
