@@ -10,6 +10,8 @@ public class Unicornio extends Actor
     private int vel = 2;
     private int dx = 34;
     private int dy = 34;
+    private SimpleTimer T = new SimpleTimer();
+    private int salto = 0;
     /**
      * Act - do whatever the Unicornio wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -110,7 +112,57 @@ public class Unicornio extends Actor
         }else if(Greenfoot.isKeyDown("down")){                     
             setLocation(getX(),getY()+3);                
         }else if(Greenfoot.isKeyDown("up") && getY() > 80){
-            setLocation(getX(),getY()-3);
+            if(T.millisElapsed()>2000)
+            {
+                salto=50;
+                T.mark();
+            }
        }
+    }
+    public void iniciaTimer()
+    {
+        T.mark();
+    }
+    public void brinca()
+    {
+        if(salto>0)
+        {
+            setLocation(getX(),getY()-vel);
+            salto--;
+        }else
+        {
+            salto=0;
+        }
+    }
+    
+    public void moverNiv3()
+    {
+        World w = getWorld();
+        if(Greenfoot.isKeyDown("right"))
+        {
+            if((((Nivel3)w).getWidth()/4)*3<getX()+vel)
+            {
+                ((Nivel3)w).moveImagDer();
+            }else
+            {
+                setLocation(getX()+vel,getY());
+            }
+        }
+        if(Greenfoot.isKeyDown("left"))
+        {
+            if(100>getX()+vel){
+            }else
+            {
+                setLocation(getX()-vel,getY());
+            }
+        }
+        if(Greenfoot.isKeyDown("up"))
+        {
+            setLocation(getX(),getY()-vel);
+        }
+        if(Greenfoot.isKeyDown("down"))
+        {
+            setLocation(getX(),getY()+vel);
+        }
     }
 }
