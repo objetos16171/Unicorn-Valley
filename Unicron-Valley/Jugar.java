@@ -23,7 +23,7 @@ public class Jugar extends Actor
         if(Greenfoot.mouseClicked(this)){
             setImage("Jugar1.png");
             Greenfoot.delay(50);
-            Greenfoot.setWorld(new Nivel1());          
+            Greenfoot.setWorld(new Nivel2(3));          
         }
     }
 }

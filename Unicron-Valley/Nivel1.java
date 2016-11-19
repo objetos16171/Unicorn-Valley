@@ -9,8 +9,6 @@ import java.util.List;
 public class Nivel1 extends Nivel
 {
     private Unicornio unicornio;
-    private Counter contLlaves;
-    private UnicornioSecundario uni2;
     private Topo topo;
     private List<Portal> listaPortales;
     private SimpleTimer relojPortales;
@@ -19,16 +17,44 @@ public class Nivel1 extends Nivel
      * Constructor for objects of class Nivel1.
      */
     public Nivel1(){     
-        super();   
+        super(60,100,3); 
+        unicornio=super.getUnicornio();
+        super.añadeUnicornioSecundario(730,550);
         prepare(); 
     }
     public void act(){ 
         listaPortales=getObjects(Portal.class);
         unicornio.mueve();
-        liberaAmigoUnicornio();
         generaPortales();
-        eliminaPortales();
-    }     
+        eliminaPortales();  
+        if(unicornio.libera()== true){
+            super.cambiaNivel(new Nivel2(super.getNumeroViadas()));
+        }
+        if(unicornio.comeGalleta() == true){
+            super.aumentaVida();
+        }
+        if(unicornio.tocaHormiga() == true){
+            super.decrementaVida();
+        }
+    }   
+	/**
+     * @author Diana Huelga
+     * @version 7-11-16
+     * @return posicion del unicornio en x
+     * @param no hay parametros de entrada
+     */
+    public int getPosUniX(){
+        return unicornio.getX();
+    }
+    /**
+     * @author Diana Huelga
+     * @version 7-11-16
+     * @return posicion del unicornio en y
+     * @param no hay parametros de entrada
+     */
+    public int getPosUniy(){
+        return unicornio.getY();
+    } 
     /**
      * @author Diana Huelga
      * @version 15-11-16
@@ -45,20 +71,6 @@ public class Nivel1 extends Nivel
         }
     }
     /**
-     * valida si se puede avanzar al mundo Nivel2
-     * @author Diana Huelga
-     * @version 6-11-16
-     * @return - 
-     * @param no hay parametros de entrada
-     */
-     public void liberaAmigoUnicornio(){
-     if(unicornio.libera() && contLlaves.getValue() == 100){
-         uni2.setImage("unicornioLibre.png");
-         Greenfoot.delay(50);
-         uni2.cambiaNivel(new Nivel2());         
-      }
-    }
-    /**
      * Agrega portales al mundo Nivel 1
      * @author Diana Huelga
      * @param no hay parametros de entrada
@@ -68,7 +80,7 @@ public class Nivel1 extends Nivel
     public void generaPortales(){
         int x=Greenfoot.getRandomNumber(750);
         int y=Greenfoot.getRandomNumber(550);        
-        if(Greenfoot.getRandomNumber(800) == 1){
+        if(Greenfoot.getRandomNumber(700) == 1){
             if(listaPortales.size() == 0){
                 relojPortales.mark();
             }
@@ -229,41 +241,6 @@ public class Nivel1 extends Nivel
         }
     }
     /**
-     * @author Diana Huelga
-     * @version 7-11-16
-     * @return posicion del unicornio en x
-     * @param no hay parametros de entrada
-     */
-    public int getPosUniX(){
-        return unicornio.getX();
-    }
-    /**
-     * @author Diana Huelga
-     * @version 7-11-16
-     * @return posicion del unicornio en y
-     * @param no hay parametros de entrada
-     */
-    public int getPosUniy(){
-        return unicornio.getY();
-    }
-    /**
-     * Agrega puntos al contador de llaves y 
-     * modifica su imagen.
-     * @author Diana Huelga
-     * @version 5-11-16
-     * @param no hay parametros de entrada
-     * @return -
-     */
-    public void modificaContadorLlaves(){    
-        if(contLlaves.getValue() < 100){
-            String nombArch="";
-            contLlaves.setValue(contLlaves.getValue()+10);
-            contLlaves.act();        
-            nombArch="Llave" + contLlaves.getValue() + ".png"; 
-            contLlaves.setImage(nombArch);
-       }
-    }
-    /**
      * Regresa el unicornio a su posicion inicial
      * @author Carlos Almendarez
      * @version 12-11-16
@@ -272,10 +249,9 @@ public class Nivel1 extends Nivel
      */
     public void posInicial(){
         unicornio.setLocation(60,100);
-        super.decrementaVidas();
     }
     /**
-     *  Agrega galletas de vid al mundo 
+     * Agrega galletas de vid al mundo 
      * @author Diana Huelga
      * @version 14-11-16
      * @return -
@@ -304,14 +280,7 @@ public class Nivel1 extends Nivel
     {                
         relojPortales=new SimpleTimer();
         topo=new Topo();
-        addObject(topo,Greenfoot.getRandomNumber(800),Greenfoot.getRandomNumber(600));
-        unicornio = new Unicornio();
-        contLlaves=new Counter();
-        addObject(contLlaves,115,20);
-        contLlaves.setImage("Llave00.png");
-        uni2= new UnicornioSecundario();
-        addObject(uni2,730,550);   
-        addObject(unicornio,60,100); 
+        addObject(topo,Greenfoot.getRandomNumber(800),Greenfoot.getRandomNumber(600));     
         acomodaPiedras();
         agregaLlavesAleatoriamente();
         agregaEnemigosAleatoriamente(); 

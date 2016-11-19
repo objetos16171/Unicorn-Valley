@@ -17,43 +17,51 @@ public class Nivel2 extends Nivel
     /**contador para la distancia entre plataformas 
        Se utiliza en el metodo: generaPlataformas() */
     private int contPlat=0;  
-        
-    private Unicornio unicornio;
-    private UnicornioSecundario uni3;
-    private Counter contLlaves;
     
+    private Unicornio unicornio;
+    private Counter contLlaves;    
     /**Lista de plataformas*/
     private List<Plataforma> listPlat;     //lista de plataformas presentes en el mundo
     /**
     * Constructor for objects of class Nivel2. 
     */
-    public Nivel2()
+    public Nivel2(int vidas)
     {            
-        super();  
+        super(ANCHO/2,LARGO/2+40,vidas);
+        unicornio=super.getUnicornio();
         listPlat= new ArrayList<Plataforma>();   
         prepare();            
         posicionesIniciales();
+        modificaContadorVidas();
     }
     public void act(){
-         unicornio.mueveLados();
-         verificaPosUnicornio(); 
-         avanzaMundo();
-         liberaAmigoUnicornio();         
-    }
-    /**
-     * valida si el unicornio toco al unicornio secundario
-     * @author Diana Huelga
-     * @return -
-     * @param no hay parametros de entrada
-     * @version 14-11-16
-     */
-    public void liberaAmigoUnicornio(){
-        if(unicornio.libera()){
-             uni3.setImage("unicornioLibre.png");
-             Greenfoot.delay(50);
-             uni3.cambiaNivel(new Nivel3());
-          }         
-    }
+		verificaPosUnicornio(); 
+        avanzaMundo();        
+        unicornio.cae();
+        unicornio.mueveLados();
+        unicornio.brinca();
+        if(unicornio.libera()== true){
+            super.cambiaNivel(new Nivel3(super.getNumeroViadas()));
+        }
+        if(unicornio.comeGalleta() == true){
+            super.aumentaVida();
+        }
+        // liberaAmigoUnicornio();         
+    }    
+    // /**
+     // * valida si el unicornio toco al unicornio secundario
+     // * @author Diana Huelga
+     // * @return -
+     // * @param no hay parametros de entrada
+     // * @version 14-11-16
+     // */
+    // public void liberaAmigoUnicornio(){
+        // if(unicornio.libera()){
+             // uni3.setImage("unicornioLibre.png");
+             // Greenfoot.delay(50);
+             // uni3.cambiaNivel(new Nivel3());
+          // }         
+    // }
     /**
      * Avanza los objetos que hay en el mundo
      * @author Diana Huelga
@@ -64,10 +72,7 @@ public class Nivel2 extends Nivel
     public void avanzaMundo(){
         if(unicornio.getY() <= 180){
              generaPlataformas();
-             if(contLlaves.getValue() == 100){    
-                 addObject(uni3,Greenfoot.getRandomNumber(750),20);
-                 uni3.setLocation(uni3.getX(),uni3.getY()+1);
-             }
+             super.unicornioSecundarioNivel2(Greenfoot.getRandomNumber(750),20);                 
         }         
     }
     /**
@@ -166,7 +171,7 @@ public class Nivel2 extends Nivel
             removeObjects(listPlat);
             listPlat.clear();                   
             posicionesIniciales();
-            super.decrementaVidas();
+			super.decrementaVida();
          }
     }
     /**
@@ -191,23 +196,6 @@ public class Nivel2 extends Nivel
                 }
              y+=100;
         }
-    }   
-    /**
-     * Agrega puntos al contador de llaves y 
-     * modifica su imagen.
-     * @author Diana Huelga
-     * @version 14-11-16
-     * @param no hay parametros de entrada
-     * @return -
-     */
-    public void modificaContadorLlaves(){     
-        if(contLlaves.getValue() < 100){
-            String nombArch="";
-            contLlaves.setValue(contLlaves.getValue()+10);
-            contLlaves.act();        
-            nombArch="Llave" + contLlaves.getValue() + ".png"; 
-            contLlaves.setImage(nombArch);
-        }
     }
     /**
      *  Prepara el mundo con los objetos que iran en el
@@ -220,10 +208,7 @@ public class Nivel2 extends Nivel
          int x=50;
          int y=585;   
         contLlaves=new Counter();
-        uni3= new UnicornioSecundario();
         addObject(contLlaves,115,20);   
-        contLlaves.setImage("Llave00.png");     
-        unicornio=new Unicornio();
-        addObject(unicornio, ANCHO/2,340); 
+        contLlaves.setImage("Llave00.png");   
      }
 }

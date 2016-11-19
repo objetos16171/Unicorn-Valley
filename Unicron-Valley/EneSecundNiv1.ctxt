@@ -7,6 +7,4 @@ comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ EneSecundNiv1\ wants\ to\ do.\ Th
 comment2.params=
 comment2.target=void\ movimientoHorizontal()
 comment2.text=\r\n\ Gira\ la\ imagen\ cada\ 200\ celdas\ \r\n\ @param\ no\ hay\ parametros\ de\ entrada\r\n\ @author\ Diana\ Carolina\ \r\n\ @version\ 11-11-16\r\n
-comment3.params=
-comment3.target=void\ decrementaVida()
-numComments=4
+numComments=3

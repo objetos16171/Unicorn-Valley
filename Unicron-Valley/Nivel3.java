@@ -10,40 +10,27 @@ public class Nivel3 extends Nivel
 {
     private Unicornio unicornio;
     private Counter contLlaves;
-    private int imageCount = 0;   
-    private GreenfootImage bgImage = new GreenfootImage("FondoNivel3.png");
+    private GreenfootImage bgImage;
+    private int imageCount = 0;   //Contador para la imagen   
     
     /**
      * Constructor for objects of class Nivel3.
      * 
      */
-    public Nivel3()
+    public Nivel3(int vidas)
     {
-        super();
+        super(50,500,vidas);
+        unicornio=super.getUnicornio();
+        bgImage = new GreenfootImage("FondoNivel3.png");
         prepare();
-        unicornio = new Unicornio();
-        addObject(unicornio,50,550);  
-    }
-    
-    public void act()
-    {
+    }    
+    public void act(){
         unicornio.moverNiv3();
     }
-    
     /**
-     *  Prepara el mundo con los objetos que iran en el
-     *  @author Diana Huelga
-     *  @version 13-11-16
-     *  @param no hay parametros de entrada
-     */   
-     private void prepare()
-     {
-        contLlaves=new Counter();
-        addObject(contLlaves,115,20);        
-        contLlaves.setImage("Llave00.png");     
-     }
-     
-    public void drawBackgroundImage() {
+     * 
+     */
+    public void imagenDeFondo() {
        if (imageCount < -bgImage.getWidth()) {
            imageCount += bgImage.getWidth();
        }
@@ -51,14 +38,32 @@ public class Nivel3 extends Nivel
         getBackground().drawImage(bgImage, temp, 0);
         getBackground().drawImage(bgImage, temp + bgImage.getWidth(), 0);
     }
-    public void moveImagDer()
+    /**
+     * 
+     */
+    public void mueveImagenDer()
     {
         imageCount-=5;
-        drawBackgroundImage();
+        imagenDeFondo();
     }
-    public void moveImagIzq()
+    /**
+     * 
+     */
+    public void mueveImagenIzq()
     {
         imageCount+=5;
-        drawBackgroundImage();
+        imagenDeFondo();
+    }
+    /**
+     *  Prepara el mundo con los objetos que iran en el
+     *  @author Diana Huelga
+     *  @version 13-11-16
+     *  @param no hay parametros de entrada
+     */   
+    private void prepare()
+    {
+       contLlaves=new Counter();
+       addObject(contLlaves,115,20);        
+       contLlaves.setImage("Llave00.png");     
     }
 }

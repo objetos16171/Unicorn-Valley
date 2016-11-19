@@ -7,11 +7,19 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Unicornio extends Actor
 {
-    private int vel = 2;
-    private int dx = 34;
-    private int dy = 34;
-    private SimpleTimer T = new SimpleTimer();
-    private int salto = 0;
+    private int vel;
+    private int dx;
+    private int dy;
+    private int salto;
+    private SimpleTimer tiempoDeSalto;
+    
+    public Unicornio(){
+        vel = 2;
+        dx = 34;
+        dy = 34;
+        tiempoDeSalto = new SimpleTimer();
+        salto = 0;
+    }
     /**
      * Act - do whatever the Unicornio wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -19,7 +27,7 @@ public class Unicornio extends Actor
     public void act() 
     {
         tocaLlave();
-    }    
+    }
     /**
      * Mueve la posicion del jugador y verifica que no salga del mundo
      * Este metodo pertenece al Nivel1
@@ -77,13 +85,38 @@ public class Unicornio extends Actor
      {  
         if(isTouching(Llave.class)){      
             World m=getWorld();
-            ((Nivel1)m).modificaContadorLlaves();            
+            ((Nivel)m).modificaContadorLlaves();            
             removeTouching(Llave.class);
-        }else if(isTouching(Llave2.class)){
-            World m=getWorld();
-            ((Nivel2)m).modificaContadorLlaves();
-            removeTouching(Llave2.class);
         }
+    }
+    /**
+     * Verifica si el unicornio comio una galleta
+     * @author Diana Huelga
+     * @version 18-11-16
+     * @return true si comio la galleta, false si no
+     * @param no hay parametros de entrada
+     */
+     public boolean comeGalleta()
+     {  
+        if(isTouching(Vida.class)){   
+             removeTouching(Vida.class);
+            return true;
+        }else {return false;}
+    }
+    /**
+     * Verifica si el unicornio toco uno de los enemigos
+     * secundarios del nivel1
+     * @author Diana Huelga
+     * @version 18-11-16
+     * @return true si comio la galleta, false si no
+     * @param no hay parametros de entrada
+     */
+     public boolean tocaHormiga()
+     {  
+        if(isTouching(EneSecundNiv1.class)){
+            this.setLocation(60,100);
+            return true;
+        }else {return false;}
     }
     /**
      *  Cambia la posicion en 'y' del unicornio para simular la caida
@@ -93,7 +126,9 @@ public class Unicornio extends Actor
      *  @version 7-11-16
      */
     public void cae(){        
+        if(!isTouching(Plataforma.class)){
             setLocation(getX(),getY()+2);
+        }
     }
     /**
      *  Mueve la posicion en x dependiendo de la tecla presionada
@@ -112,56 +147,66 @@ public class Unicornio extends Actor
         }else if(Greenfoot.isKeyDown("down")){                     
             setLocation(getX(),getY()+3);                
         }else if(Greenfoot.isKeyDown("up") && getY() > 80){
-            if(T.millisElapsed()>2000)
-            {
+            if(tiempoDeSalto.millisElapsed()>2000){
                 salto=50;
-                T.mark();
+                tiempoDeSalto.mark();
             }
        }
     }
+    /**
+     * reinicializa el tiempo 
+     * @Carlos Almendarez
+     * @version 15-11-16
+     * @param no hay parametros de entrada
+     * @return-
+     */
     public void iniciaTimer()
     {
-        T.mark();
+        tiempoDeSalto.mark();
     }
+    /**
+     * disminute la posicion en y para simular el salto  
+     * @Carlos Almendarez
+     * @version 15-11-16
+     * @param no hay parametros de entrada
+     * @return-
+     */
     public void brinca()
     {
-        if(salto>0)
-        {
+        if(salto>0){
             setLocation(getX(),getY()-vel);
             salto--;
-        }else
-        {
+        }else{
             salto=0;
         }
-    }
-    
+    }    
+    /**
+     * movimiento del unicornio en el nivel 3 
+     * @Carlos Almendarez
+     * @version 15-11-16
+     * @param no hay parametros de entrada
+     * @return-
+     */
     public void moverNiv3()
     {
         World w = getWorld();
-        if(Greenfoot.isKeyDown("right"))
-        {
-            if((((Nivel3)w).getWidth()/4)*3<getX()+vel)
-            {
-                ((Nivel3)w).moveImagDer();
-            }else
-            {
+        if(Greenfoot.isKeyDown("right")){
+            if((((Nivel3)w).getWidth()/4)*3<getX()+vel){
+                ((Nivel3)w).mueveImagenDer();
+            }else{
                 setLocation(getX()+vel,getY());
             }
         }
-        if(Greenfoot.isKeyDown("left"))
-        {
+        if(Greenfoot.isKeyDown("left")){
             if(100>getX()+vel){
-            }else
-            {
+            }else{
                 setLocation(getX()-vel,getY());
             }
         }
-        if(Greenfoot.isKeyDown("up"))
-        {
+        if(Greenfoot.isKeyDown("up")){
             setLocation(getX(),getY()-vel);
         }
-        if(Greenfoot.isKeyDown("down"))
-        {
+        if(Greenfoot.isKeyDown("down")){
             setLocation(getX(),getY()+vel);
         }
     }
