@@ -37,7 +37,10 @@ public class Nivel3 extends Nivel
         }
         if(unicornio.tocaEstrella()== true){
             unicornio.cambiaTeclas();
-        }              
+        }
+        if(unicornio.comeGalleta()== true){
+            super.aumentaVida();
+        } 
     }
     /**
      * Agrega galletas de vidas al mundo

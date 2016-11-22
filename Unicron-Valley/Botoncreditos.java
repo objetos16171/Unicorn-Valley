@@ -27,7 +27,7 @@ public class Botoncreditos extends Actor
      */
     public  void realizaCambio(){
         if(Greenfoot.mouseClicked(this)){
-            setImage("Creditos.png");
+            setImage("Creditos1.png");
             Greenfoot.delay(50);
             Greenfoot.setWorld(new Creditos());      
         }

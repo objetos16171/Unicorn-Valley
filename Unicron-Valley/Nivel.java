@@ -37,6 +37,8 @@ public abstract class Nivel extends World
      */
     public void cambiaNivel(World n){
         if(contLlaves.getValue() == 100){
+            uni2.setImage("unicornioLibre.png");
+            Greenfoot.delay(50);
             uni2.cambiaNivel(n);
         }
     }
@@ -149,6 +151,7 @@ public abstract class Nivel extends World
         if(contLlaves.getValue() < 100){
             String nombArch="";
             contLlaves.setValue(contLlaves.getValue()+10);    
+            contLlaves.act();            
             nombArch="Llave" + contLlaves.getValue() + ".png"; 
             contLlaves.setImage(nombArch);
         }
