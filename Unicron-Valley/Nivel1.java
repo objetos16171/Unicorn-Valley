@@ -1,10 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.List;
 /**
- * Write a description of class Nivel1 here.
+ * La clase contiene a todos los objetos y métodos que integran al Nivel 1
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Diana Carolina Huelga Huerta
+ * @author Carlos Almendarez Ávila
+ * @version 5-11-16
  */
 public class Nivel1 extends Nivel
 {
@@ -35,6 +36,9 @@ public class Nivel1 extends Nivel
         }
         if(unicornio.tocaHormiga() == true){
             super.decrementaVida();
+        }
+        if(unicornio.tocaLlave() == true){
+            super.modificaContadorLlaves();
         }
     }   
 	/**

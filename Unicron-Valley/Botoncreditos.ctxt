@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=Botoncreditos
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Botoncreditos\ here.\r\n\ \r\n\ @author\ Diana\ Huelga\ \r\n\ @version\ 22-11-16\r\n
+comment1.params=
+comment1.target=void\ act()
+comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ Botonayuda\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+comment2.params=
+comment2.target=void\ realizaCambio()
+comment2.text=\r\n\ Hace\ el\ cambio\ de\ mundos\ de\ menu\ a\ ayuda\r\n\ @author\ Diana\ Huelga\r\n\ @version\ 22-11-16\r\n\ @param\ no\ hay\ parametros\ de\ entrada\r\n
+numComments=3

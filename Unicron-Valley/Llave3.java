@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Llave3 here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Diana Huelga
+ * @version 19-11-16
  */
 public class Llave3 extends Actor
 {
@@ -30,7 +30,7 @@ public class Llave3 extends Actor
      * @return -
      */
     public void muevete(World m){
-        if(Greenfoot.isKeyDown("right") && (((Nivel3)m).getWidth()/4)*3 < (((Nivel3)m).getPosXUnicornio()+1)){
+        if( (((Nivel3)m).getWidth()/4)*3 < (((Nivel3)m).getPosXUnicornio()+1)){
             this.move(-2);            
         }        
     }

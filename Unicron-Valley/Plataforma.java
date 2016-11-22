@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Plataforma here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Diana Huelga 
+ * @version 11-11-16
  */
 public class Plataforma extends Actor
 {

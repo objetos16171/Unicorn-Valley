@@ -1,10 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Nivel3 here.
+ * La clase contiene a todos los objetos y métodos que integran al Nivel 3
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Diana Carolina Huelga Huerta
+ * @author Carlos Almendarez Ávila
+ * @version 13-11-16
  */
 public class Nivel3 extends Nivel
 {
@@ -25,14 +26,34 @@ public class Nivel3 extends Nivel
         prepare();
     }    
     public void act(){
-        unicornio.moverNiv3();
-        if(unicornio.tocaLlave3() == true){
+        if(unicornio.moverNiv3() == 1){
+            mueveImagenDer();
+            generaLlaves();
+            agregaEnemigosSecundarios();
+            agregaVidas();
+        }        
+        if(unicornio.tocaLlave() == true){
             super.modificaContadorLlaves();
         }
         if(unicornio.tocaEstrella()== true){
             unicornio.cambiaTeclas();
-        }
+        }              
     }
+    /**
+     * Agrega galletas de vidas al mundo
+     * @author Diana Huelga
+     * @version 22-11-16
+     * @para no hay parametros de entrada
+     */
+    public void agregaVidas(){
+        int y=Greenfoot.getRandomNumber(650);
+        if(y < 30){
+            y+=30;
+        }
+        if(Greenfoot.getRandomNumber(100) == 1){
+            addObject(new Vida3(),790,y);
+        }
+   }    
     /** 
      * agrega a los enemigos secundarios 
      * @author Diana Huelga

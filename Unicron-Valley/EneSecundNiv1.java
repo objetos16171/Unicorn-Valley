@@ -3,8 +3,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class EneSecundNiv1 here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Carlos Almendarez
+ * @author Diana Huelga
+ * @version 11-11-16
  */
 public class EneSecundNiv1 extends Actor
 {

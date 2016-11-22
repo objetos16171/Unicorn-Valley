@@ -1,10 +1,10 @@
 #BlueJ class context
 comment0.target=Portal
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Portal\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Portal\ here.\r\n\ \r\n\ @author\ Carlos\ Almendarez\r\n\ @version\ 4-11-16\ \r\n
 comment1.params=
 comment1.target=void\ act()
 comment1.text=\ Act\ -\ do\ whatever\ the\ Portal\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
 comment2.params=
 comment2.target=void\ teleport()
-comment2.text=\r\n\ Llama\ al\ mundo\ para\ decirle\ que\ acaba\ de\ tocar\ al\ usuario\ y\ anda\ su\ coordenada\ en\ x\ (este\ metodo\ pertenece\ al\ Nivel1)\r\n\ @author\ Carlos\ Almendarez\r\n\ @version\ 4-11-16\r\n\ @version\ 14-11-16\ Diana\ Carolina\r\n\ @return\ No\ hay\ valor\ \r\n\ @param\ no\ hay\ parametros\ de\ entrada\r\n
+comment2.text=\r\n\ Llama\ al\ mundo\ para\ decirle\ que\ acaba\ de\ tocar\ al\ usuario\ y\ anda\ su\ coordenada\ en\ x\ (este\ metodo\ pertenece\ al\ Nivel1)\r\n\ @author\ Carlos\ Almendarez\r\n\ @author\ Diana\ Huelga\r\n\ @version\ 4-11-16\r\n\ @version\ 14-11-16\ \r\n\ @return\ No\ hay\ valor\ \r\n\ @param\ no\ hay\ parametros\ de\ entrada\r\n
 numComments=3

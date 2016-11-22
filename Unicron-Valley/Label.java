@@ -89,8 +89,7 @@ public class Label extends Actor
     {
         this.fillColor = fillColor;
         updateImage();
-    }
-    
+    }  
 
     /**
      * Update the image on screen to show the current value.

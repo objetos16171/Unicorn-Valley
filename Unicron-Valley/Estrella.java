@@ -30,7 +30,7 @@ public class Estrella extends Actor
      * @return -
      */
     public void muevete(World m){
-        if(Greenfoot.isKeyDown("right") && (((Nivel3)m).getWidth()/4)*3 < (((Nivel3)m).getPosXUnicornio()+1)){
+        if((((Nivel3)m).getWidth()/4)*3 < (((Nivel3)m).getPosXUnicornio()+1)){
             this.move(-2);            
         }        
     }

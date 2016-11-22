@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Portal here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Carlos Almendarez
+ * @version 4-11-16 
  */
 public class Portal extends Actor
 {
@@ -21,8 +21,9 @@ public class Portal extends Actor
     /**
      * Llama al mundo para decirle que acaba de tocar al usuario y anda su coordenada en x (este metodo pertenece al Nivel1)
      * @author Carlos Almendarez
+     * @author Diana Huelga
      * @version 4-11-16
-     * @version 14-11-16 Diana Carolina
+     * @version 14-11-16 
      * @return No hay valor 
      * @param no hay parametros de entrada
      */

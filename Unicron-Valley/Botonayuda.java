@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Botonayuda here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Diana Huelga
+ * @version 5-11-16
  */
 public class Botonayuda extends Actor
 {
@@ -19,6 +19,12 @@ public class Botonayuda extends Actor
                 realizaCambio();
             }
     }    
+    /**
+     * Hace el cambio de mundos de menu a ayuda
+     * @author Diana Huelga
+     * @version 5-11-16
+     * @param no hay parametros de entrada
+     */
     public  void realizaCambio(){
         if(Greenfoot.mouseClicked(this)){
             setImage("Ayuda1.png");

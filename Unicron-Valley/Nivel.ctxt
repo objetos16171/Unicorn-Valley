@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Nivel
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Nivel\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ La\ clase\ contiene\ a\ todos\ los\ objetos\ y\ m\u00E9todos\ que\ comparten\ todos\ los\ niveles\r\n\ \r\n\ @author\ Diana\ Carolina\ Huelga\ Huerta\r\n\ @version\ 17-11-16\r\n
 comment1.params=x\ y\ vidas
 comment1.target=Nivel(int,\ int,\ int)
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Nivel.\r\n\ @param\ x\ posicion\ en\ x\ donde\ se\ colocara\ el\ unicornio\r\n\ @param\ y\ posicion\ en\ y\ donde\ se\ colocara\ el\ unicornio\ \r\n
@@ -18,6 +18,7 @@ comment13.target=Unicornio\ getUnicornio()
 comment13.text=\r\n\ Regresa\ el\ unicornio\ creado\ en\ nivel\r\n\ @author\ Diana\ Huelga\r\n\ @version\ 18-11-16\r\n\ @param\ no\ hay\ parametros\ de\ entrada\r\n\ @return\ el\ unicornio\ presente\ en\ el\ nivel\r\n
 comment14.params=
 comment14.target=void\ agregaObjetosPrincipales()
+comment14.text=\r\n\ Agrega\ al\ mundo\ los\ objetos\ que\ tendran\ \r\n\ todos\ lo\ niveles\r\n\ @author\ Diana\ Huelga\r\n\ @version\ 18-11-16\r\n
 comment2.params=n
 comment2.target=void\ cambiaNivel(greenfoot.World)
 comment2.text=\r\n\ Llama\ al\ metodo\ del\ Unicornio\ secundario\ para\ cambiar\ de\ nivel\r\n\ @author\ Diana\ Huelga\r\n\ @param\ no\ hay\ parametros\ de\ entrada\r\n\ @version\ 18-11-16\ \r\n

@@ -2,10 +2,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.List;
 import java.util.ArrayList;
 /**
- * Write a description of class Nivel2 here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * La clase contiene a todos los objetos y métodos que integran al nivel2
+ * @author Carlos Almendarez Ávila
+ * @author Diana Carolina Huelga Huerta
+ * @version 14-11-16
  */
 public class Nivel2 extends Nivel
 {
@@ -47,25 +47,10 @@ public class Nivel2 extends Nivel
         if(unicornio.comeGalleta() == true){
             super.aumentaVida();
         }
-        if(unicornio.tocaLlave2() == true){
+        if(unicornio.tocaLlave() == true){
             super.modificaContadorLlaves();
-        }
-        // liberaAmigoUnicornio();         
-    }    
-    // /**
-     // * valida si el unicornio toco al unicornio secundario
-     // * @author Diana Huelga
-     // * @return -
-     // * @param no hay parametros de entrada
-     // * @version 14-11-16
-     // */
-    // public void liberaAmigoUnicornio(){
-        // if(unicornio.libera()){
-             // uni3.setImage("unicornioLibre.png");
-             // Greenfoot.delay(50);
-             // uni3.cambiaNivel(new Nivel3());
-          // }         
-    // }
+        }      
+    } 
     /**
      * Avanza los objetos que hay en el mundo
      * @author Diana Huelga
@@ -108,6 +93,7 @@ public class Nivel2 extends Nivel
                 int x=Greenfoot.getRandomNumber(800);
                 addObject(plat,x,80);
                 agregaLlave(x,50);
+                agregaVida(x,50);
                 listPlat.add(plat);
             }
             contPlat=0;
@@ -126,6 +112,19 @@ public class Nivel2 extends Nivel
     public void agregaLlave(int x, int y){
         if(Greenfoot.getRandomNumber(5) == 1 && contLlaves.getValue() < 100){
             addObject(new Llave2(),x,y);
+        }
+    }
+    /**
+     * Agrega una galelta de vida en la posicion x,y indicada
+     * @author Diana Huelga
+     * @return -
+     * @version 22-11-16
+     * @param x posicion en x donde se colocara la galleta
+     * @param y posicion en y donde se colocara la galleta
+     */
+    public void agregaVida(int x, int y){
+        if( Greenfoot.getRandomNumber(10) == 1 ){
+            addObject(new Vida2(),x,y);
         }
     }
     /**

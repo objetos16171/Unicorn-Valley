@@ -1,6 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
+ * contiene los metodos para mover al topo por el nivel 1
  * @author Diana Huelga
  * @version 14-11-16
  */

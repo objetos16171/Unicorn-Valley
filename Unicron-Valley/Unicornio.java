@@ -1,12 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.List;
-import java.util.ArrayList;
-import java.util.*;
 /**
  * Write a description of class Unicornio here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Diana Carolina Huelga Huerta
+ * @author Carlos Almendarez Ávila
+ * @version 5-11-16
  */
 public class Unicornio extends Actor
 {
@@ -26,23 +25,15 @@ public class Unicornio extends Actor
     private int salto;
     private SimpleTimer tiempoDeSalto;
     private int velS;
-    // private SimpleTimer tiempoDeSalto;
-    private ArrayList<Tecla> lTec;
     
     public Unicornio(){
         vel = 2;
         dx = 34;
         dy = 34;
-        lTec= new ArrayList<Tecla>();
         der=new Tecla("right",1);
         izq=new Tecla("left",2);
         arr=new Tecla("up",3);
         aba=new Tecla("down",4);
-        
-        lTec.add(der);
-        lTec.add(izq);
-        lTec.add(arr);
-        lTec.add(aba);
         
         derecha=der.getDireccion();
         izquierda=izq.getDireccion();
@@ -64,7 +55,6 @@ public class Unicornio extends Actor
      * cambia el orden de las teclas
      * @author Diana Huelga
      * @version 21-11-16
-     * @return -
      * @param no hay parametros de entrada
      */
     public void cambiaTeclas()
@@ -126,22 +116,6 @@ public class Unicornio extends Actor
         }
     }
     /**
-     * Verifica si el unicornio tomo una llave y manda un mensaje a mundo
-     * para poder aumentar el contador y cambiar la imagen
-     * @author Diana Huelga
-     * @version 4-11-16
-     * @return -
-     * @param no hay parametros de entrada
-     */
-     public void tocaLlave()
-     {  
-        if(isTouching(Llave.class)){      
-            World m=getWorld();
-            ((Nivel)m).modificaContadorLlaves();            
-            removeTouching(Llave.class);
-        }
-    }
-    /**
      * Verifica si el unicornio comio una galleta
      * @author Diana Huelga
      * @version 18-11-16
@@ -150,11 +124,19 @@ public class Unicornio extends Actor
      */
      public boolean comeGalleta()
      {  
-        if(isTouching(Vida.class)){   
-             removeTouching(Vida.class);
+        if(this.isTouching(Vida.class)){
+            removeTouching(Vida.class);
             return true;
-        }else {return false;}
-    }
+        }else 
+        if(this.isTouching(Vida2.class)){
+            removeTouching(Vida2.class);
+            return true;
+        }else 
+        if(this.isTouching(Vida3.class)){
+            removeTouching(Vida3.class);            
+            return true;
+        }else{ return false;}
+    }           
      /**
      * verifica si el unicornio toco a una estrella
      * @author Diana Huelga
@@ -197,7 +179,7 @@ public class Unicornio extends Actor
         }
     }
     /**
-     *  Mueve la posicion en x dependiendo de la tecla presionada
+     *  (Nivel2)Mueve la posicion en x dependiendo de la tecla presionada
      *  @author Diana Huelga
      *  @return -
      *  @param no hay parametros de entrada 
@@ -255,22 +237,17 @@ public class Unicornio extends Actor
      * @return true si tocó una llave del nivel 3, false si no lo ha hecho
      * @param no hay parametros de entrada
      */
-    public boolean tocaLlave3(){
+    public boolean tocaLlave(){
         if(this.isTouching(Llave3.class)){
             removeTouching(Llave3.class);
             return true;
-        }else{ return false;}
-    }
-    /**
-     * Verifica si el unicornio toco una llave 
-     * @author Diana Huelga
-     * @version 22-11-16
-     * @return true si tocó una llave del nivel 3, false si no lo ha hecho
-     * @param no hay parametros de entrada
-     */
-    public boolean tocaLlave2(){
+        }else 
         if(this.isTouching(Llave2.class)){
             removeTouching(Llave2.class);
+            return true;
+        }else 
+        if(this.isTouching(Llave.class)){
+            removeTouching(Llave.class);
             return true;
         }else{ return false;}
     }
@@ -281,20 +258,20 @@ public class Unicornio extends Actor
      * @param no hay parametros de entrada
      * @return-
      */
-    public void moverNiv3()
+    public int moverNiv3()
      {
         World w = getWorld();
         if(Greenfoot.isKeyDown(derecha)){
             if((((Nivel3)w).getWidth()/4)*3<getX()+vel){
-                ((Nivel3)w).mueveImagenDer();
-                ((Nivel3)w).generaLlaves();
-                ((Nivel3)w).agregaEnemigosSecundarios();
+                setImage("unicorn.png");
+                return 1;
             }else{
                 setLocation(getX()+vel,getY());
             }
         }
         if(Greenfoot.isKeyDown(izquierda)){
             if(80 > getX()+vel){
+                setImage("unicorn2.png");
             }else{
                 setLocation(getX()-vel,getY());
             }
@@ -308,5 +285,6 @@ public class Unicornio extends Actor
             if(getY() < 560)
             setLocation(getX(),getY()+vel);
         }
+        return 0;
     }
 }

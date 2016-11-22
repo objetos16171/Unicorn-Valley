@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Salir here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Diana Huelga
+ * @version 5-11-16
  */
 public class Salir extends Actor
 {
@@ -19,6 +19,11 @@ public class Salir extends Actor
                 realizaCambio();
             }
     }    
+    /**
+     * @author Diana Huelga
+     * @version 5-11-16
+     * @param no hay parametros de entrada
+     */
     public  void realizaCambio(){
         if(Greenfoot.mouseClicked(this)){
            setImage("Salir1.png");

@@ -3,14 +3,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Menu here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Diana Carolina Huelga Huerta
+ * @version 5-11-16
  */
 public class Menu extends World
 {
     private Jugar jug;
     private Botonayuda ayud;    
     private Salir salir;
+    private Botoncreditos creditos;
 
     /**
      * Constructor for objects of class Menu.
@@ -31,8 +32,10 @@ public class Menu extends World
         ayud= new Botonayuda();
         jug = new Jugar();
         salir= new Salir();
+        creditos= new Botoncreditos();
         addObject(jug,400,350);        
         addObject(ayud,400,400);
-        addObject(salir,400,450);        
+        addObject(salir,400,450);
+        addObject(creditos,400,500); 
     }
 }

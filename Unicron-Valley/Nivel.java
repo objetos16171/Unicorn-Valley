@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Nivel here.
+ * La clase contiene a todos los objetos y métodos que comparten todos los niveles
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Diana Carolina Huelga Huerta
+ * @version 17-11-16
  */
 public abstract class Nivel extends World
 {
@@ -36,8 +36,9 @@ public abstract class Nivel extends World
      * @version 18-11-16 
      */
     public void cambiaNivel(World n){
-        if(contLlaves.getValue() == 100)
-        uni2.cambiaNivel(n);
+        if(contLlaves.getValue() == 100){
+            uni2.cambiaNivel(n);
+        }
     }
     public int getNumeroViadas(){
         return numVidas;
@@ -147,8 +148,7 @@ public abstract class Nivel extends World
     public void modificaContadorLlaves(){     
         if(contLlaves.getValue() < 100){
             String nombArch="";
-            contLlaves.setValue(contLlaves.getValue()+10);
-            contLlaves.act();        
+            contLlaves.setValue(contLlaves.getValue()+10);    
             nombArch="Llave" + contLlaves.getValue() + ".png"; 
             contLlaves.setImage(nombArch);
         }
@@ -163,6 +163,12 @@ public abstract class Nivel extends World
     public Unicornio getUnicornio(){
         return unicornio;
     }
+    /**
+     * Agrega al mundo los objetos que tendran 
+     * todos lo niveles
+     * @author Diana Huelga
+     * @version 18-11-16
+     */
     public void agregaObjetosPrincipales(){
         botMen=new Botonmenu();   
         unicornio= new Unicornio();

@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Jugar here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Diana Huelga 
+ * @version 5-11-16
  */
 public class Jugar extends Actor
 {
@@ -19,11 +19,16 @@ public class Jugar extends Actor
                 realizaCambio();
             }
     }    
+    /**
+     * Realiza el cambio de menu a nivel 1
+     * @author Diana Huelga
+     * @param no hay parametros de entrada
+     */
     public  void realizaCambio(){
         if(Greenfoot.mouseClicked(this)){
             setImage("Jugar1.png");
             Greenfoot.delay(50);
-            Greenfoot.setWorld(new Nivel1());          
+            Greenfoot.setWorld(new Nivel2(3));          
         }
     }
 }

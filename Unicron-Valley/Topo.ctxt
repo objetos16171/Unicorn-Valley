@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Topo
-comment0.text=\r\n\ @author\ Diana\ Huelga\r\n\ @version\ 14-11-16\r\n
+comment0.text=\r\n\ contiene\ los\ metodos\ para\ mover\ al\ topo\ por\ el\ nivel\ 1\r\n\ @author\ Diana\ Huelga\r\n\ @version\ 14-11-16\r\n
 comment1.params=
 comment1.target=Topo()
 comment2.params=
