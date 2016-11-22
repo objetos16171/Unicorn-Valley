@@ -169,21 +169,27 @@ public class Unicornio extends Actor
     /**
      *  Cambia la posicion en 'y' del unicornio para simular la caida
      *  @author Diana Huelga
+     *  @author Carlos Almendarez
      *  @return -
      *  @param no hay parametros de entrada 
      *  @version 7-11-16
+     *  @version 22-11-16
      */
     public void cae(){        
-        if(!isTouching(Plataforma.class)){
+        if(getOneObjectAtOffset(0,dy,Plataforma.class)==null && getOneObjectAtOffset(dx,dy,Plataforma.class)==null 
+        && getOneObjectAtOffset(-dx,dy,Plataforma.class)==null && getOneObjectAtOffset(dx/2,dy,Plataforma.class)==null 
+        && getOneObjectAtOffset(-dx/2,dy,Plataforma.class)==null){
             setLocation(getX(),getY()+2);
         }
     }
     /**
      *  (Nivel2)Mueve la posicion en x dependiendo de la tecla presionada
      *  @author Diana Huelga
+     *  @author Carlos Almendarez
      *  @return -
      *  @param no hay parametros de entrada 
      *  @version 7-11-16
+     *  @version 22-11-16
      */
     public void mueveLados(){
         if(Greenfoot.isKeyDown("right") && (getX()+40) <= 800){
@@ -197,7 +203,9 @@ public class Unicornio extends Actor
         if(Greenfoot.isKeyDown("down")){                     
             setLocation(getX(),getY()+3);
         }
-        if(Greenfoot.isKeyDown("up") && getY()>180 && isTouching(Plataforma.class)){
+        if(Greenfoot.isKeyDown("up") && getY()>180 && (getOneObjectAtOffset(0,dy,Plataforma.class)!=null || getOneObjectAtOffset(dx,dy,Plataforma.class)!=null 
+        || getOneObjectAtOffset(-dx,dy,Plataforma.class)!=null || getOneObjectAtOffset(dx/2,dy,Plataforma.class)!=null 
+        || getOneObjectAtOffset(-dx/2,dy,Plataforma.class)!=null)){
             if(tiempoDeSalto.millisElapsed()>1000 && salto==0){
                 salto=25;
                 tiempoDeSalto.mark();
