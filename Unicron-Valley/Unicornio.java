@@ -1,4 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.List;
+import java.util.ArrayList;
+import java.util.*;
 /**
  * Write a description of class Unicornio here.
  * 
@@ -7,16 +10,45 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Unicornio extends Actor
 {
+    private Tecla der;    
+    private Tecla izq;
+    private Tecla arr;
+    private Tecla aba;
+    
+    private String derecha;
+    private String izquierda;
+    private String arriba;
+    private String abajo;
+    
     private int vel;
     private int dx;
     private int dy;
     private int salto;
     private SimpleTimer tiempoDeSalto;
     private int velS;
+    // private SimpleTimer tiempoDeSalto;
+    private ArrayList<Tecla> lTec;
+    
     public Unicornio(){
         vel = 2;
         dx = 34;
         dy = 34;
+        lTec= new ArrayList<Tecla>();
+        der=new Tecla("right",1);
+        izq=new Tecla("left",2);
+        arr=new Tecla("up",3);
+        aba=new Tecla("down",4);
+        
+        lTec.add(der);
+        lTec.add(izq);
+        lTec.add(arr);
+        lTec.add(aba);
+        
+        derecha=der.getDireccion();
+        izquierda=izq.getDireccion();
+        arriba=arr.getDireccion();
+        abajo=aba.getDireccion();
+        
         tiempoDeSalto = new SimpleTimer();
         velS = 8;
     }
@@ -27,6 +59,26 @@ public class Unicornio extends Actor
     public void act() 
     {
         tocaLlave();
+    }
+    /**
+     * cambia el orden de las teclas
+     * @author Diana Huelga
+     * @version 21-11-16
+     * @return -
+     * @param no hay parametros de entrada
+     */
+    public void cambiaTeclas()
+    {
+       String i,d,a,b;
+       d=derecha;
+       i=izquierda;
+       a=arriba;
+       b=abajo;
+       
+       arriba=d;
+       derecha=b;
+       abajo=i;
+       izquierda=a;
     }
     /**
      * Mueve la posicion del jugador y verifica que no salga del mundo
@@ -100,6 +152,20 @@ public class Unicornio extends Actor
      {  
         if(isTouching(Vida.class)){   
              removeTouching(Vida.class);
+            return true;
+        }else {return false;}
+    }
+     /**
+     * verifica si el unicornio toco a una estrella
+     * @author Diana Huelga
+     * @version 20-11-16
+     * @param no hay parametros de entrada
+     * @return true si toco a una estrella
+     * @return flase si no ha tocado una estrella
+     */
+    public boolean tocaEstrella(){
+        if(this.isTouching(Estrella.class)){
+            removeTouching(Estrella.class);
             return true;
         }else {return false;}
     }
@@ -180,7 +246,20 @@ public class Unicornio extends Actor
             setLocation(getX(),getY()-velS);
             salto--;
         }
-    }    
+    }  
+    /**
+     * Verifica si el unicornio toco una llave 
+     * @author Diana Huelga
+     * @version 20-11-16
+     * @return true si tocó una llave del nivel 3, false si no lo ha hecho
+     * @param no hay parametros de entrada
+     */
+    public boolean tocaLlave3(){
+        if(this.isTouching(Llave3.class)){
+            removeTouching(Llave3.class);
+            return true;
+        }else{ return false;}
+    }
     /**
      * movimiento del unicornio en el nivel 3 
      * @Carlos Almendarez
@@ -189,25 +268,30 @@ public class Unicornio extends Actor
      * @return-
      */
     public void moverNiv3()
-    {
+     {
         World w = getWorld();
-        if(Greenfoot.isKeyDown("right")){
+        if(Greenfoot.isKeyDown(derecha)){
             if((((Nivel3)w).getWidth()/4)*3<getX()+vel){
                 ((Nivel3)w).mueveImagenDer();
+                ((Nivel3)w).generaLlaves();
+                ((Nivel3)w).agregaEnemigosSecundarios();
             }else{
                 setLocation(getX()+vel,getY());
             }
         }
-        if(Greenfoot.isKeyDown("left")){
-            if(100>getX()+vel){
+        if(Greenfoot.isKeyDown(izquierda)){
+            if(80 > getX()+vel){
             }else{
                 setLocation(getX()-vel,getY());
             }
         }
-        if(Greenfoot.isKeyDown("up")){
-            setLocation(getX(),getY()-vel);
+        if(Greenfoot.isKeyDown(arriba)){
+            if(getY() > 80){
+                setLocation(getX(),getY()-vel);
+            }
         }
-        if(Greenfoot.isKeyDown("down")){
+        if(Greenfoot.isKeyDown(abajo)){
+            if(getY() < 560)
             setLocation(getX(),getY()+vel);
         }
     }

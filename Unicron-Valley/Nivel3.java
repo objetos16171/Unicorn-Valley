@@ -19,14 +19,51 @@ public class Nivel3 extends Nivel
      */
     public Nivel3(int vidas)
     {
-        super(50,500,vidas);
+        super(50,550,vidas);
         unicornio=super.getUnicornio();
         bgImage = new GreenfootImage("FondoNivel3.png");
         prepare();
     }    
     public void act(){
         unicornio.moverNiv3();
+        if(unicornio.tocaLlave3() == true){
+            super.modificaContadorLlaves();
+        }
+        if(unicornio.tocaEstrella()== true){
+            unicornio.cambiaTeclas();
+        }
     }
+    /** 
+     * agrega a los enemigos secundarios 
+     * @author Diana Huelga
+     * @version 20-11-16
+     * @para no hay parametros de entrada
+     */
+    public void agregaEnemigosSecundarios(){
+        if(Greenfoot.getRandomNumber(70) == 1){
+            addObject(new Estrella(),770,Greenfoot.getRandomNumber(500));            
+        }
+    }
+    /**
+     * Regresa la posicion que tiene el unicornio
+     * @author Diana Huelga
+     * @version 19-11-16
+     * @para no hay parametros de entrada
+     * @return posicion del unicornio en x
+     */    
+    public int getPosXUnicornio(){
+        return unicornio.getX();        
+    }
+    /**
+     * Regresa la posicion que tiene el unicornio
+     * @author Diana Huelga
+     * @version 19-11-16
+     * @para no hay parametros de entrada
+     * @return posicion del unicornio en y
+     */  
+    public int getPosYUnicornio(){
+        return unicornio.getY(); 
+    }    
     /**
      * 
      */
@@ -55,15 +92,42 @@ public class Nivel3 extends Nivel
         imagenDeFondo();
     }
     /**
+     * 
+     */
+    public void agregaLlavesIniciales(){
+        int numLlaves=Greenfoot.getRandomNumber(4);
+        int x=Greenfoot.getRandomNumber(800);
+        int y=Greenfoot.getRandomNumber(650);
+        if( x < 750){
+            x+=20;
+        }
+        for(int i=0 ; i < numLlaves ; i++){
+            addObject(new Llave3(),x,y);
+        }
+    }
+    /**
+     *  genera llaves en tiempo de ejecucion
+     *  @author Diana Huelga
+     *  @version 20-11-16
+     *  @param no hay parametros de entrada
+     */
+    public void generaLlaves(){
+        int y=Greenfoot.getRandomNumber(650);
+        if(y < 30){
+            y+=30;
+        }
+        if(Greenfoot.getRandomNumber(100) == 1){
+            addObject(new Llave3(),790,y);
+        }
+    }
+    /**
      *  Prepara el mundo con los objetos que iran en el
      *  @author Diana Huelga
      *  @version 13-11-16
      *  @param no hay parametros de entrada
      */   
     private void prepare()
-    {
-       contLlaves=new Counter();
-       addObject(contLlaves,115,20);        
-       contLlaves.setImage("Llave00.png");     
+    {       
+        agregaLlavesIniciales();
     }
 }
