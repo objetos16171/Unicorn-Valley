@@ -33,13 +33,14 @@ public class Nivel2 extends Nivel
         prepare();            
         posicionesIniciales();
         modificaContadorVidas();
+        unicornio.iniciaTimer();
     }
     public void act(){
 		verificaPosUnicornio(); 
-        avanzaMundo();        
+        avanzaMundo();   
+        unicornio.brinca();
         unicornio.cae();
         unicornio.mueveLados();
-        unicornio.brinca();
         if(unicornio.libera()== true){
             super.cambiaNivel(new Nivel3(super.getNumeroViadas()));
         }

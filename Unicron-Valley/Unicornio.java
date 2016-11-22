@@ -12,13 +12,13 @@ public class Unicornio extends Actor
     private int dy;
     private int salto;
     private SimpleTimer tiempoDeSalto;
-    
+    private int velS;
     public Unicornio(){
         vel = 2;
         dx = 34;
         dy = 34;
         tiempoDeSalto = new SimpleTimer();
-        salto = 0;
+        velS = 8;
     }
     /**
      * Act - do whatever the Unicornio wants to do. This method is called whenever
@@ -140,18 +140,21 @@ public class Unicornio extends Actor
     public void mueveLados(){
         if(Greenfoot.isKeyDown("right") && (getX()+40) <= 800){
             setImage("unicorn.png");
-            move(3);          
-        }else if(Greenfoot.isKeyDown("left") && (getX()-40) >= 0){
+            move(3);
+        }
+        if(Greenfoot.isKeyDown("left") && (getX()-40) >= 0){
             setImage("unicorn2.png");
-            move(-3);            
-        }else if(Greenfoot.isKeyDown("down")){                     
-            setLocation(getX(),getY()+3);                
-        }else if(Greenfoot.isKeyDown("up") && getY() > 80){
-            if(tiempoDeSalto.millisElapsed()>2000){
-                salto=50;
+            move(-3);
+        }
+        if(Greenfoot.isKeyDown("down")){                     
+            setLocation(getX(),getY()+3);
+        }
+        if(Greenfoot.isKeyDown("up") && getY()>180 && isTouching(Plataforma.class)){
+            if(tiempoDeSalto.millisElapsed()>1000 && salto==0){
+                salto=25;
                 tiempoDeSalto.mark();
             }
-       }
+        }
     }
     /**
      * reinicializa el tiempo 
@@ -174,10 +177,8 @@ public class Unicornio extends Actor
     public void brinca()
     {
         if(salto>0){
-            setLocation(getX(),getY()-vel);
+            setLocation(getX(),getY()-velS);
             salto--;
-        }else{
-            salto=0;
         }
     }    
     /**
