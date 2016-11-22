@@ -240,6 +240,7 @@ public class Unicornio extends Actor
      * @param no hay parametros de entrada
      * @return-
      */
+    
     public void brinca()
     {
         if(salto>0){
@@ -257,6 +258,19 @@ public class Unicornio extends Actor
     public boolean tocaLlave3(){
         if(this.isTouching(Llave3.class)){
             removeTouching(Llave3.class);
+            return true;
+        }else{ return false;}
+    }
+    /**
+     * Verifica si el unicornio toco una llave 
+     * @author Diana Huelga
+     * @version 22-11-16
+     * @return true si tocó una llave del nivel 3, false si no lo ha hecho
+     * @param no hay parametros de entrada
+     */
+    public boolean tocaLlave2(){
+        if(this.isTouching(Llave2.class)){
+            removeTouching(Llave2.class);
             return true;
         }else{ return false;}
     }

@@ -47,6 +47,9 @@ public class Nivel2 extends Nivel
         if(unicornio.comeGalleta() == true){
             super.aumentaVida();
         }
+        if(unicornio.tocaLlave2() == true){
+            super.modificaContadorLlaves();
+        }
         // liberaAmigoUnicornio();         
     }    
     // /**
