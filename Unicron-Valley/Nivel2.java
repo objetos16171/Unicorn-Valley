@@ -110,7 +110,7 @@ public class Nivel2 extends Nivel
      * @param y posicion en y donde se colocara la llave
      */
     public void agregaLlave(int x, int y){
-        if(Greenfoot.getRandomNumber(5) == 1 && contLlaves.getValue() < 100){
+        if(Greenfoot.getRandomNumber(5) == 1 && super.getLlaves() < 100){
             addObject(new Llave2(),x,y);
         }
     }
@@ -207,11 +207,6 @@ public class Nivel2 extends Nivel
      *  @param no hay parametros de entrada
      */   
      private void prepare()
-     {
-         int x=50;
-         int y=585;   
-        contLlaves=new Counter();
-        addObject(contLlaves,115,20);   
-        contLlaves.setImage("Llave00.png");   
+     { 
      }
 }

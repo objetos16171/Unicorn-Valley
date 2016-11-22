@@ -42,6 +42,12 @@ public abstract class Nivel extends World
             uni2.cambiaNivel(n);
         }
     }
+    /**
+     * regresa el numerod e vidas que hay en el nivel
+     * @author Diana Huelga
+     * @version 20-11-16
+     * @return el numero de vidas en el actual nivel
+     */
     public int getNumeroViadas(){
         return numVidas;
     }
@@ -155,6 +161,15 @@ public abstract class Nivel extends World
             nombArch="Llave" + contLlaves.getValue() + ".png"; 
             contLlaves.setImage(nombArch);
         }
+    }
+    /**
+     * regresa el valor que tiene el contador de llaves
+     * @author Diana Huelga
+     * @version 22-11-16
+     * @return numero de llaves en el nivel 
+     */
+    public int getLlaves(){
+        return contLlaves.getValue();
     }
     /**
      * Regresa el unicornio creado en nivel
