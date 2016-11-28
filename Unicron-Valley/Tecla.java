@@ -53,12 +53,4 @@ public class Tecla
     public void setBand(int n){
         band=n;
     }  
-    /**
-     * regresa el valor de la bandera
-     * @author Diana Huelga
-     * @return band valor de la bandera
-     */
-    public int getBand(){
-        return band;
-    }
 }

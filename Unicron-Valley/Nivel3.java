@@ -11,6 +11,7 @@ public class Nivel3 extends Nivel
 {
     private Unicornio unicornio;
     private Counter contLlaves;
+    private String direccion;
     private GreenfootImage bgImage;
     private int imageCount = 0;   //Contador para la imagen   
     
@@ -26,21 +27,25 @@ public class Nivel3 extends Nivel
         prepare();
     }    
     public void act(){
-        if(unicornio.moverNiv3() == 1){
-            mueveImagenDer();
-            generaLlaves();
-            agregaEnemigosSecundarios();
-            agregaVidas();
-        }        
-        if(unicornio.tocaLlave() == true){
+       direccion=unicornio.moverNiv3();
+       if(unicornio.tocaLlave() == true){
             super.modificaContadorLlaves();
-        }
-        if(unicornio.tocaEstrella()== true){
+       }
+       if(unicornio.tocaEstrella()== true){
             unicornio.cambiaTeclas();
-        }
-        if(unicornio.comeGalleta()== true){
+       }
+       if(unicornio.comeGalleta()== true){
             super.aumentaVida();
         } 
+   }
+   /**
+    * regresa el Strign de la tecla
+    * @author Diana Huegla
+    * @version 24-11-16
+    * @return nombre de la tecla que hace que el unicornio se mueva hacia la derecha 
+    */
+   public String getDireccion(){
+       return direccion;
     }
     /**
      * Agrega galletas de vidas al mundo

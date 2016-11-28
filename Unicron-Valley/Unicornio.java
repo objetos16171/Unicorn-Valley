@@ -23,6 +23,7 @@ public class Unicornio extends Actor
     private int dx;
     private int dy;
     private int salto;
+    private int band;
     private SimpleTimer tiempoDeSalto;
     private int velS;
     
@@ -30,6 +31,7 @@ public class Unicornio extends Actor
         vel = 2;
         dx = 34;
         dy = 34;
+        band=0;
         der=new Tecla("right",1);
         izq=new Tecla("left",2);
         arr=new Tecla("up",3);
@@ -83,21 +85,21 @@ public class Unicornio extends Actor
      {
          World w = getWorld();
         if(Greenfoot.isKeyDown("right") && getX()+50<((Nivel1)w).getAnc() && getOneObjectAtOffset(dx+vel,0,Piedra.class)==null
-           && getOneObjectAtOffset(dx,dy,Piedra.class)==null && getOneObjectAtOffset(dx,-dy,Piedra.class)==null && getX() < 800-dx){             
+           && getOneObjectAtOffset(dx,dy,Piedra.class) == null && getOneObjectAtOffset(dx,-dy,Piedra.class)==null && getX() < 800-dx){             
              setLocation(getX()+vel,getY());   
              setImage("unicorn.png");    
         }    
         if(Greenfoot.isKeyDown("left") && getX()-50>0 && getOneObjectAtOffset(-dx-vel,0,Piedra.class)==null
-           && getOneObjectAtOffset(-dx,dy,Piedra.class)==null && getOneObjectAtOffset(-dx,-dy,Piedra.class)==null && getX() > dx){
+           && getOneObjectAtOffset(-dx,dy,Piedra.class) == null && getOneObjectAtOffset(-dx,-dy,Piedra.class)==null && getX() > dx){
                  setLocation(getX()-vel,getY());
                  setImage("unicorn2.png");   
         }
          if(Greenfoot.isKeyDown("up") && getY()-50>0 && getOneObjectAtOffset(0,-dy-vel,Piedra.class)==null
-            && getOneObjectAtOffset(dx,-dy,Piedra.class)==null && getOneObjectAtOffset(-dx,-dy,Piedra.class)==null && getY() > 80){     
+            && getOneObjectAtOffset(dx,-dy,Piedra.class) == null && getOneObjectAtOffset(-dx,-dy,Piedra.class)==null && getY() > 80){     
              setLocation(getX(),getY()-vel);           
         }         
         if(Greenfoot.isKeyDown("down") && getY()+50<=((Nivel1)w).getAltura() && getOneObjectAtOffset(0,dy+vel,Piedra.class)==null
-           && getOneObjectAtOffset(dx,dy,Piedra.class)==null && getOneObjectAtOffset(-dx,dy,Piedra.class)==null && getY() < 600-dy){            
+           && getOneObjectAtOffset(dx,dy,Piedra.class) == null && getOneObjectAtOffset(-dx,dy,Piedra.class)==null && getY() < 600-dy){            
                 setLocation(getX(),getY()+vel);            
         }
     }
@@ -237,7 +239,7 @@ public class Unicornio extends Actor
             setLocation(getX(),getY()-velS);
             salto--;
         }
-    }  
+    }
     /**
      * Verifica si el unicornio toco una llave 
      * @author Diana Huelga
@@ -261,31 +263,34 @@ public class Unicornio extends Actor
     }
     /**
      * movimiento del unicornio en el nivel 3 
-     * @Carlos Almendarez
+     * @author Carlos Almendarez
+     * @author Diana Huelga 
+     * @version diana 25-11-16
      * @version 15-11-16
      * @param no hay parametros de entrada
      * @return-
      */
-    public int moverNiv3()
+    public String moverNiv3()
      {
         World w = getWorld();
-        if(Greenfoot.isKeyDown(derecha)){
-            if((((Nivel3)w).getWidth()/4)*3<getX()+vel){
-                setImage("unicorn.png");
-                return 1;
+        if(Greenfoot.isKeyDown(derecha)){  
+            setImage("unicorn.png");
+            if((((Nivel3)w).getWidth()/4)*3 < getX()+vel){
+                ((Nivel3)w).generaLlaves();
+                ((Nivel3)w).agregaEnemigosSecundarios();
+                ((Nivel3)w).agregaVidas();
+                ((Nivel3)w).mueveImagenDer();      
             }else{
                 setLocation(getX()+vel,getY());
-            }
+            } 
+            return derecha;             
         }
         if(Greenfoot.isKeyDown(izquierda)){
-            if(80 > getX()+vel){
-                setImage("unicorn2.png");
-            }else{
-                setLocation(getX()-vel,getY());
-            }
+            setImage("unicorn2.png");
+            setLocation(getX()-vel,getY());
         }
         if(Greenfoot.isKeyDown(arriba)){
-            if(getY() > 80){
+            if(getY() > 80){                
                 setLocation(getX(),getY()-vel);
             }
         }
@@ -293,6 +298,6 @@ public class Unicornio extends Actor
             if(getY() < 560)
             setLocation(getX(),getY()+vel);
         }
-        return 0;
+        return "";
     }
 }

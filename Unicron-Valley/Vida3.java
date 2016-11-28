@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Vida3 extends Actor
 {
+    String tecla;
     /**
      * Act - do whatever the Llave3 wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -30,8 +31,11 @@ public class Vida3 extends Actor
      * @return no regresa nada
      */
     public void muevete(World m){
-        if( (((Nivel3)m).getWidth()/4)*3 < (((Nivel3)m).getPosXUnicornio()+1)){
-            this.move(-2);            
-        }        
+        tecla= ((Nivel3)m).getDireccion();
+        if(tecla != ""){
+            if(Greenfoot.isKeyDown(tecla) && (((Nivel3)m).getWidth()/4)*3 < (((Nivel3)m).getPosXUnicornio()+1)){
+                this.move(-2); 
+            }
+        }
     }
 }

@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Estrella extends Actor
 {
+    String tecla;
     /**
      * Act - do whatever the Estrella wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -26,12 +27,16 @@ public class Estrella extends Actor
      * de la posicion en x del unicornio.
      * @athor Diana Huelga
      * @version 19-11-16
+     * @version 25-11-16
      * @param el mundo donde está la llave
      * @return -
      */
     public void muevete(World m){
-        if((((Nivel3)m).getWidth()/4)*3 < (((Nivel3)m).getPosXUnicornio()+1)){
-            this.move(-2);            
-        }        
+        tecla= ((Nivel3)m).getDireccion();
+        if(tecla != ""){
+            if(Greenfoot.isKeyDown(tecla) && (((Nivel3)m).getWidth()/4)*3 < (((Nivel3)m).getPosXUnicornio()+1)){
+                this.move(-2); 
+            }
+        }
     }
 }
