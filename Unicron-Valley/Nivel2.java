@@ -30,13 +30,7 @@ public class Nivel2 extends Nivel
     {            
         super(ANCHO/2,LARGO/2+40,vidas);
         unicornio=super.getUnicornio();
-        pajaro = new Pajaro();
-        listPlat= new ArrayList<Plataforma>();   
-        prepare();            
-        posicionesIniciales();
-        modificaContadorVidas();
-        unicornio.iniciaTimer();
-        addObject(pajaro,ANCHO/2,100);
+        prepare();
     }
     public void act(){
 		verificaPosUnicornio(); 
@@ -203,16 +197,6 @@ public class Nivel2 extends Nivel
              y+=100;
         }
     }
-    /**
-     *  Prepara el mundo con los objetos que iran en el
-     *  @author Diana Huelga
-     *  @version 04-11-16
-     *  @param no hay parametros de entrada
-     */   
-     private void prepare()
-     { 
-     }
-    
      /**
       *  Crea un nuevo objeto de tipo Roca en la posicion del Pajaro
       *  @author Carlos Almendarez
@@ -224,4 +208,12 @@ public class Nivel2 extends Nivel
         Roca r = new Roca();
         addObject(r,pajaro.getX(),pajaro.getY()+25);
     }
+    public void prepare(){
+        pajaro = new Pajaro();
+        listPlat= new ArrayList<Plataforma>();   
+        posicionesIniciales();
+        modificaContadorVidas();
+        unicornio.iniciaTimer();
+        addObject(pajaro,ANCHO/2,60);
+    }    
 }

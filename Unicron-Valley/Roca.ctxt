@@ -12,5 +12,5 @@ comment3.target=void\ cae()
 comment3.text=\r\n\ \ Movimiento\ principal\ del\ objeto\r\n\ \ @author\ Carlos\ Almendarez\r\n\ \ @version\ 24-11-16\r\n\ \ @param\ no\ hay\ parametros\ de\ entrada\ \r\n
 comment4.params=
 comment4.target=void\ elimina()
-comment4.text=\r\n\ \r\n
+comment4.text=\r\n\ \ Elimina\ la\ el\ objeto\ al\ llegar\ al\ borde\ o\ al\ tocar\ al\ unicornio\ y\ manda\ un\ mensaje\ al\ mundo\ si\ toca\ al\ unicornio\r\n\ \ @author\ Carlos\ Almendarez\r\n\ \ @version\ 24-11-16\r\n\ \ @param\ no\ hay\ parametros\ de\ entrada\ \r\n
 numComments=5

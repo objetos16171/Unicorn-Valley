@@ -15,7 +15,6 @@ public abstract class Nivel extends World
     private UnicornioSecundario uni2;
     private Unicornio unicornio;
     private Label perdiste;  
-    
     /**
      * Constructor for objects of class Nivel.
      * @param x posicion en x donde se colocara el unicornio
@@ -146,21 +145,43 @@ public abstract class Nivel extends World
       }
     }
     /**
-     * Agrega puntos al contador de llaves y 
-     * modifica su imagen.
+     * Agrega 10% al contador de llaves
      * @author Diana Huelga
      * @version 14-11-16
      * @param no hay parametros de entrada
      * @return -
      */
     public void modificaContadorLlaves(){     
-        if(contLlaves.getValue() < 100){
-            String nombArch="";
-            contLlaves.setValue(contLlaves.getValue()+10);    
+        if(contLlaves.getValue() < 100){            
+            contLlaves.setValue(contLlaves.getValue()+10);  
+            cambiaImagenContadorLlaves();
+        }
+    }
+    /**
+     * disminuye en un 10% el contador de llaves
+     * @author Diana Huelga
+     * @version 28-11-16
+     * @return-
+     * @param no hay parametros de entrada
+     */
+    public void disminuyeContadorLlaves(){
+        if(contLlaves.getValue() >= 10){
+            contLlaves.setValue(contLlaves.getValue()-10);  
+            cambiaImagenContadorLlaves();
+        }
+    }
+    /**
+     * Cambia la imagen del contador de llaves
+     * @author Diana Huelga
+     * @version 14-11-16
+     * @return-
+     * @param no hay parametros de entrada
+     */
+    public void cambiaImagenContadorLlaves(){
+        String nombArch="";
             contLlaves.act();            
             nombArch="Llave" + contLlaves.getValue() + ".png"; 
             contLlaves.setImage(nombArch);
-        }
     }
     /**
      * regresa el valor que tiene el contador de llaves
@@ -195,7 +216,7 @@ public abstract class Nivel extends World
         contLlaves=new Counter();
         contLlaves.setValue(0);
         addObject(contVidas,350,20);
-        contLlaves.setImage("Llave00.png");  
+        contLlaves.setImage("Llave0.png");  
         addObject(botMen,600,20);        
         addObject(contLlaves,115,20);
     }

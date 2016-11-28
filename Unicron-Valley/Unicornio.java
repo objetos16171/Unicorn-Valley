@@ -9,11 +9,6 @@ import java.util.List;
  */
 public class Unicornio extends Actor
 {
-    private Tecla der;    
-    private Tecla izq;
-    private Tecla arr;
-    private Tecla aba;
-    
     private String derecha;
     private String izquierda;
     private String arriba;
@@ -23,24 +18,21 @@ public class Unicornio extends Actor
     private int dx;
     private int dy;
     private int salto;
-    private int band;
     private SimpleTimer tiempoDeSalto;
     private int velS;
     
+    /**
+     * Constructor for objects of class Unicornio.
+     */
     public Unicornio(){
         vel = 2;
         dx = 34;
         dy = 34;
-        band=0;
-        der=new Tecla("right",1);
-        izq=new Tecla("left",2);
-        arr=new Tecla("up",3);
-        aba=new Tecla("down",4);
         
-        derecha=der.getDireccion();
-        izquierda=izq.getDireccion();
-        arriba=arr.getDireccion();
-        abajo=aba.getDireccion();
+        derecha="right";
+        izquierda="left";
+        arriba="up";
+        abajo="down";
         
         tiempoDeSalto = new SimpleTimer();
         velS = 8;
@@ -102,6 +94,12 @@ public class Unicornio extends Actor
            && getOneObjectAtOffset(dx,dy,Piedra.class) == null && getOneObjectAtOffset(-dx,dy,Piedra.class)==null && getY() < 600-dy){            
                 setLocation(getX(),getY()+vel);            
         }
+    }
+    public boolean tocaPulpo(){
+        if(this.isTouching(Pulpo.class)){
+            removeTouching(Pulpo.class);
+            return true;
+        }else{ return false;}
     }
     /**
      * Verifica si el unicornio principal esta tocando al unicornio secundario
@@ -174,7 +172,7 @@ public class Unicornio extends Actor
      *  @author Carlos Almendarez
      *  @return -
      *  @param no hay parametros de entrada 
-     *  @version 7-11-16
+     *  @version 7-11-16 
      *  @version 22-11-16
      */
     public void cae(){        
@@ -185,13 +183,13 @@ public class Unicornio extends Actor
         }
     }
     /**
-     *  (Nivel2)Mueve la posicion en x dependiendo de la tecla presionada
+     *  (Nivel2) Mueve la posicion en x dependiendo de la tecla presionada
      *  @author Diana Huelga
      *  @author Carlos Almendarez
      *  @return -
      *  @param no hay parametros de entrada 
-     *  @version 7-11-16
-     *  @version 22-11-16
+     *  @version 7-11-16 
+     *  @version 22-11-16 
      */
     public void mueveLados(){
         if(Greenfoot.isKeyDown("right") && (getX()+40) <= 800){
@@ -216,7 +214,7 @@ public class Unicornio extends Actor
     }
     /**
      * reinicializa el tiempo 
-     * @Carlos Almendarez
+     * @author Carlos Almendarez
      * @version 15-11-16
      * @param no hay parametros de entrada
      * @return-
@@ -227,12 +225,11 @@ public class Unicornio extends Actor
     }
     /**
      * disminute la posicion en y para simular el salto  
-     * @Carlos Almendarez
+     * @author Carlos Almendarez
      * @version 15-11-16
      * @param no hay parametros de entrada
      * @return-
-     */
-    
+     */    
     public void brinca()
     {
         if(salto>0){
@@ -244,7 +241,8 @@ public class Unicornio extends Actor
      * Verifica si el unicornio toco una llave 
      * @author Diana Huelga
      * @version 20-11-16
-     * @return true si tocó una llave del nivel 3, false si no lo ha hecho
+     * @return true si tocó una llave del Nivel 3
+     * @return false si no ha tocado una llave Nivel 3
      * @param no hay parametros de entrada
      */
     public boolean tocaLlave(){
@@ -265,12 +263,12 @@ public class Unicornio extends Actor
      * movimiento del unicornio en el nivel 3 
      * @author Carlos Almendarez
      * @author Diana Huelga 
-     * @version diana 25-11-16
-     * @version 15-11-16
+     * @version Diana 25-11-16
+     * @version Carlos 15-11-16
      * @param no hay parametros de entrada
      * @return-
      */
-    public String moverNiv3()
+    public String mueveteEnNivel3()
      {
         World w = getWorld();
         if(Greenfoot.isKeyDown(derecha)){  

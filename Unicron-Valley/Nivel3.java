@@ -10,24 +10,44 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Nivel3 extends Nivel
 {
     private Unicornio unicornio;
+    private Pulpo pulpo;
+    private Tiburon tiburon;
     private Counter contLlaves;
     private String direccion;
     private GreenfootImage bgImage;
+    private SimpleTimer tiempoPulpo;
     private int imageCount = 0;   //Contador para la imagen   
     
     /**
      * Constructor for objects of class Nivel3.
-     * 
      */
     public Nivel3(int vidas)
     {
-        super(50,550,vidas);
+        super(400,550,vidas);
         unicornio=super.getUnicornio();
         bgImage = new GreenfootImage("FondoNivel3.png");
+        
         prepare();
     }    
     public void act(){
-       direccion=unicornio.moverNiv3();
+       direccion=unicornio.mueveteEnNivel3();
+       condicionesGenerales();   
+       if(tiempoPulpo.millisElapsed() >= 3000 && super.getLlaves() < 100){
+           addObject(pulpo,0,300);
+       }
+       if(super.getLlaves() == 100){
+           addObject(tiburon,200,500);
+        }
+   }
+   /**
+    * Verifica cuales son los objetos que ha tocado el unicornio 
+    * y manda a llamar a los metodos correspondientes
+    * @author Diana huelga
+    * @version 28-11-16
+    * @return -
+    * @param no hay parametros de entrada
+    */
+   public void condicionesGenerales(){
        if(unicornio.tocaLlave() == true){
             super.modificaContadorLlaves();
        }
@@ -37,6 +57,18 @@ public class Nivel3 extends Nivel
        if(unicornio.comeGalleta()== true){
             super.aumentaVida();
         } 
+       if(unicornio.tocaPulpo() == true){
+           super.disminuyeContadorLlaves();
+        }       
+   }
+   /**
+    * Reinicia el tiempo que majena al pulpo
+    * @author Diana Huegla
+    * @version 28-11-16
+    * @param no hay parametros de entrada
+    */
+   public void iniciaTiempo(){
+       tiempoPulpo.mark();
    }
    /**
     * regresa el Strign de la tecla
@@ -48,7 +80,7 @@ public class Nivel3 extends Nivel
        return direccion;
     }
     /**
-     * Agrega galletas de vidas al mundo
+     * Agrega galletas de vidas al mundo (Nivel 3)
      * @author Diana Huelga
      * @version 22-11-16
      * @para no hay parametros de entrada
@@ -58,12 +90,12 @@ public class Nivel3 extends Nivel
         if(y < 30){
             y+=30;
         }
-        if(Greenfoot.getRandomNumber(100) == 1){
+        if(Greenfoot.getRandomNumber(500) == 1){
             addObject(new Vida3(),790,y);
         }
    }    
     /** 
-     * agrega a los enemigos secundarios 
+     * Agrega a los enemigos secundarios en una posicion en y aleatoria
      * @author Diana Huelga
      * @version 20-11-16
      * @para no hay parametros de entrada
@@ -121,7 +153,10 @@ public class Nivel3 extends Nivel
         imagenDeFondo();
     }
     /**
-     * 
+     *  Agrega llaves antes de que comience el scroll 
+     *  @author Diana Huelga
+     *  @version 20-11-16
+     *  @param no hay parametros de entrada
      */
     public void agregaLlavesIniciales(){
         int numLlaves=Greenfoot.getRandomNumber(4);
@@ -141,22 +176,28 @@ public class Nivel3 extends Nivel
      *  @param no hay parametros de entrada
      */
     public void generaLlaves(){
-        int y=Greenfoot.getRandomNumber(650);
-        if(y < 30){
-            y+=30;
-        }
-        if(Greenfoot.getRandomNumber(100) == 1){
-            addObject(new Llave3(),790,y);
+        if(super.getLlaves() < 100){
+            int y=Greenfoot.getRandomNumber(650);
+            if(y < 30){
+                y+=30;
+            }
+            if(Greenfoot.getRandomNumber(150) == 1){
+                addObject(new Llave3(),790,y);
+            }
         }
     }
     /**
      *  Prepara el mundo con los objetos que iran en el
      *  @author Diana Huelga
-     *  @version 13-11-16
+     *  @version 28-11-16
      *  @param no hay parametros de entrada
      */   
     private void prepare()
-    {       
+    {  
+        pulpo=new Pulpo();
+        tiempoPulpo=new SimpleTimer();
+        tiburon=new Tiburon();
+        tiempoPulpo.mark();
         agregaLlavesIniciales();
     }
 }
