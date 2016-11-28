@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=Roca
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Roca\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=Roca()
+comment1.text=\r\n\ \ Constructor\ que\ inicializa\ el\ atributo\ de\ la\ clase\r\n\ \ @author\ Carlos\ Almendarez\r\n\ \ @version\ 24-11-16\r\n\ \ @param\ no\ hay\ parametros\ de\ entrada\ \r\n
+comment2.params=
+comment2.target=void\ act()
+comment2.text=\r\n\ Act\ -\ do\ whatever\ the\ Roca\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+comment3.params=
+comment3.target=void\ cae()
+comment3.text=\r\n\ \ Movimiento\ principal\ del\ objeto\r\n\ \ @author\ Carlos\ Almendarez\r\n\ \ @version\ 24-11-16\r\n\ \ @param\ no\ hay\ parametros\ de\ entrada\ \r\n
+comment4.params=
+comment4.target=void\ elimina()
+comment4.text=\r\n\ \r\n
+numComments=5
