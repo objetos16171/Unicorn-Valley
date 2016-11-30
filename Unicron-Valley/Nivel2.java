@@ -16,8 +16,8 @@ public class Nivel2 extends Nivel
     
     /**contador para la distancia entre plataformas 
        Se utiliza en el metodo: generaPlataformas() */
-    private int contPlat=0;  
-    private Pajaro pajaro;
+    private int contPlat=0;
+    private EnemigoNivel2 enemigoPrincipal;
     
     private Unicornio unicornio;
     private Counter contLlaves;    
@@ -91,6 +91,7 @@ public class Nivel2 extends Nivel
                 addObject(plat,x,80);
                 agregaLlave(x,50);
                 agregaVida(x,50);
+                agregaAve(x,50);
                 listPlat.add(plat);
             }
             contPlat=0;
@@ -206,14 +207,20 @@ public class Nivel2 extends Nivel
     public void creaRoca()
     {
         Roca r = new Roca();
-        addObject(r,pajaro.getX(),pajaro.getY()+25);
+        addObject(r,enemigoPrincipal.getX(),enemigoPrincipal.getY()+25);
     }
     public void prepare(){
-        pajaro = new Pajaro();
+        enemigoPrincipal = new EnemigoNivel2();
         listPlat= new ArrayList<Plataforma>();   
         posicionesIniciales();
         modificaContadorVidas();
         unicornio.iniciaTimer();
-        addObject(pajaro,ANCHO/2,60);
-    }    
+        addObject(enemigoPrincipal,ANCHO/2,60);
+    }
+    
+    public void agregaAve(int x, int y){
+        if(Greenfoot.getRandomNumber(5) == 1){
+            addObject(new Pajaro(),x,y);
+        }
+    }
 }

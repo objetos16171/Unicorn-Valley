@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=EnemigoNivel2
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ EnemigoNivel2\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=EnemigoNivel2()
+comment1.text=\r\n\ \ Constructor\ de\ Pajaro,\ inicializa\ sus\ atributos\r\n\ \ @author\ Carlos\ Almendarez\r\n\ \ @version\ 24-11-16\r\n
+comment2.params=
+comment2.target=void\ act()
+comment2.text=\r\n\ Act\ -\ do\ whatever\ the\ Pajaro\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+comment3.params=
+comment3.target=void\ mover()
+comment3.text=\r\n\ \ Hace\ el\ movimiento\ del\ objeto\ dentro\ del\ nivel\ 2\ y\ modifica\ la\ imagen\ con\ la\ direccion\ que\ se\ toma\r\n\ \ @author\ Carlos\ Almendarez\r\n\ \ @version\ 24-11-16\r\n\ \ @param\ no\ hay\ parametros\ de\ entrada\ \r\n
+comment4.params=
+comment4.target=void\ arroja()
+comment4.text=\r\n\ \ Manda\ un\ mensaje\ al\ mundo\ para\ que\ cree\ una\ nueva\ roca\ dependiendo\ del\ tiempo\ del\ timer\r\n\ \ @author\ Carlos\ Almendarez\r\n\ \ @version\ 24-11-16\r\n\ \ @param\ no\ hay\ parametros\ de\ entrada\ \r\n
+numComments=5
