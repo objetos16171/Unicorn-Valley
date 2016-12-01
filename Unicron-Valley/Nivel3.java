@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import java.util.List;
 /**
  * La clase contiene a todos los objetos y métodos que integran al Nivel 3
  * 
@@ -9,17 +9,23 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Nivel3 extends Nivel
 {
+    /**Personajes*/
     private Unicornio unicornio;
-    private Pulpo pulpo;
-    private int contPulpos;
+    private Pulpo pulpo;    
     private PulpoSecundario pulpo2;
     private Tiburon tiburon1;
     private Tiburon tiburon2;
-    private Counter contLlaves;
-    private String direccion;
+       
     private GreenfootImage bgImage;
-    private SimpleTimer tiempoPulpo;
-    private int imageCount = 0;   //Contador para la imagen   
+   /**reloj para que cada 3 segundos aparezca un nuevo pulpo*/
+    private SimpleTimer tiempoPulpo;   
+   /**Contador que verifica cuantas veces ha aparecido un pulpo
+       se utiliza en el metodo iniciaTiempo()*/
+    private int contPulpos;
+   /**Contador para la imagen*/
+    private int imageCount = 0;   
+    private String direccion;
+    private List<Estrella> listaEstrellas; 
     
     /**
      * Constructor for objects of class Nivel3.
@@ -35,23 +41,47 @@ public class Nivel3 extends Nivel
     public void act(){
        if(super.getLlaves() != 100){
            direccion=unicornio.mueveteEnNivel3();
-           condicionesGenerales();   
-           if(tiempoPulpo.millisElapsed() >= 3000 && contPulpos < 3){
-               addObject(pulpo,0,300);
-           }else 
-           if(tiempoPulpo.millisElapsed() >= 3000 && contPulpos == 4){
-               addObject(pulpo2,0,300);
-           }
-       }else if(super.getLlaves() == 100){
-           unicornio.mueveSinScroll();
-           addObject(tiburon1,400,150);
-           addObject(tiburon2,400,150);
-           removeObject(pulpo);
-           super.añadeUnicornioSecundario(400,300); 
-           tiburon1.mueveteder();
-           tiburon2.mueveteziq();
+           condicionesGenerales();
+           generaPulpos();
+       }else if(super.getLlaves() >= 100){
+           finalHisotia();
         }
    }
+   /**
+    * Engloba los metodos que conforman el final del nivel
+    * (Cuando se han conseguido todas las llaves)
+    * @author Diana huelga
+    * @version 30-11-16
+    * @return -
+    * @param no hay parametros de entrada
+    */
+   public void finalHisotia(){
+       listaEstrellas=getObjects(Estrella.class);
+       removeObjects(listaEstrellas);
+       unicornio.mueveSinScroll();
+       addObject(tiburon1,400,150);
+       addObject(tiburon2,400,150);
+       removeObject(pulpo);
+       super.añadeUnicornioSecundario(400,300); 
+       tiburon1.mueveteder();
+       tiburon2.mueveteziq();
+    }
+   /**
+    * Verifiaca el valor del contador de pulpos y del reloj para añadir 
+    * un pulpo al mundo (Nivel 3)
+    * @author Diana huelga
+    * @version 30-11-16
+    * @return -
+    * @param no hay parametros de entrada
+   */
+   public void generaPulpos(){
+       if(tiempoPulpo.millisElapsed() >= 3000 && contPulpos < 3){
+           addObject(pulpo,0,300);
+       }else 
+       if(tiempoPulpo.millisElapsed() >= 3000 && contPulpos == 4){
+           addObject(pulpo2,0,300);
+       }
+    }
    /**
     * Verifica cuales son los objetos que ha tocado el unicornio 
     * y manda a llamar a los metodos correspondientes

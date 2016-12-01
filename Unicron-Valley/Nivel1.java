@@ -84,7 +84,7 @@ public class Nivel1 extends Nivel
     public void generaPortales(){
         int x=Greenfoot.getRandomNumber(750);
         int y=Greenfoot.getRandomNumber(550);        
-        if(Greenfoot.getRandomNumber(700) == 1){
+        if(Greenfoot.getRandomNumber(500) == 1){
             if(listaPortales.size() == 0){
                 relojPortales.mark();
             }

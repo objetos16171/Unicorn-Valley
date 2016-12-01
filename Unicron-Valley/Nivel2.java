@@ -15,9 +15,12 @@ public class Nivel2 extends Nivel
     public static final int LARGO=600;
     
     /**contador para la distancia entre plataformas 
-       Se utiliza en el metodo: generaPlataformas() */
+    Se utiliza en el metodo: generaPlataformas() */
     private int contPlat=0;  
     private Pajaro pajaro;
+    
+    /**lleva el tiempo de todo el nivel */
+    private SimpleTimer relojPrincipal;
     
     private Unicornio unicornio;
     private Counter contLlaves;    
@@ -33,24 +36,29 @@ public class Nivel2 extends Nivel
         prepare();
     }
     public void act(){
-        verificaPosUnicornio(); 
-        avanzaMundo();   
-        unicornio.brinca();
-        unicornio.cae();
-        unicornio.mueveLados();
-        if(unicornio.libera()== true){
-            super.cambiaNivel(new Nivel3(super.getNumeroViadas()));
-        }
-        if(unicornio.comeGalleta() == true){
-            super.aumentaVida();
-        }
-        if(unicornio.tocaLlave() == true){
-            super.modificaContadorLlaves();
-        }      
-        if(unicornio.tocaRoca() == true){
-            this.posicionesIniciales();
+        if(relojPrincipal.millisElapsed() > 2000){
+            verificaPosUnicornio(); 
+            avanzaMundo();   
+            unicornio.brinca();
+            unicornio.cae();
+            unicornio.mueveLados();
+            if(unicornio.libera()== true){
+                super.cambiaNivel(new Nivel3(super.getNumeroViadas()));
+            }
+            if(unicornio.comeGalleta() == true){
+                super.aumentaVida();
+            }
+            if(unicornio.tocaLlave() == true){
+                super.modificaContadorLlaves();
+            }      
+            if(unicornio.tocaRoca() == true){
+                this.posicionesIniciales();
+            }
         }
     } 
+    public void started(){
+        relojPrincipal.mark();
+    }
     /**
      * Avanza los objetos que hay en el mundo
      * @author Diana Huelga
@@ -74,6 +82,16 @@ public class Nivel2 extends Nivel
      */
     public void eliminaPlataforma(Plataforma p){
         listPlat.remove(p);        
+    }
+    /**
+     * @author Diana Huelga
+     * @return -
+     * @param objeto de la clase Plataforma
+     * @version 30-11-16
+     */
+    public int getValorReloj(){
+        int i = relojPrincipal.millisElapsed();
+        return i;
     }
     /**
      * genera plataformas en tiempo de ejecucion
@@ -110,7 +128,7 @@ public class Nivel2 extends Nivel
      * @param y posicion en y donde se colocara la llave
      */
     public void agregaLlave(int x, int y){
-        if(Greenfoot.getRandomNumber(5) == 1 && super.getLlaves() < 100){
+        if(Greenfoot.getRandomNumber(3) == 1 && super.getLlaves() < 100){
             addObject(new Llave2(),x,y);
         }
     }
@@ -169,6 +187,7 @@ public class Nivel2 extends Nivel
      * @param no hay parametros de entrada
      */
     public void posicionesIniciales(){
+        relojPrincipal.mark();
         removeObjects(listPlat);
         listPlat.clear();    
         super.decrementaVida();
@@ -211,12 +230,13 @@ public class Nivel2 extends Nivel
         addObject(new Roca() ,pajaro.getX(),pajaro.getY()+25);
     }
     public void prepare(){
+        relojPrincipal= new SimpleTimer();
         pajaro = new Pajaro();
         pajaro.setImage("EnemigoNivel21.png");
         listPlat= new ArrayList<Plataforma>();   
         posicionesIniciales();
         modificaContadorVidas();
         unicornio.iniciaTimer();
-        addObject(pajaro,ANCHO/2,60);
+        addObject(pajaro,200,60);
     }    
 }

@@ -3,8 +3,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Pajaro here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Carloz Almendarez 
+ * @version 28-11-16
+ * @version 30-11-16 Diana Huelga
  */
 public class Pajaro extends Actor
 {
@@ -18,31 +19,29 @@ public class Pajaro extends Actor
      */
     public Pajaro()
     {
-        tiempoDeRoca = new SimpleTimer();
-        setImage("EnemigoNivel21.png");
+        prepare();
         vel = 4;
         velRoca = 2000;
-        tiempoDeRoca.mark();
     }
     /**
      * Act - do whatever the Pajaro wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    public void act() 
-    {
-        mover();
-        arroja();
-    }    
-    
+    public void act(){
+        World m=getWorld();
+        if(((Nivel2)m).getValorReloj() > 2000){
+            mover(m);
+            arroja(m);
+        }
+    }        
     /**
      *  Hace el movimiento del objeto dentro del nivel 2 y modifica la imagen con la direccion que se toma
      *  @author Carlos Almendarez
      *  @version 24-11-16
      *  @param no hay parametros de entrada 
      */
-    public void mover()
+    public void mover(World w)
     {
-        World w = getWorld();
         setLocation(getX()+vel,getY());
         if( getX()+vel>=((Nivel2)w).ANCHO-80 || getX()+vel<=80)
         {
@@ -61,13 +60,15 @@ public class Pajaro extends Actor
      *  @version 24-11-16
      *  @param no hay parametros de entrada 
      */
-    public void arroja()
+    public void arroja(World w)
     {
-        World w = getWorld();
         if(tiempoDeRoca.millisElapsed()>velRoca)
         {
             ((Nivel2)w).creaRoca();
             tiempoDeRoca.mark();
         }
+    }
+    public void prepare(){
+        tiempoDeRoca = new SimpleTimer();
     }
 }
