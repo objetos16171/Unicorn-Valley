@@ -19,7 +19,7 @@ public class Jugar extends Boton
     public void act() 
     {
         if(super.presionaBoton(nombre) == true){
-            Greenfoot.setWorld(new Final()); 
+            Greenfoot.setWorld(new Nivel1()); 
         }
     }     
 }

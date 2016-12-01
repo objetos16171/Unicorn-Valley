@@ -41,15 +41,19 @@ public class Nivel2 extends Nivel
             avanzaMundo();   
             unicornio.brinca();
             unicornio.cae();
-            unicornio.mueveLados();
-            
+            unicornio.mueveLados();   
+            condicionesGenerales();
         }
     } 
     public void started(){
         relojPrincipal.mark();
     }
     /**
-     * 
+     * Verifica las condiciones generales de las acciones del unicornio
+     * @author Diana Huelga
+     * @version 01-11-16
+     * @return -
+     * param no hay parametros de entrada 
      */
     public void condicionesGenerales(){
         if(unicornio.libera()== true){
@@ -117,6 +121,7 @@ public class Nivel2 extends Nivel
                 int x=Greenfoot.getRandomNumber(800);
                 addObject(plat,x,80);
                 agregaLlave(x,50);
+                agregaAve2(x,50);
                 agregaVida(x,50);
                 listPlat.add(plat);
             }
@@ -223,6 +228,11 @@ public class Nivel2 extends Nivel
                 addObject(new Plataforma(),Greenfoot.getRandomNumber(800),y);                
                 }
              y+=100;
+        }
+    }
+    public void agregaAve2(int x, int y){
+        if(Greenfoot.getRandomNumber(10) == 1){
+            addObject(new EnemigoSecundarioNiv2(),x,y);
         }
     }
      /**
