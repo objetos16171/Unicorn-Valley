@@ -14,6 +14,13 @@ public class Tiburon extends Actor
      */
     public void act() 
     {
-        // Add your action code here.
     }    
+    public void mueveteder(){
+        move(5);
+        turn(2);
+    }    
+    public void mueveteziq(){
+        move(-5);
+        turn(-2);
+    }
 }

@@ -11,7 +11,10 @@ public class Nivel3 extends Nivel
 {
     private Unicornio unicornio;
     private Pulpo pulpo;
-    private Tiburon tiburon;
+    private int contPulpos;
+    private PulpoSecundario pulpo2;
+    private Tiburon tiburon1;
+    private Tiburon tiburon2;
     private Counter contLlaves;
     private String direccion;
     private GreenfootImage bgImage;
@@ -24,19 +27,29 @@ public class Nivel3 extends Nivel
     public Nivel3(int vidas)
     {
         super(400,550,vidas);
+        contPulpos=0;
         unicornio=super.getUnicornio();
-        bgImage = new GreenfootImage("FondoNivel3.png");
-        
+        bgImage = new GreenfootImage("FondoNivel3.png");        
         prepare();
-    }    
+    }  
     public void act(){
-       direccion=unicornio.mueveteEnNivel3();
-       condicionesGenerales();   
-       if(tiempoPulpo.millisElapsed() >= 3000 && super.getLlaves() < 100){
-           addObject(pulpo,0,300);
-       }
-       if(super.getLlaves() == 100){
-           addObject(tiburon,200,500);
+       if(super.getLlaves() != 100){
+           direccion=unicornio.mueveteEnNivel3();
+           condicionesGenerales();   
+           if(tiempoPulpo.millisElapsed() >= 3000 && contPulpos < 3){
+               addObject(pulpo,0,300);
+           }else 
+           if(tiempoPulpo.millisElapsed() >= 3000 && contPulpos == 4){
+               addObject(pulpo2,0,300);
+           }
+       }else if(super.getLlaves() == 100){
+           unicornio.mueveSinScroll();
+           addObject(tiburon1,400,150);
+           addObject(tiburon2,400,150);
+           removeObject(pulpo);
+           super.añadeUnicornioSecundario(400,300); 
+           tiburon1.mueveteder();
+           tiburon2.mueveteziq();
         }
    }
    /**
@@ -58,16 +71,25 @@ public class Nivel3 extends Nivel
             super.aumentaVida();
         } 
        if(unicornio.tocaPulpo() == true){
+           this.iniciaTiempo();
            super.disminuyeContadorLlaves();
         }       
+       if(unicornio.tocaPulpoSecundario()== true){
+       //Si te toca te mueres
+           this.iniciaTiempo();
+           super.decrementaVida();
+       }
    }
    /**
     * Reinicia el tiempo que majena al pulpo
     * @author Diana Huegla
-    * @version 28-11-16
+    * @version 30-11-16
     * @param no hay parametros de entrada
     */
    public void iniciaTiempo(){
+       if(contPulpos < 3){contPulpos++;}
+       if(contPulpos >= 4){contPulpos = 0;}
+       if(contPulpos == 3){contPulpos = 4;}       
        tiempoPulpo.mark();
    }
    /**
@@ -101,7 +123,7 @@ public class Nivel3 extends Nivel
      * @para no hay parametros de entrada
      */
     public void agregaEnemigosSecundarios(){
-        if(Greenfoot.getRandomNumber(70) == 1){
+        if(Greenfoot.getRandomNumber(50) == 1){
             addObject(new Estrella(),770,Greenfoot.getRandomNumber(500));            
         }
     }
@@ -181,7 +203,7 @@ public class Nivel3 extends Nivel
             if(y < 30){
                 y+=30;
             }
-            if(Greenfoot.getRandomNumber(150) == 1){
+            if(Greenfoot.getRandomNumber(100) == 1){
                 addObject(new Llave3(),790,y);
             }
         }
@@ -195,8 +217,11 @@ public class Nivel3 extends Nivel
     private void prepare()
     {  
         pulpo=new Pulpo();
+        pulpo2=new PulpoSecundario();
         tiempoPulpo=new SimpleTimer();
-        tiburon=new Tiburon();
+        tiburon1=new Tiburon();
+        tiburon2=new Tiburon();
+        tiburon2.setImage("Tiburon2.png");
         tiempoPulpo.mark();
         agregaLlavesIniciales();
     }

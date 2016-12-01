@@ -25,7 +25,7 @@ public class Unicornio extends Actor
      * Constructor for objects of class Unicornio.
      */
     public Unicornio(){
-        vel = 2;
+        vel = 4;//2
         dx = 34;
         dy = 34;
         
@@ -95,9 +95,29 @@ public class Unicornio extends Actor
                 setLocation(getX(),getY()+vel);            
         }
     }
+    /**
+     * Verifica si el unicornio ha tocado a un pulpo
+     * @author Diana Huelga
+     * @version 28-11-16
+     * @return true si toco al pulpo 
+     * @return false si no toco al pulpo 
+     */
     public boolean tocaPulpo(){
         if(this.isTouching(Pulpo.class)){
             removeTouching(Pulpo.class);
+            return true;
+        }else{ return false;}
+    }
+    /**
+     * Verifica si el unicornio ha tocado a un pulpo secundario
+     * @author Diana Huelga
+     * @version 30-11-16
+     * @return true si toco al pulpo secundario
+     * @return false si no toco al pulpo secundario
+     */
+    public boolean tocaPulpoSecundario(){
+        if(this.isTouching(PulpoSecundario.class)){
+            removeTouching(PulpoSecundario.class);
             return true;
         }else{ return false;}
     }
@@ -297,5 +317,31 @@ public class Unicornio extends Actor
             setLocation(getX(),getY()+vel);
         }
         return "";
+    }
+    /**
+     * Permite al unicornio moverse sin avanzar al mundo 
+     * @author Diana Huelga
+     * @version 29-11-16
+     * @return -
+     * @param no hay paramtros de entrada
+     */
+    public void mueveSinScroll(){
+        if(Greenfoot.isKeyDown(derecha)){  
+            setImage("unicorn.png"); 
+            setLocation(getX()+vel,getY());            
+        }
+        if(Greenfoot.isKeyDown(izquierda)){
+            setImage("unicorn2.png");
+            setLocation(getX()-vel,getY());
+        }
+        if(Greenfoot.isKeyDown(arriba)){
+            if(getY() > 80){                
+                setLocation(getX(),getY()-vel);
+            }
+        }
+        if(Greenfoot.isKeyDown(abajo)){
+            if(getY() < 560)
+                setLocation(getX(),getY()+vel);
+        }
     }
 }
