@@ -16,7 +16,7 @@ public class Nivel1 extends Nivel
     
     /**
      * Constructor for objects of class Nivel1.
-     */
+    */
     public Nivel1(){     
         super(60,100,3); 
         unicornio=super.getUnicornio();
@@ -35,12 +35,15 @@ public class Nivel1 extends Nivel
             super.aumentaVida();
         }
         if(unicornio.tocaHormiga() == true){
+            List<EneSecundNiv1> listaHormigas = getObjects(EneSecundNiv1.class);
+            if(listaHormigas != null){removeObjects(listaHormigas);}
+            this.agregaEnemigosAleatoriamente();
             super.decrementaVida();
         }
         if(unicornio.tocaLlave() == true){
             super.modificaContadorLlaves();
         }
-    }   
+    }
 	/**
      * @author Diana Huelga
      * @version 7-11-16
