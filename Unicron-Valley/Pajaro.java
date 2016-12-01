@@ -9,8 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Pajaro extends Actor
 {
     private int vel;
-    private int velRoca;
-    private SimpleTimer tiempoDeRoca;
+    private int dx,dy;
     /**
      *  Constructor de Pajaro, inicializa sus atributos
      *  @author Carlos Almendarez
@@ -18,10 +17,9 @@ public class Pajaro extends Actor
      */
     public Pajaro()
     {
-        tiempoDeRoca = new SimpleTimer();
         vel = 4;
-        velRoca = 2000;
-        tiempoDeRoca.mark();
+        dx = 24;
+        dy = 20;
     }
     /**
      * Act - do whatever the Pajaro wants to do. This method is called whenever
@@ -30,44 +28,58 @@ public class Pajaro extends Actor
     public void act() 
     {
         mover();
-        arroja();
+        elimina();
     }    
     
     /**
-     *  Hace el movimiento del objeto dentro del nivel 2 y modifica la imagen con la direccion que se toma
+     *  Hace el movimiento del enemigo secundario dentro del nivel 2 y modifica la imagen con la direccion que se toma
      *  @author Carlos Almendarez
-     *  @version 24-11-16
+     *  @version 29-11-16
      *  @param no hay parametros de entrada 
      */
     public void mover()
     {
         World w = getWorld();
         setLocation(getX()+vel,getY());
-        if( getX()+vel>=((Nivel2)w).ANCHO-80 || getX()+vel<=80)
+        if((getOneObjectAtOffset(dx-vel,dy,Plataforma.class)==null && isTouching(Plataforma.class)) || getX()> ((Nivel2)w).ANCHO-80 || getX()< 80)
         {
-          vel = vel * (-1);
-          if(vel<0)
-          {
-           setImage("Pajaro.png");   
-          }else{
-           setImage("Pajaro1.png");
-          }
+            if(getX()> ((Nivel2)w).ANCHO-80)
+            {
+                setLocation(((Nivel2)w).ANCHO-100,getY());
+            }
+            if(getX()< 80)
+            {
+                setLocation(100,getY());
+            }
+            vel=vel*(-1);
+            if(vel<0)
+            {
+                setImage("Pajaro.png");
+            }else{
+                setImage("Pajaro1.png");
+            }
+        }
+        if(getOneObjectAtOffset(0,dy,Plataforma.class)==null)
+        {
+            setLocation(getX(),getY()+1);
         }
     }
-    
     /**
-     *  Manda un mensaje al mundo para que cree una nueva roca dependiendo del tiempo del timer
+     *  Manda un mensaje al mundo para que Elimine al pajaro una vez que llegue al limite del mundo 
      *  @author Carlos Almendarez
-     *  @version 24-11-16
+     *  @version 29-11-16
      *  @param no hay parametros de entrada 
      */
-    public void arroja()
+    public void elimina()
     {
         World w = getWorld();
-        if(tiempoDeRoca.millisElapsed()>velRoca)
+        if(getY() > ((Nivel2)w).LARGO-80 || isTouching(Unicornio.class))
         {
-            ((Nivel2)w).creaRoca();
-            tiempoDeRoca.mark();
+            if(isTouching(Unicornio.class))
+            {
+                ((Nivel2)w).disminuyeContadorLlaves();
+            }
+            ((Nivel2)w).removeObject(this);
         }
     }
 }
