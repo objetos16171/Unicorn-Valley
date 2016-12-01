@@ -25,7 +25,7 @@ public class Unicornio extends Actor
      * Constructor for objects of class Unicornio.
      */
     public Unicornio(){
-        vel = 4;//2
+        vel = 4;
         dx = 34;
         dy = 34;
         
@@ -95,6 +95,29 @@ public class Unicornio extends Actor
                 setLocation(getX(),getY()+vel);            
         }
     }
+    /** 
+     * mueve al unicornio en el escenario final
+     * @author Diana Carolina
+     * @version 1-12-16
+     * @return -
+     * @param no hay parametros de entrada
+     */
+    public void mueveFinal(){
+        if(Greenfoot.isKeyDown("right") && getX() < 750){
+            this.setImage("unicorn.png");
+            setLocation(getX()+3,getY());
+        }    
+        if(Greenfoot.isKeyDown("left") && getX() > 0){
+            this.setImage("unicorn2.png");
+            setLocation(getX()-3,getY());            
+        }
+        if(Greenfoot.isKeyDown("up") && getY() > 250){
+            setLocation(getX(),getY()-3);            
+        }       
+        if(Greenfoot.isKeyDown("down") && getY() < 350){
+            setLocation(getX(),getY()+3);            
+        }
+    }
     /**
      * Verifica si el unicornio ha tocado a un pulpo
      * @author Diana Huelga
@@ -105,6 +128,19 @@ public class Unicornio extends Actor
     public boolean tocaPulpo(){
         if(this.isTouching(Pulpo.class)){
             removeTouching(Pulpo.class);
+            return true;
+        }else{ return false;}
+    }
+    /**
+     * Verifica si el unicornio ha tocado a un Tiburon secundario
+     * @author Diana Huelga
+     * @version 30-11-16
+     * @return true si toco un tiburon secundario
+     * @return false si no toco a un tiburon secundario
+     */
+    public boolean tocaTiburon(){
+        if(this.isTouching(Tiburon.class)){
+            removeTouching(Tiburon.class);
             return true;
         }else{ return false;}
     }

@@ -48,6 +48,7 @@ comment7.target=void\ aumentaVida()
 comment7.text=\r\n\ aumenta\ en\ 1\ el\ numero\ de\ vidas\ del\ unicornio\ \r\n\ @author\ Diana\ Huelga\r\n\ @param\ no\ hay\ parametros\ de\ entrada\r\n\ @version\ 18-11-16\ \r\n
 comment8.params=x\ y
 comment8.target=void\ unicornioSecundarioNivel2(int,\ int)
+comment8.text=\r\n\ A\u00F1ade\ al\ unicornio\ secundario\ en\ la\ posicion\ indicada\r\n\ @author\ Diana\ Huelga\r\n\ @versio\ 18-11-16\r\n\ @return\ -\r\n\ @param\ x\ coordenada\ en\ x\ donde\ se\ posicionar\u00E1\ el\ unicornio\ secundario\r\n\ @param\ y\ coordenada\ en\ y\ donde\ se\ posicionar\u00E1\ el\ unicornio\ secundario\r\n
 comment9.params=
 comment9.target=void\ mueveUnicornioSecundarioNivel2()
 comment9.text=\r\n\ aunmenta\ la\ posicion\ del\ unicornio\ secundario\ en\ el\ \r\n\ nivel\ 2\ para\ simular\ la\ caida\ de\ este\r\n\ @author\ Diana\ Huelga\r\n\ @version\ 18-11-16\r\n\ @return\ -\ \r\n\ @param\ no\ hay\ parametros\ de\ entrada\r\n

@@ -14,7 +14,7 @@ public abstract class Nivel extends World
     private Counter contLlaves; // Contador para las vidas
     private UnicornioSecundario uni2;
     private Unicornio unicornio;
-    private Label perdiste;  
+    private Label vidaMenos;
     /**
      * Constructor for objects of class Nivel.
      * @param x posicion en x donde se colocara el unicornio
@@ -58,7 +58,7 @@ public abstract class Nivel extends World
      */
     public void perdiste()
     {
-        perdiste= new Label("PERDISTE",80);
+        Label perdiste = new Label("PERDISTE",80);
         addObject(perdiste,400,300);
         Greenfoot.stop();
     }
@@ -82,6 +82,9 @@ public abstract class Nivel extends World
     * @version 18-11-16 
     **/
     public void decrementaVida(){
+        addObject(vidaMenos,350,60); 
+        Greenfoot.delay(50);
+        removeObject(vidaMenos);
         if(numVidas >= 1){
             numVidas--;
             this.modificaContadorVidas();
@@ -102,6 +105,14 @@ public abstract class Nivel extends World
             modificaContadorVidas();
         }
     }    
+    /**
+     * Añade al unicornio secundario en la posicion indicada
+     * @author Diana Huelga
+     * @versio 18-11-16
+     * @return -
+     * @param x coordenada en x donde se posicionará el unicornio secundario
+     * @param y coordenada en y donde se posicionará el unicornio secundario
+     */
     public void unicornioSecundarioNivel2(int x, int y){
         if(contLlaves.getValue() == 100){
             añadeUnicornioSecundario(x,y);
@@ -219,6 +230,7 @@ public abstract class Nivel extends World
         contLlaves.setImage("Llave0.png");  
         addObject(botMen,600,20);        
         addObject(contLlaves,115,20);
+        vidaMenos= new Label("-1 Vida",30);        
     }
 }
  

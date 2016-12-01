@@ -25,8 +25,6 @@ public class Nivel3 extends Nivel
    /**Contador para la imagen*/
     private int imageCount = 0;   
     private String direccion;
-    private List<Estrella> listaEstrellas; 
-    
     /**
      * Constructor for objects of class Nivel3.
      */
@@ -44,7 +42,20 @@ public class Nivel3 extends Nivel
            condicionesGenerales();
            generaPulpos();
        }else if(super.getLlaves() >= 100){
-           finalHisotia();
+           limpiaNivel();   
+           posicionaPersonajes();
+           tiburon1.mueveteder();
+           tiburon2.mueveteziq();
+           unicornio.mueveSinScroll();
+           if(unicornio.tocaTiburon() == true){
+               super.decrementaVida();
+               unicornio.setLocation(100,100);
+               tiburon1.setLocation(400,150);
+               tiburon2.setLocation(400,150);
+            }
+           if(unicornio.libera()== true){
+               super.cambiaNivel(new Final());
+           }
         }
    }
    /**
@@ -55,16 +66,27 @@ public class Nivel3 extends Nivel
     * @return -
     * @param no hay parametros de entrada
     */
-   public void finalHisotia(){
-       listaEstrellas=getObjects(Estrella.class);
-       removeObjects(listaEstrellas);
-       unicornio.mueveSinScroll();
+   public void limpiaNivel(){       
+       List<Estrella> listaEstrellas = getObjects(Estrella.class); 
+       List<Llave3> listaLlaves= getObjects(Llave3.class);
+       List<Vida3> listaVidas= getObjects(Vida3.class);  
+       if(listaEstrellas != null){removeObjects(listaEstrellas);}
+       if(listaLlaves != null){removeObjects(listaLlaves);}
+       if(listaVidas != null){removeObjects(listaVidas);}    
+       removeObject(pulpo);
+       removeObject(pulpo2);
+   }
+   /**
+    * Acomoda a los tiburones y al unicornio secundario
+    * @auhtor Diana Huelga
+    * @version 1-12-16
+    * @retrun 
+    * @param no hay parmetros de entrada
+    */
+   public void posicionaPersonajes(){
+       super.añadeUnicornioSecundario(400,300);
        addObject(tiburon1,400,150);
        addObject(tiburon2,400,150);
-       removeObject(pulpo);
-       super.añadeUnicornioSecundario(400,300); 
-       tiburon1.mueveteder();
-       tiburon2.mueveteziq();
     }
    /**
     * Verifiaca el valor del contador de pulpos y del reloj para añadir 
@@ -105,7 +127,6 @@ public class Nivel3 extends Nivel
            super.disminuyeContadorLlaves();
         }       
        if(unicornio.tocaPulpoSecundario()== true){
-       //Si te toca te mueres
            this.iniciaTiempo();
            super.decrementaVida();
        }
@@ -253,6 +274,6 @@ public class Nivel3 extends Nivel
         tiburon2=new Tiburon();
         tiburon2.setImage("Tiburon2.png");
         tiempoPulpo.mark();
-        agregaLlavesIniciales();
+        // agregaLlavesIniciales();
     }
 }

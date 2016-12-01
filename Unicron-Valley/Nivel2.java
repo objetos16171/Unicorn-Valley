@@ -42,22 +42,28 @@ public class Nivel2 extends Nivel
             unicornio.brinca();
             unicornio.cae();
             unicornio.mueveLados();
-            if(unicornio.libera()== true){
-                super.cambiaNivel(new Nivel3(super.getNumeroViadas()));
-            }
-            if(unicornio.comeGalleta() == true){
-                super.aumentaVida();
-            }
-            if(unicornio.tocaLlave() == true){
-                super.modificaContadorLlaves();
-            }      
-            if(unicornio.tocaRoca() == true){
-                this.posicionesIniciales();
-            }
+            
         }
     } 
     public void started(){
         relojPrincipal.mark();
+    }
+    /**
+     * 
+     */
+    public void condicionesGenerales(){
+        if(unicornio.libera()== true){
+            super.cambiaNivel(new Nivel3(super.getNumeroViadas()));
+        }
+        if(unicornio.comeGalleta() == true){
+            super.aumentaVida();
+        }
+        if(unicornio.tocaLlave() == true){
+            super.modificaContadorLlaves();
+        }      
+        if(unicornio.tocaRoca() == true){
+            this.posicionesIniciales();
+        }
     }
     /**
      * Avanza los objetos que hay en el mundo

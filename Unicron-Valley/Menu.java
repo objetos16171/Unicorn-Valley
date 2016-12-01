@@ -35,7 +35,7 @@ public class Menu extends World
         creditos= new Botoncreditos();
         addObject(jug,400,350);        
         addObject(ayud,400,400);
-        addObject(salir,400,450);
-        addObject(creditos,400,500); 
+        addObject(creditos,400,450); 
+        addObject(salir,400,500);
     }
 }
