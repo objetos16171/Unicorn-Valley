@@ -16,8 +16,8 @@ public class Nivel2 extends Nivel
     
     /**contador para la distancia entre plataformas 
        Se utiliza en el metodo: generaPlataformas() */
-    private int contPlat=0;
-    private EnemigoNivel2 enemigoPrincipal;
+    private int contPlat=0;  
+    private Pajaro pajaro;
     
     private Unicornio unicornio;
     private Counter contLlaves;    
@@ -33,7 +33,7 @@ public class Nivel2 extends Nivel
         prepare();
     }
     public void act(){
-		verificaPosUnicornio(); 
+        verificaPosUnicornio(); 
         avanzaMundo();   
         unicornio.brinca();
         unicornio.cae();
@@ -47,6 +47,9 @@ public class Nivel2 extends Nivel
         if(unicornio.tocaLlave() == true){
             super.modificaContadorLlaves();
         }      
+        if(unicornio.tocaRoca() == true){
+            this.posicionesIniciales();
+        }
     } 
     /**
      * Avanza los objetos que hay en el mundo
@@ -91,7 +94,6 @@ public class Nivel2 extends Nivel
                 addObject(plat,x,80);
                 agregaLlave(x,50);
                 agregaVida(x,50);
-                agregaAve(x,50);
                 listPlat.add(plat);
             }
             contPlat=0;
@@ -126,20 +128,6 @@ public class Nivel2 extends Nivel
         }
     }
     /**
-     * Asigna las posiciones iniciales de los elementos principales del escenario
-     * (plataformas y unicornio)
-     * @author Diana Huelga
-     * @return -
-     * @version 9-11-16
-     * @param no hay parametros de entrada
-     */
-    public void posicionesIniciales(){
-        addObject(new Plataforma(),ANCHO/2,380);
-        unicornio.setLocation(ANCHO/2,340);
-        generaPlataformasIniciales();
-        listPlat=getObjects(Plataforma.class);
-    }
-    /**
      * Regresa la posicion que tiene el unicornio
      * @author Diana Huelga
      * @version 9-11-16
@@ -169,11 +157,25 @@ public class Nivel2 extends Nivel
      */
     public void verificaPosUnicornio(){
         if(unicornio.getY() >= 570){
-            removeObjects(listPlat);
-            listPlat.clear();                   
             posicionesIniciales();
-			super.decrementaVida();
-         }
+        }
+    }
+    /**
+     * Asigna las posiciones iniciales de los elementos principales del escenario
+     * (plataformas y unicornio)
+     * @author Diana Huelga
+     * @return -
+     * @version 9-11-16
+     * @param no hay parametros de entrada
+     */
+    public void posicionesIniciales(){
+        removeObjects(listPlat);
+        listPlat.clear();    
+        super.decrementaVida();
+        addObject(new Plataforma(),ANCHO/2,380);
+        unicornio.setLocation(ANCHO/2,340);
+        generaPlataformasIniciales();
+        listPlat=getObjects(Plataforma.class);
     }
     /**
      * Coloca plataformas aelatoriamente en el escenario 
@@ -206,21 +208,15 @@ public class Nivel2 extends Nivel
       */
     public void creaRoca()
     {
-        Roca r = new Roca();
-        addObject(r,enemigoPrincipal.getX(),enemigoPrincipal.getY()+25);
+        addObject(new Roca() ,pajaro.getX(),pajaro.getY()+25);
     }
     public void prepare(){
-        enemigoPrincipal = new EnemigoNivel2();
+        pajaro = new Pajaro();
+        pajaro.setImage("EnemigoNivel21.png");
         listPlat= new ArrayList<Plataforma>();   
         posicionesIniciales();
         modificaContadorVidas();
         unicornio.iniciaTimer();
-        addObject(enemigoPrincipal,ANCHO/2,60);
-    }
-    
-    public void agregaAve(int x, int y){
-        if(Greenfoot.getRandomNumber(5) == 1){
-            addObject(new Pajaro(),x,y);
-        }
-    }
+        addObject(pajaro,ANCHO/2,60);
+    }    
 }

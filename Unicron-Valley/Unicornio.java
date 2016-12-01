@@ -187,6 +187,21 @@ public class Unicornio extends Actor
         }else {return false;}
     }
     /**
+     * Verifica si el unicornio toco una roca (Nivel2)
+     * @author Diana Huelga
+     * @version 30-11-16
+     * @return true si el unicornio toco una roca
+     * @return false si el unicornio no ha tocado una roca
+     * @param no hay parametros de entrada
+     */
+    public boolean tocaRoca(){
+        if(isTouching(Roca.class)){
+            removeTouching(Roca.class);
+            return true;
+        }else{
+            return false;}
+    }
+    /**
      *  Cambia la posicion en 'y' del unicornio para simular la caida
      *  @author Diana Huelga
      *  @author Carlos Almendarez

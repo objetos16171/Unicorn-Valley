@@ -40,8 +40,7 @@ public class Roca extends Actor
     public void cae()
     {
         setLocation(getX(),getY()+vel);
-    }
-    
+    }    
     /**
      *  Elimina la el objeto al llegar al borde o al tocar al unicornio y manda un mensaje al mundo si toca al unicornio
      *  @author Carlos Almendarez
@@ -50,14 +49,9 @@ public class Roca extends Actor
      */
     public void elimina()
     {
-        World w = getWorld();
-        
-        if(getY()>((Nivel2)w).LARGO-80 || isTouching(Unicornio.class))
-        {
-            if(isTouching(Unicornio.class))
-            {
-                ((Nivel2)w).decrementaVida();
-            }
+        World w = getWorld();        
+        if(getY()>((Nivel2)w).LARGO-80)
+        {           
             ((Nivel2)w).removeObject(this);
         }
     }

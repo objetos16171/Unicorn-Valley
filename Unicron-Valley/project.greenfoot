@@ -1,5 +1,5 @@
 #Greenfoot properties
-#Wed Nov 30 23:35:53 CST 2016
+#Wed Nov 30 23:52:59 CST 2016
 target24.type=ClassTarget
 target16.name=Nivel1
 dependency85.to=Vida3
@@ -363,7 +363,7 @@ dependency89.from=Creditos
 dependency12.from=Botonmenu
 class.Piedra.image=Muro.png
 target6.type=ClassTarget
-class.Pajaro.image=Pajaro1.png
+class.Pajaro.image=EnemigoNivel21.png
 dependency64.from=Nivel1
 dependency62.to=UnicornioSecundario
 target7.showInterface=false
