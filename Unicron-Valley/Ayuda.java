@@ -9,16 +9,22 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Ayuda extends World
 {
     private int numeroImagen;
+    private Botonmenu botMen;
+    private SimpleTimer tiempoTecla;
+    private AyudaFondo a;
     /**
      * Constructor for objects of class Ayuda.
      * 
      */
-    private Botonmenu botMen;
     public Ayuda()
     {   
         super(800, 600, 1); 
-        numeroImagen=0;
-       
+        a=new AyudaFondo();
+        addObject(a,400,300);
+        a.setImage("A0.png");
+        numeroImagen=0;   
+        prepare();
+        tiempoTecla.mark();
     }
     /**
      * @author Diana Huelga
@@ -27,12 +33,28 @@ public class Ayuda extends World
      * @return -
      */
     public void act(){
-        if(Greenfoot.isKeyDown("enter") || Greenfoot.isKeyDown("right")){
-            
+        String nombre="";
+        nombre="A"+numeroImagen+".png";    
+        a.setImage(nombre);
+        if(tiempoTecla.millisElapsed() > 1000 && ( Greenfoot.isKeyDown("enter") || Greenfoot.isKeyDown("right")) ){
+            numeroImagen++;
+            if(numeroImagen >= 5){
+                botMen.regresaMenu();
+                tiempoTecla.mark();
+            }
+            tiempoTecla.mark();            
+        }
+        if(tiempoTecla.millisElapsed() > 1000 && Greenfoot.isKeyDown("left")){
+            if(numeroImagen >= 1){
+                numeroImagen--;
+                tiempoTecla.mark();
+            }
+            tiempoTecla.mark();
         }
     }
     public void prepare(){
-         botMen=new Botonmenu();
-        addObject(botMen,720,20);
+        botMen=new Botonmenu();
+        addObject(botMen,730,15); 
+        tiempoTecla= new SimpleTimer();        
     }
 }

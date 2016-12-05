@@ -251,7 +251,7 @@ public class Nivel1 extends Nivel
             xLlav=Greenfoot.getRandomNumber(750);
             yLlav=Greenfoot.getRandomNumber(550);
             
-            if(xLlav >= 20 && yLlav >= 80 && (xLlav > 60 && yLlav > 100)){ //Condicion para evitar que las llaves
+            if(xLlav >= 30 && yLlav >= 80){ //Condicion para evitar que las llaves
                                                 //aparezcan en las orillas del mundo en x tanto como en y
                 addObject(new Llave(),xLlav,yLlav);
                 i++;

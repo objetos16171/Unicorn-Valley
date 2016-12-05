@@ -27,7 +27,7 @@ public class ItemsNivel2 extends Actor
         if(((Nivel2)m).getPosYUnicornio() <= 300){
             setLocation(getX(),getY()+1);
         }
-        if(getY()>= 550){
+        if(getY()>= 590){
             m.removeObject(this);
         }
     }
@@ -43,9 +43,9 @@ public class ItemsNivel2 extends Actor
         if(((Nivel2)m).getPosYUnicornio() <= 300){
             setLocation(getX(),getY()+1);
         }
-        if(getY()>= 550){
+        if(getY()>= 580){
             ((Nivel2)m).eliminaPlataforma((Plataforma)this);
-            m.removeObject(this);
+             m.removeObject(this);
         }
     }
 }
