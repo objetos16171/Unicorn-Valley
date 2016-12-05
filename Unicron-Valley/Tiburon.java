@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Tiburon here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Diana Huelga
+ * @version 25-11-16
  */
 public class Tiburon extends Actor
 {
@@ -15,10 +15,24 @@ public class Tiburon extends Actor
     public void act() 
     {
     }    
+    /**
+     * Mueve al actor en forma circular hacia la derecha
+     * @author Diana Huelga
+     * @version 25-11-16
+     * @return -
+     * @para no hay parametros de entrada
+     */
     public void mueveteder(){
         move(5);
         turn(2);
     }    
+    /**
+     * Mueve al actor en forma circular hacia la izquierda
+     * @author Diana Huelga
+     * @version 25-11-16
+     * @return -
+     * @para no hay parametros de entrada
+     */
     public void mueveteziq(){
         move(-5);
         turn(-2);

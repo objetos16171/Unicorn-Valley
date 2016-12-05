@@ -60,7 +60,8 @@ public abstract class Nivel extends World
     {
         Label perdiste = new Label("PERDISTE",80);
         addObject(perdiste,400,300);
-        Greenfoot.stop();
+        Greenfoot.delay(200);
+        botMen.regresaMenu();
     }
     /**
     * inicializa unicamente la imagen del contador dependiendo de 

@@ -22,6 +22,5 @@ public class Botoncreditos extends Boton
         if(super.presionaBoton(nombre) == true){
             Greenfoot.setWorld(new Creditos()); 
         }
-    }    
-    
+    }        
 }

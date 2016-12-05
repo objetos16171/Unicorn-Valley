@@ -1,11 +1,13 @@
 #BlueJ class context
 comment0.target=Tiburon
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Tiburon\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Tiburon\ here.\r\n\ \r\n\ @author\ Diana\ Huelga\r\n\ @version\ 25-11-16\r\n
 comment1.params=
 comment1.target=void\ act()
 comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ Tiburon\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
 comment2.params=
 comment2.target=void\ mueveteder()
+comment2.text=\r\n\ Mueve\ al\ actor\ en\ forma\ circular\ hacia\ la\ derecha\r\n\ @author\ Diana\ Huelga\r\n\ @version\ 25-11-16\r\n\ @return\ -\r\n\ @para\ no\ hay\ parametros\ de\ entrada\r\n
 comment3.params=
 comment3.target=void\ mueveteziq()
+comment3.text=\r\n\ Mueve\ al\ actor\ en\ forma\ circular\ hacia\ la\ izquierda\r\n\ @author\ Diana\ Huelga\r\n\ @version\ 25-11-16\r\n\ @return\ -\r\n\ @para\ no\ hay\ parametros\ de\ entrada\r\n
 numComments=4

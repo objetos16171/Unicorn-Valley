@@ -26,6 +26,8 @@ public class Nivel2 extends Nivel
     private Counter contLlaves;    
     /**Lista de plataformas*/
     private List<Plataforma> listPlat;     //lista de plataformas presentes en el mundo
+    private List<Vida2> listVida;
+    private List<Llave2> listLlave;
     /**
     * Constructor for objects of class Nivel2. 
     */
@@ -67,6 +69,7 @@ public class Nivel2 extends Nivel
         }      
         if(unicornio.tocaRoca() == true){
             this.posicionesIniciales();
+            super.decrementaVida();
         }
     }
     /**
@@ -77,8 +80,8 @@ public class Nivel2 extends Nivel
      * @version 14-11-16
      */
     public void avanzaMundo(){
-        if(unicornio.getY() <= 180){
-             generaPlataformas();
+        if(unicornio.getY() <= 300){
+             generaPlataformas();             
              super.unicornioSecundarioNivel2(Greenfoot.getRandomNumber(750),20);                 
         }         
     }
@@ -152,7 +155,7 @@ public class Nivel2 extends Nivel
      * @param y posicion en y donde se colocara la galleta
      */
     public void agregaVida(int x, int y){
-        if( Greenfoot.getRandomNumber(10) == 1 ){
+        if( Greenfoot.getRandomNumber(5) == 1 ){
             addObject(new Vida2(),x,y);
         }
     }
@@ -199,9 +202,19 @@ public class Nivel2 extends Nivel
      */
     public void posicionesIniciales(){
         relojPrincipal.mark();
+        listPlat=getObjects(Plataforma.class);
+        listVida=getObjects(Vida2.class);
+        listLlave=getObjects(Llave2.class);
         removeObjects(listPlat);
-        listPlat.clear();    
-        super.decrementaVida();
+        if(listVida != null){        
+            removeObjects(listVida);
+            listVida.clear();
+        }
+        if(listLlave != null){
+            removeObjects(listLlave);
+            listLlave.clear();
+        }
+        listPlat.clear();  
         addObject(new Plataforma(),ANCHO/2,380);
         unicornio.setLocation(ANCHO/2,340);
         generaPlataformasIniciales();
@@ -230,6 +243,14 @@ public class Nivel2 extends Nivel
              y+=100;
         }
     }
+    /**
+     * Agrega el enemigo secundario al nivel2
+     * @author Carlos Almendarez
+     * @version 27-11-16
+     * @return -
+     * @param x posicion en x donde se colocará
+     * @param y posicion en y donde se colocará
+     */
     public void agregaAve2(int x, int y){
         if(Greenfoot.getRandomNumber(10) == 1){
             addObject(new EnemigoSecundarioNiv2(),x,y);
@@ -251,7 +272,6 @@ public class Nivel2 extends Nivel
         pajaro.setImage("EnemigoNivel21.png");
         listPlat= new ArrayList<Plataforma>();   
         posicionesIniciales();
-        modificaContadorVidas();
         unicornio.iniciaTimer();
         addObject(pajaro,200,60);
     }    

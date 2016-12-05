@@ -2,6 +2,11 @@
 comment0.target=Botonmenu
 comment0.text=\r\n\ Write\ a\ description\ of\ class\ Botonmenu\ here.\r\n\ \r\n\ @author\ Diana\ Huelga\r\n\ @version\ 5-11-16\r\n
 comment1.params=
-comment1.target=void\ act()
-comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ Botonmenu\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
-numComments=2
+comment1.target=Botonmenu()
+comment2.params=
+comment2.target=void\ act()
+comment2.text=\r\n\ Act\ -\ do\ whatever\ the\ Botonmenu\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n@auhtor\ Diana\ Huelga\r\n@version\ 5-11-16\r\n
+comment3.params=
+comment3.target=void\ regresaMenu()
+comment3.text=\r\n\ @auhtor\ Diana\ huelga\r\n\ @version\ 04-12-16\r\n
+numComments=4

@@ -24,6 +24,7 @@ comment15.target=void\ generaPlataformasIniciales()
 comment15.text=\r\n\ Coloca\ plataformas\ aelatoriamente\ en\ el\ escenario\ \r\n\ @author\ Diana\ Huelga\r\n\ @version\ 7-11-16\r\n\ @return\ -\r\n\ @param\ no\ hay\ parametros\ de\ entrada\r\n
 comment16.params=x\ y
 comment16.target=void\ agregaAve2(int,\ int)
+comment16.text=\r\n\ Agrega\ el\ enemigo\ secundario\ al\ nivel2\r\n\ @author\ Carlos\ Almendarez\r\n\ @version\ 27-11-16\r\n\ @return\ -\r\n\ @param\ x\ posicion\ en\ x\ donde\ se\ colocar\u00E1\r\n\ @param\ y\ posicion\ en\ y\ donde\ se\ colocar\u00E1\r\n
 comment17.params=
 comment17.target=void\ creaRoca()
 comment17.text=\r\n\ \ Crea\ un\ nuevo\ objeto\ de\ tipo\ Roca\ en\ la\ posicion\ del\ Pajaro\r\n\ \ @author\ Carlos\ Almendarez\r\n\ \ @version\ 24-11-16\r\n\ \ @param\ no\ hay\ parametros\ de\ entrada\r\n

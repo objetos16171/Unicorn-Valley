@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Pajaro here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Carlos Almendarez 
+ * @version 24-11-16
  */
 public class EnemigoSecundarioNiv2 extends Actor
 {

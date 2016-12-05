@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Boton here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @auhtor Diana Huelga
+ * @version 27-11-16
  */
 public class Boton extends Actor
 {
@@ -16,6 +16,16 @@ public class Boton extends Actor
     {
         
     }    
+    /**
+     * verifica si se dio click en algunas de las opciones
+     * del menú
+     * @author Diana Huelga
+     * @version 28-11-16
+     * @param nombre del archivo para cambiar la imagen de
+     * la opcion seleccionada 
+     * @return true si se ha presionado una opcion
+     * @return false si no se ha presionado una opcion
+     */
     public boolean presionaBoton(String archivo){
         MouseInfo m= Greenfoot.getMouseInfo();              
         if(m != null){  

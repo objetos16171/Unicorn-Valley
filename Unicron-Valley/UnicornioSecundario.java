@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class UnicornioSecundario here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Diana Huelga 
+ * @version 18-11-16
  */
 public class UnicornioSecundario extends Actor
 {
@@ -16,6 +16,12 @@ public class UnicornioSecundario extends Actor
     {
         
     }  
+    /**
+     * @author Diana Huelga
+     * @version 18-11-16
+     * @return -
+     * @param el Nivel de tipo Mundo donde se encuentra el unicornio secundario
+     */
     public void cambiaNivel(World n){        
         Greenfoot.setWorld(n);
     }

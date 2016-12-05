@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Estrella here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Diana Huelga
+ * @version 22-11-16
  */
 public class Estrella extends ItemsNivel3
 {

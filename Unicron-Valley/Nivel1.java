@@ -27,7 +27,17 @@ public class Nivel1 extends Nivel
         listaPortales=getObjects(Portal.class);
         unicornio.mueve();
         generaPortales();
-        eliminaPortales();  
+        eliminaPortales();
+        condicionesGenerales();
+       }
+    /**
+     * Verifica las condiciones generales de las acciones del unicornio
+     * @author Diana Huelga
+     * @version 04-12-16
+     * @return -
+     * @param no hay parametros de entrada 
+     */
+    public void condicionesGenerales(){
         if(unicornio.libera()== true){
             super.cambiaNivel(new Nivel2(super.getNumeroViadas()));
         }
@@ -43,6 +53,7 @@ public class Nivel1 extends Nivel
         if(unicornio.tocaLlave() == true){
             super.modificaContadorLlaves();
         }
+    
     }
 	/**
      * @author Diana Huelga

@@ -17,6 +17,15 @@ public class ItemsNivel3 extends Actor
     {
         // Add your action code here.
     }    
+    /**
+     * Mueve el los items verticalmente hacia abajo
+     * en el nivel 3 
+     * @auhtor Diana Huelga
+     * @version 27-11-16
+     * @return -
+     * @param recibe el el nivel de tipo Mundo donde se encuentra
+     * el objeto
+     */
     public void mueve(World m){
         tecla= ((Nivel3)m).getDireccion();
         if(tecla != ""){

@@ -5,7 +5,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * 
  * @author Carloz Almendarez 
  * @version 28-11-16
- * @version 30-11-16 Diana Huelga
  */
 public class Pajaro extends Actor
 {
@@ -62,7 +61,7 @@ public class Pajaro extends Actor
      */
     public void arroja(World w)
     {
-        if(tiempoDeRoca.millisElapsed()>velRoca)
+        if(tiempoDeRoca.millisElapsed() > velRoca)
         {
             ((Nivel2)w).creaRoca();
             tiempoDeRoca.mark();

@@ -6,4 +6,5 @@ comment1.target=void\ act()
 comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ ItemsNivel3\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
 comment2.params=m
 comment2.target=void\ mueve(greenfoot.World)
+comment2.text=\r\n\ Mueve\ el\ los\ items\ verticalmente\ hacia\ abajo\r\n\ en\ el\ nivel\ 3\ \r\n\ @auhtor\ Diana\ Huelga\r\n\ @version\ 27-11-16\r\n\ @return\ -\r\n\ @param\ recibe\ el\ el\ nivel\ de\ tipo\ Mundo\ donde\ se\ encuentra\r\n\ el\ objeto\r\n
 numComments=3

@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Pajaro
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Pajaro\ here.\r\n\ \r\n\ @author\ Carloz\ Almendarez\ \r\n\ @version\ 28-11-16\r\n\ @version\ 30-11-16\ Diana\ Huelga\r\n
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Pajaro\ here.\r\n\ \r\n\ @author\ Carloz\ Almendarez\ \r\n\ @version\ 28-11-16\r\n
 comment1.params=
 comment1.target=Pajaro()
 comment1.text=\r\n\ \ Constructor\ de\ Pajaro,\ inicializa\ sus\ atributos\r\n\ \ @author\ Carlos\ Almendarez\r\n\ \ @version\ 24-11-16\r\n

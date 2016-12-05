@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Final here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Diana Huelga
+ * @version 28-11-16
  */
 public class Final extends World
 {
@@ -18,9 +18,17 @@ public class Final extends World
         super(800, 600, 1); 
         prepare();
     }
+    /**
+     * @author Diana Huelga
+     * @version 28-11-16
+     */
     public void act(){
         unicornio.mueveFinal();
     }
+    /**
+     * @author Diana Huelga
+     * @version 28-11-16
+     */
     public void prepare(){
         addObject(new Esfera(), 700,300);
         unicornio= new Unicornio();
